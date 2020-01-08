@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		80B10A6A23C5FAD000CC987F /* TeamInfoTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B10A6923C5FAD000CC987F /* TeamInfoTableCell.swift */; };
+		80A3C12923C61F8900D5A6C2 /* TeamCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A3C12823C61F8900D5A6C2 /* TeamCollectionCell.swift */; };
 		80B10A6C23C6013D00CC987F /* TeamInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B10A6B23C6013D00CC987F /* TeamInfoModel.swift */; };
 		80CBBE0123C5F1E40064CFFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CBBE0023C5F1E40064CFFD /* AppDelegate.swift */; };
 		80CBBE0323C5F1E40064CFFD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CBBE0223C5F1E40064CFFD /* SceneDelegate.swift */; };
@@ -18,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		80B10A6923C5FAD000CC987F /* TeamInfoTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoTableCell.swift; sourceTree = "<group>"; };
+		80A3C12823C61F8900D5A6C2 /* TeamCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCollectionCell.swift; sourceTree = "<group>"; };
 		80B10A6B23C6013D00CC987F /* TeamInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoModel.swift; sourceTree = "<group>"; };
 		80CBBDFD23C5F1E40064CFFD /* BasketBallApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasketBallApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CBBE0023C5F1E40064CFFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				80CBBE0923C5F1E60064CFFD /* Assets.xcassets */,
-				80B10A6923C5FAD000CC987F /* TeamInfoTableCell.swift */,
+				80A3C12823C61F8900D5A6C2 /* TeamCollectionCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -186,9 +186,9 @@
 			files = (
 				80CBBE0523C5F1E40064CFFD /* ViewController.swift in Sources */,
 				80B10A6C23C6013D00CC987F /* TeamInfoModel.swift in Sources */,
-				80B10A6A23C5FAD000CC987F /* TeamInfoTableCell.swift in Sources */,
 				80CBBE0123C5F1E40064CFFD /* AppDelegate.swift in Sources */,
 				80CBBE0323C5F1E40064CFFD /* SceneDelegate.swift in Sources */,
+				80A3C12923C61F8900D5A6C2 /* TeamCollectionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
