@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80B10A6A23C5FAD000CC987F /* TeamInfoTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B10A6923C5FAD000CC987F /* TeamInfoTableCell.swift */; };
+		80B10A6C23C6013D00CC987F /* TeamInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B10A6B23C6013D00CC987F /* TeamInfoModel.swift */; };
 		80CBBE0123C5F1E40064CFFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CBBE0023C5F1E40064CFFD /* AppDelegate.swift */; };
 		80CBBE0323C5F1E40064CFFD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CBBE0223C5F1E40064CFFD /* SceneDelegate.swift */; };
 		80CBBE0523C5F1E40064CFFD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CBBE0423C5F1E40064CFFD /* ViewController.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		80B10A6923C5FAD000CC987F /* TeamInfoTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoTableCell.swift; sourceTree = "<group>"; };
+		80B10A6B23C6013D00CC987F /* TeamInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoModel.swift; sourceTree = "<group>"; };
 		80CBBDFD23C5F1E40064CFFD /* BasketBallApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasketBallApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CBBE0023C5F1E40064CFFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80CBBE0223C5F1E40064CFFD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,15 +60,57 @@
 		80CBBDFF23C5F1E40064CFFD /* BasketBallApp */ = {
 			isa = PBXGroup;
 			children = (
-				80CBBE0023C5F1E40064CFFD /* AppDelegate.swift */,
-				80CBBE0223C5F1E40064CFFD /* SceneDelegate.swift */,
-				80CBBE0423C5F1E40064CFFD /* ViewController.swift */,
-				80CBBE0623C5F1E40064CFFD /* Main.storyboard */,
-				80CBBE0923C5F1E60064CFFD /* Assets.xcassets */,
-				80CBBE0B23C5F1E60064CFFD /* LaunchScreen.storyboard */,
+				80CBBE1823C5F28E0064CFFD /* Storyboards */,
+				80CBBE1723C5F2850064CFFD /* Controllers */,
+				80CBBE1623C5F2810064CFFD /* Views */,
+				80CBBE1523C5F27D0064CFFD /* Models */,
+				80CBBE1423C5F26C0064CFFD /* Project Files */,
 				80CBBE0E23C5F1E60064CFFD /* Info.plist */,
 			);
 			path = BasketBallApp;
+			sourceTree = "<group>";
+		};
+		80CBBE1423C5F26C0064CFFD /* Project Files */ = {
+			isa = PBXGroup;
+			children = (
+				80CBBE0223C5F1E40064CFFD /* SceneDelegate.swift */,
+				80CBBE0023C5F1E40064CFFD /* AppDelegate.swift */,
+			);
+			path = "Project Files";
+			sourceTree = "<group>";
+		};
+		80CBBE1523C5F27D0064CFFD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				80B10A6B23C6013D00CC987F /* TeamInfoModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		80CBBE1623C5F2810064CFFD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				80CBBE0923C5F1E60064CFFD /* Assets.xcassets */,
+				80B10A6923C5FAD000CC987F /* TeamInfoTableCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		80CBBE1723C5F2850064CFFD /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				80CBBE0423C5F1E40064CFFD /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		80CBBE1823C5F28E0064CFFD /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				80CBBE0623C5F1E40064CFFD /* Main.storyboard */,
+				80CBBE0B23C5F1E60064CFFD /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +185,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				80CBBE0523C5F1E40064CFFD /* ViewController.swift in Sources */,
+				80B10A6C23C6013D00CC987F /* TeamInfoModel.swift in Sources */,
+				80B10A6A23C5FAD000CC987F /* TeamInfoTableCell.swift in Sources */,
 				80CBBE0123C5F1E40064CFFD /* AppDelegate.swift in Sources */,
 				80CBBE0323C5F1E40064CFFD /* SceneDelegate.swift in Sources */,
 			);
@@ -285,6 +333,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92NU2A4F42;
 				INFOPLIST_FILE = BasketBallApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -293,7 +342,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = lt.visma.BasketBallApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -302,6 +351,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92NU2A4F42;
 				INFOPLIST_FILE = BasketBallApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -310,7 +360,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = lt.visma.BasketBallApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
