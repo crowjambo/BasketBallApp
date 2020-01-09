@@ -5,12 +5,20 @@ import Foundation
 class TeamInfo{
 	var teamName:String = ""
 	var description:String = ""
-	// should have var for string or so name for icon of the team
+	var imageIconName:String = ""
+	var imageTeamMain:String = ""
 	
-	convenience init(teamName:String, description:String){
+	//add through append later
+	var matchHistory: [MatchHistory] = []
+	var teamPlayers: [Player] = []
+	
+	convenience init(teamName:String, description:String, imageIconName: String, imageTeamMain:String){
 		self.init()
 		self.teamName = teamName
 		self.description = description
-		//team icon init
+		self.imageIconName = imageIconName
+		self.imageTeamMain = imageTeamMain
+		
 	}
 }
+
