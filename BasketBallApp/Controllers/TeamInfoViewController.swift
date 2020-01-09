@@ -31,7 +31,6 @@ class TeamInfoViewController: UIViewController {
 			mainTeamImageOutlet.image = UIImage(named: mainImageName)
 		}
 		
-		segmentOutlet.addUnderlineForSelectedSegment()
 		
 		
     }
@@ -55,7 +54,6 @@ class TeamInfoViewController: UIViewController {
 
 	@IBAction func segmentPress(_ sender: Any) {
 		
-		segmentOutlet.changeUnderlinePosition()
 		
 		var cellHeight:Float = 0
 		
@@ -74,8 +72,6 @@ class TeamInfoViewController: UIViewController {
 	}
 	
 
-	
-	
 	
 }
 

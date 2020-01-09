@@ -14,7 +14,7 @@
 		80A97AC823C734D7008014CF /* MatchInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A97AC723C734D7008014CF /* MatchInfoCell.swift */; };
 		80A97ACA23C73B6F008014CF /* PlayerInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A97AC923C73B6F008014CF /* PlayerInfoCell.swift */; };
 		80A97ACC23C742A5008014CF /* PlayerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A97ACB23C742A5008014CF /* PlayerDetailViewController.swift */; };
-		80A97ACE23C74B73008014CF /* SegmentControlStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A97ACD23C74B73008014CF /* SegmentControlStyle.swift */; };
+		80A97AD023C75248008014CF /* TeamsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A97ACF23C75248008014CF /* TeamsDatabase.swift */; };
 		80B10A6C23C6013D00CC987F /* TeamInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B10A6B23C6013D00CC987F /* TeamInfoModel.swift */; };
 		80CBBE0123C5F1E40064CFFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CBBE0023C5F1E40064CFFD /* AppDelegate.swift */; };
 		80CBBE0323C5F1E40064CFFD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CBBE0223C5F1E40064CFFD /* SceneDelegate.swift */; };
@@ -32,7 +32,7 @@
 		80A97AC723C734D7008014CF /* MatchInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchInfoCell.swift; sourceTree = "<group>"; };
 		80A97AC923C73B6F008014CF /* PlayerInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoCell.swift; sourceTree = "<group>"; };
 		80A97ACB23C742A5008014CF /* PlayerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailViewController.swift; sourceTree = "<group>"; };
-		80A97ACD23C74B73008014CF /* SegmentControlStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentControlStyle.swift; sourceTree = "<group>"; };
+		80A97ACF23C75248008014CF /* TeamsDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsDatabase.swift; sourceTree = "<group>"; };
 		80B10A6B23C6013D00CC987F /* TeamInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoModel.swift; sourceTree = "<group>"; };
 		80CBBDFD23C5F1E40064CFFD /* BasketBallApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasketBallApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CBBE0023C5F1E40064CFFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +99,7 @@
 				80B10A6B23C6013D00CC987F /* TeamInfoModel.swift */,
 				80A97AC123C7270B008014CF /* PlayerModel.swift */,
 				80A97AC323C72860008014CF /* MatchHistoryModel.swift */,
+				80A97ACF23C75248008014CF /* TeamsDatabase.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -110,7 +111,6 @@
 				80A3C12823C61F8900D5A6C2 /* TeamCollectionCell.swift */,
 				80A97AC723C734D7008014CF /* MatchInfoCell.swift */,
 				80A97AC923C73B6F008014CF /* PlayerInfoCell.swift */,
-				80A97ACD23C74B73008014CF /* SegmentControlStyle.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -214,7 +214,7 @@
 				80B10A6C23C6013D00CC987F /* TeamInfoModel.swift in Sources */,
 				80CBBE0123C5F1E40064CFFD /* AppDelegate.swift in Sources */,
 				80A97AC823C734D7008014CF /* MatchInfoCell.swift in Sources */,
-				80A97ACE23C74B73008014CF /* SegmentControlStyle.swift in Sources */,
+				80A97AD023C75248008014CF /* TeamsDatabase.swift in Sources */,
 				80CBBE0323C5F1E40064CFFD /* SceneDelegate.swift in Sources */,
 				80A3C12923C61F8900D5A6C2 /* TeamCollectionCell.swift in Sources */,
 			);
