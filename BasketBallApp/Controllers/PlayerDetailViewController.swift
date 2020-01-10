@@ -25,11 +25,19 @@ class PlayerDetailViewController: UIViewController {
 		
 		if let player = self.player{
 			playerNameOutlet.text = player.name
-			ageOutlet.text = String(player.age!)
-			heightOutlet.text = String(player.height!)
-			weightOutlet.text = String(player.weight!)
+			if let age = player.age{
+				ageOutlet.text = String(age)
+			}
+			if let height = player.height{
+				heightOutlet.text = String(height)
+			}
+			if let weight = player.weight{
+				weightOutlet.text = String(weight)
+			}
+			if let playerMainImage = player.playerMainImage{
+				mainPlayerImage.image = UIImage(named: playerMainImage)
+			}
 			descriptionOutlet.text = player.description
-			mainPlayerImage.image = UIImage(named: player.playerMainImage!)
 			
 			descriptionOutlet.sizeToFit()
 		}

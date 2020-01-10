@@ -21,42 +21,39 @@ class TeamInfoViewController: UIViewController {
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-
+		setViewData()
+    }
+	
+	func setViewData(){
 		if let name = team?.teamName {
 			teamNameLabelOutlet.text = name
 		}
 		
-	
 		if let mainImageName = team?.imageTeamMain {
 			mainTeamImageOutlet.image = UIImage(named: mainImageName)
+			
 		}
-		
-		
-		
-    }
+	}
     
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		let vc = segue.destination as! PlayerDetailViewController
+		if let vc = segue.destination as? PlayerDetailViewController{
+			//use sender to decide which team to send (which cell was pressed)
+			guard let selectedCell = sender as? PlayerInfoCell else{
+				return
+			}
+			let indexPath = tableOutlet.indexPath(for: selectedCell)
+			
+			let selectedPlayer = team?.teamPlayers[indexPath!.row]
+			
 		
-		//use sender to decide which team to send (which cell was pressed)
-		guard let selectedCell = sender as? PlayerInfoCell else{
-			return
+			vc.player = selectedPlayer
 		}
-		let indexPath = tableOutlet.indexPath(for: selectedCell)
-		
-		let selectedPlayer = team?.teamPlayers[indexPath!.row]
-		
-	
-		vc.player = selectedPlayer
 	}
 	
 
 	@IBAction func segmentPress(_ sender: Any) {
-		
-		
 		var cellHeight:Float = 0
-		
 		switch segmentOutlet.selectedSegmentIndex{
 			case 0:
 				cellHeight = 100
@@ -64,13 +61,10 @@ class TeamInfoViewController: UIViewController {
 				cellHeight = 50
 			default:
 				cellHeight = 100
-				
 		}
 		tableOutlet.rowHeight = CGFloat(cellHeight)
-		
 		tableOutlet.reloadData()
 	}
-	
 
 	
 }
@@ -94,7 +88,6 @@ extension TeamInfoViewController: UITableViewDelegate, UITableViewDataSource{
 			default:
 				return 0
 		}
-		
 	}
 
 	//creation
@@ -103,20 +96,15 @@ extension TeamInfoViewController: UITableViewDelegate, UITableViewDataSource{
 		switch segmentOutlet.selectedSegmentIndex{
 			case 0:
 				let cell = tableView.dequeueReusableCell(withIdentifier: "MatchInfoCell", for: indexPath) as! MatchInfoCell
-				
 				cell.team1NameOutlet.text = team?.matchHistory[indexPath.row].team1Name
 				cell.team2NameOutlet.text = team?.matchHistory[indexPath.row].team2Name
 				cell.dateLabelOutlet.text = team?.matchHistory[indexPath.row].date
-				
 				return cell
 			
 			case 1:
 				let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerInfoCell", for: indexPath) as! PlayerInfoCell
-				
 				cell.namePositionLabelOutlet.text = (team?.teamPlayers[indexPath.row].name)! + " ," + (team?.teamPlayers[indexPath.row].position)!
-				
 				cell.playerImageOutlet.image = UIImage(systemName: (team?.teamPlayers[indexPath.row].playerIconImage)!)
-				
 				return cell
 			default:
 				return UITableViewCell()

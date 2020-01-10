@@ -3,10 +3,10 @@ import Foundation
 
 // first page team description model
 class TeamInfo{
-	var teamName:String = ""
-	var description:String = ""
-	var imageIconName:String = ""
-	var imageTeamMain:String = ""
+	var teamName:String?
+	var description:String?
+	var imageIconName:String?
+	var imageTeamMain:String?
 	
 	//add through append later
 	var matchHistory: [MatchHistory] = []
