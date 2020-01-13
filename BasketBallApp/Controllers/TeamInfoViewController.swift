@@ -35,7 +35,6 @@ class TeamInfoViewController: UIViewController {
 		}
 	}
     
-	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let vc = segue.destination as? PlayerDetailViewController{
 			//use sender to decide which team to send (which cell was pressed)
@@ -96,15 +95,12 @@ extension TeamInfoViewController: UITableViewDelegate, UITableViewDataSource{
 		switch segmentOutlet.selectedSegmentIndex{
 			case 0:
 				let cell = tableView.dequeueReusableCell(withIdentifier: "MatchInfoCell", for: indexPath) as! MatchInfoCell
-				cell.team1NameOutlet.text = team?.matchHistory[indexPath.row].team1Name
-				cell.team2NameOutlet.text = team?.matchHistory[indexPath.row].team2Name
-				cell.dateLabelOutlet.text = team?.matchHistory[indexPath.row].date
+				cell.styleItself(dateLabel: team?.matchHistory[indexPath.row].date, team1Name: team?.matchHistory[indexPath.row].team1Name, team2Name: team?.matchHistory[indexPath.row].team2Name)
 				return cell
 			
 			case 1:
 				let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerInfoCell", for: indexPath) as! PlayerInfoCell
-				cell.namePositionLabelOutlet.text = (team?.teamPlayers[indexPath.row].name)! + " ," + (team?.teamPlayers[indexPath.row].position)!
-				cell.playerImageOutlet.image = UIImage(systemName: (team?.teamPlayers[indexPath.row].playerIconImage)!)
+				cell.styleItself(playerImage: team?.teamPlayers[indexPath.row].playerIconImage, name: team?.teamPlayers[indexPath.row].name, position: team?.teamPlayers[indexPath.row].position)
 				return cell
 			default:
 				return UITableViewCell()

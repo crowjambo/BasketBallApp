@@ -21,5 +21,17 @@ class MatchInfoCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
+	
+	func styleItself(dateLabel:String?, team1Name:String?, team2Name:String?){
+		if let _team1 = team1Name{
+			team1NameOutlet.text = _team1
+		}
+		if let _team2 = team2Name{
+			team2NameOutlet.text = _team2
+		}
+		if let _date = dateLabel{
+			dateLabelOutlet.text = _date
+		}
+	}
 
 }

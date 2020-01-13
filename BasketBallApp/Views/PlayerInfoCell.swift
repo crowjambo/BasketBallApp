@@ -21,6 +21,22 @@ class PlayerInfoCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
-	
+	func styleItself(playerImage:String? , name:String?, position:String?){
+		if let image = playerImage{
+			playerImageOutlet.image = UIImage(systemName: image)
+		}
+		else{
+			playerImageOutlet.image = UIImage(systemName: "square")
+		}
+		if let _name = name{
+			if let _position = position{
+				namePositionLabelOutlet.text = _name + " , " + _position
+			}
+		}
+		else{
+			namePositionLabelOutlet.text = "undefined"
+		}
+		
+	}
 	
 }

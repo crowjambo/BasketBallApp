@@ -22,7 +22,10 @@ class PlayerDetailViewController: UIViewController {
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-		
+		loadData()
+    }
+	
+	func loadData(){
 		if let player = self.player{
 			playerNameOutlet.text = player.name
 			if let age = player.age{
@@ -38,10 +41,9 @@ class PlayerDetailViewController: UIViewController {
 				mainPlayerImage.image = UIImage(named: playerMainImage)
 			}
 			descriptionOutlet.text = player.description
-			
 			descriptionOutlet.sizeToFit()
 		}
-    }
+	}
     
 	
 

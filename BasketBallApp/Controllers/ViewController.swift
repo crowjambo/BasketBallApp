@@ -23,29 +23,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		
 		if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCollectionCell", for: indexPath) as? TeamCollectionCell {
-			//set cell values
-			cell.teamNameOutlet.text = teams[indexPath.row].teamName
-			cell.teamDescriptionOutlet.text = teams[indexPath.row].description
-			
-			if let imageIconName = teams[indexPath.row].imageIconName{
-				cell.teamIconOutlet.image = UIImage(systemName: imageIconName)
-			}
-			
-			//vertical top align for description
-			cell.teamDescriptionOutlet.sizeToFit()
-			
-			//shadow styling for card
-			cell.contentView.layer.cornerRadius = 2.0
-			cell.contentView.layer.borderWidth = 1.0
-			cell.contentView.layer.borderColor = UIColor.clear.cgColor
-			cell.contentView.layer.masksToBounds = true
-			cell.layer.shadowColor = UIColor.black.cgColor
-			cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-			cell.layer.shadowRadius = 2.0
-			cell.layer.shadowOpacity = 0.5
-			cell.layer.masksToBounds = false
-			cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
-			
+			cell.styleItself(teamName: teams[indexPath.row].teamName, teamDescription: teams[indexPath.row].description, teamIcon: teams[indexPath.row].imageIconName)
+
 			return cell
 		}else{
 			return UICollectionViewCell()
