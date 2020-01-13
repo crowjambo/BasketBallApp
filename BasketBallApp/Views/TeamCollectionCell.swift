@@ -32,9 +32,12 @@ class TeamCollectionCell: UICollectionViewCell {
 	}
 	
 	func styleItself(teamName:String?, teamDescription:String?, teamIcon:String?){
-		
-		teamNameOutlet.text = teamName
-		teamDescriptionOutlet.text = teamDescription
+		if let _teamName = teamName{
+			teamNameOutlet.text = _teamName
+		}
+		if let _teamDescription = teamDescription{
+			teamDescriptionOutlet.text = _teamDescription
+		}
 		if let iconString = teamIcon{
 			teamIconOutlet.image = UIImage(systemName: iconString)
 		}

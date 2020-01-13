@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		802AF94A23CCA282000EC555 /* BasketBallAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802AF94923CCA282000EC555 /* BasketBallAppTests.swift */; };
+		802AF95823CCA2EB000EC555 /* BasketBallAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802AF95723CCA2EB000EC555 /* BasketBallAppUITests.swift */; };
 		80A3C12923C61F8900D5A6C2 /* TeamCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A3C12823C61F8900D5A6C2 /* TeamCollectionCell.swift */; };
 		80A97AC223C7270B008014CF /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A97AC123C7270B008014CF /* PlayerModel.swift */; };
 		80A97AC423C72860008014CF /* MatchHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A97AC323C72860008014CF /* MatchHistoryModel.swift */; };
@@ -24,7 +26,30 @@
 		80CBBE0D23C5F1E60064CFFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80CBBE0B23C5F1E60064CFFD /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		802AF94C23CCA282000EC555 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 80CBBDF523C5F1E40064CFFD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 80CBBDFC23C5F1E40064CFFD;
+			remoteInfo = BasketBallApp;
+		};
+		802AF95A23CCA2EB000EC555 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 80CBBDF523C5F1E40064CFFD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 80CBBDFC23C5F1E40064CFFD;
+			remoteInfo = BasketBallApp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		802AF94723CCA282000EC555 /* BasketBallAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasketBallAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		802AF94923CCA282000EC555 /* BasketBallAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketBallAppTests.swift; sourceTree = "<group>"; };
+		802AF94B23CCA282000EC555 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		802AF95523CCA2EB000EC555 /* BasketBallAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasketBallAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		802AF95723CCA2EB000EC555 /* BasketBallAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketBallAppUITests.swift; sourceTree = "<group>"; };
+		802AF95923CCA2EB000EC555 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80A3C12823C61F8900D5A6C2 /* TeamCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCollectionCell.swift; sourceTree = "<group>"; };
 		80A97AC123C7270B008014CF /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
 		80A97AC323C72860008014CF /* MatchHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHistoryModel.swift; sourceTree = "<group>"; };
@@ -45,6 +70,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		802AF94423CCA282000EC555 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		802AF95223CCA2EB000EC555 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		80CBBDFA23C5F1E40064CFFD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -55,10 +94,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		802AF94823CCA282000EC555 /* BasketBallAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				802AF94923CCA282000EC555 /* BasketBallAppTests.swift */,
+				802AF94B23CCA282000EC555 /* Info.plist */,
+			);
+			path = BasketBallAppTests;
+			sourceTree = "<group>";
+		};
+		802AF95623CCA2EB000EC555 /* BasketBallAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				802AF95723CCA2EB000EC555 /* BasketBallAppUITests.swift */,
+				802AF95923CCA2EB000EC555 /* Info.plist */,
+			);
+			path = BasketBallAppUITests;
+			sourceTree = "<group>";
+		};
 		80CBBDF423C5F1E40064CFFD = {
 			isa = PBXGroup;
 			children = (
 				80CBBDFF23C5F1E40064CFFD /* BasketBallApp */,
+				802AF94823CCA282000EC555 /* BasketBallAppTests */,
+				802AF95623CCA2EB000EC555 /* BasketBallAppUITests */,
 				80CBBDFE23C5F1E40064CFFD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,6 +126,8 @@
 			isa = PBXGroup;
 			children = (
 				80CBBDFD23C5F1E40064CFFD /* BasketBallApp.app */,
+				802AF94723CCA282000EC555 /* BasketBallAppTests.xctest */,
+				802AF95523CCA2EB000EC555 /* BasketBallAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -137,6 +198,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		802AF94623CCA282000EC555 /* BasketBallAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 802AF94E23CCA282000EC555 /* Build configuration list for PBXNativeTarget "BasketBallAppTests" */;
+			buildPhases = (
+				802AF94323CCA282000EC555 /* Sources */,
+				802AF94423CCA282000EC555 /* Frameworks */,
+				802AF94523CCA282000EC555 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				802AF94D23CCA282000EC555 /* PBXTargetDependency */,
+			);
+			name = BasketBallAppTests;
+			productName = BasketBallAppTests;
+			productReference = 802AF94723CCA282000EC555 /* BasketBallAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		802AF95423CCA2EB000EC555 /* BasketBallAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 802AF95C23CCA2EB000EC555 /* Build configuration list for PBXNativeTarget "BasketBallAppUITests" */;
+			buildPhases = (
+				802AF95123CCA2EB000EC555 /* Sources */,
+				802AF95223CCA2EB000EC555 /* Frameworks */,
+				802AF95323CCA2EB000EC555 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				802AF95B23CCA2EB000EC555 /* PBXTargetDependency */,
+			);
+			name = BasketBallAppUITests;
+			productName = BasketBallAppUITests;
+			productReference = 802AF95523CCA2EB000EC555 /* BasketBallAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		80CBBDFC23C5F1E40064CFFD /* BasketBallApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 80CBBE1123C5F1E60064CFFD /* Build configuration list for PBXNativeTarget "BasketBallApp" */;
@@ -164,6 +261,14 @@
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = Evaldas;
 				TargetAttributes = {
+					802AF94623CCA282000EC555 = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = 80CBBDFC23C5F1E40064CFFD;
+					};
+					802AF95423CCA2EB000EC555 = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = 80CBBDFC23C5F1E40064CFFD;
+					};
 					80CBBDFC23C5F1E40064CFFD = {
 						CreatedOnToolsVersion = 11.3;
 					};
@@ -183,11 +288,27 @@
 			projectRoot = "";
 			targets = (
 				80CBBDFC23C5F1E40064CFFD /* BasketBallApp */,
+				802AF94623CCA282000EC555 /* BasketBallAppTests */,
+				802AF95423CCA2EB000EC555 /* BasketBallAppUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		802AF94523CCA282000EC555 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		802AF95323CCA2EB000EC555 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		80CBBDFB23C5F1E40064CFFD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -201,6 +322,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		802AF94323CCA282000EC555 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				802AF94A23CCA282000EC555 /* BasketBallAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		802AF95123CCA2EB000EC555 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				802AF95823CCA2EB000EC555 /* BasketBallAppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		80CBBDF923C5F1E40064CFFD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -222,6 +359,19 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		802AF94D23CCA282000EC555 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 80CBBDFC23C5F1E40064CFFD /* BasketBallApp */;
+			targetProxy = 802AF94C23CCA282000EC555 /* PBXContainerItemProxy */;
+		};
+		802AF95B23CCA2EB000EC555 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 80CBBDFC23C5F1E40064CFFD /* BasketBallApp */;
+			targetProxy = 802AF95A23CCA2EB000EC555 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		80CBBE0623C5F1E40064CFFD /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -242,6 +392,84 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		802AF94F23CCA282000EC555 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92NU2A4F42;
+				INFOPLIST_FILE = BasketBallAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = lt.visma.BasketBallAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BasketBallApp.app/BasketBallApp";
+			};
+			name = Debug;
+		};
+		802AF95023CCA282000EC555 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92NU2A4F42;
+				INFOPLIST_FILE = BasketBallAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = lt.visma.BasketBallAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BasketBallApp.app/BasketBallApp";
+			};
+			name = Release;
+		};
+		802AF95D23CCA2EB000EC555 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92NU2A4F42;
+				INFOPLIST_FILE = BasketBallAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = lt.visma.BasketBallAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BasketBallApp;
+			};
+			name = Debug;
+		};
+		802AF95E23CCA2EB000EC555 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92NU2A4F42;
+				INFOPLIST_FILE = BasketBallAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = lt.visma.BasketBallAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BasketBallApp;
+			};
+			name = Release;
+		};
 		80CBBE0F23C5F1E60064CFFD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -395,6 +623,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		802AF94E23CCA282000EC555 /* Build configuration list for PBXNativeTarget "BasketBallAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				802AF94F23CCA282000EC555 /* Debug */,
+				802AF95023CCA282000EC555 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		802AF95C23CCA2EB000EC555 /* Build configuration list for PBXNativeTarget "BasketBallAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				802AF95D23CCA2EB000EC555 /* Debug */,
+				802AF95E23CCA2EB000EC555 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		80CBBDF823C5F1E40064CFFD /* Build configuration list for PBXProject "BasketBallApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
