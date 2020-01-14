@@ -28,10 +28,46 @@ class BasketBallAppUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
 		
-
+		let app2 = app
+		app.collectionViews.children(matching: .cell).element(boundBy: 0).otherElements.containing(.image, identifier:"pencil.circle.fill").element.tap()
+		
+		
+		app2/*@START_MENU_TOKEN@*/.buttons["Players"]/*[[".segmentedControls.buttons[\"Players\"]",".buttons[\"Players\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+		app2.tables/*@START_MENU_TOKEN@*/.staticTexts["Evaldas , center"]/*[[".cells.staticTexts[\"Evaldas , center\"]",".staticTexts[\"Evaldas , center\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+		app.navigationBars["BasketBallApp.PlayerDetailView"].buttons["Back"].tap()
+		
+		
+		
+		
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
+	
+
+	func test_someTest(){
+		let app = XCUIApplication()
+		app.launch()
+		
+		app.collectionViews.children(matching: .cell).element(boundBy: 0).otherElements.containing(.image, identifier:"pencil.circle.fill").element.tap()
+		
+		let playersButton = app.buttons["Players"]
+		playersButton.tap()
+		
+		
+		let newsButton = app.buttons["News"]
+		newsButton.tap()
+		playersButton.tap()
+		app.tables/*@START_MENU_TOKEN@*/.staticTexts["Jonas , dumpster"]/*[[".cells.staticTexts[\"Jonas , dumpster\"]",".staticTexts[\"Jonas , dumpster\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+		app.navigationBars["BasketBallApp.PlayerDetailView"].buttons["Back"].tap()
+		XCUIDevice.shared.orientation = .landscapeRight
+		playersButton.tap()
+		newsButton.tap()
+		playersButton.tap()
+		XCUIDevice.shared.orientation = .portrait
+		
+				
+	}
+
 
     func testLaunchPerformance() {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
