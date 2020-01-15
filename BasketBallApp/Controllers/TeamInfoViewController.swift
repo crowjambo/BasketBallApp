@@ -1,11 +1,3 @@
-//
-//  TeamInfoViewController.swift
-//  BasketBallApp
-//
-//  Created by Evaldas on 1/9/20.
-//  Copyright © 2020 Evaldas. All rights reserved.
-//
-
 import UIKit
 
 class TeamInfoViewController: UIViewController {
@@ -22,6 +14,25 @@ class TeamInfoViewController: UIViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		setViewData()
+		
+		
+		NetworkAccess.getPlayers(teamName: team!.teamName!, completionHandler: { (players) in
+			self.team?.teamPlayers = players
+			DispatchQueue.main.async {
+				self.tableOutlet.reloadData()
+			}
+		})
+		
+		NetworkAccess.getMatches(teamID: team!.teamID!, completionHandler: {(matches) in
+			self.team?.matchHistory = matches
+			DispatchQueue.main.async{
+				self.tableOutlet.reloadData()
+			}
+		})
+		
+		
+		
+
     }
 	
 	func setViewData(){
@@ -30,7 +41,8 @@ class TeamInfoViewController: UIViewController {
 		}
 		
 		if let mainImageName = team?.imageTeamMain {
-			mainTeamImageOutlet.image = UIImage(named: mainImageName)
+			let url = URL(string: mainImageName)
+			mainTeamImageOutlet.load(url: url!)
 			
 		}
 	}
@@ -43,7 +55,7 @@ class TeamInfoViewController: UIViewController {
 			}
 			let indexPath = tableOutlet.indexPath(for: selectedCell)
 			
-			let selectedPlayer = team?.teamPlayers[indexPath!.row]
+			let selectedPlayer = team?.teamPlayers![indexPath!.row]
 			
 		
 			vc.player = selectedPlayer
@@ -75,12 +87,12 @@ extension TeamInfoViewController: UITableViewDelegate, UITableViewDataSource{
 		
 		switch segmentOutlet.selectedSegmentIndex{
 			case 0:
-				guard let rowsCount = team?.matchHistory.count else{
+				guard let rowsCount = team?.matchHistory?.count else{
 					return 0
 				}
 				return rowsCount
 			case 1:
-				guard let rowsCount = team?.teamPlayers.count else{
+				guard let rowsCount = team?.teamPlayers?.count else{
 					return 0
 				}
 				return rowsCount
@@ -95,12 +107,12 @@ extension TeamInfoViewController: UITableViewDelegate, UITableViewDataSource{
 		switch segmentOutlet.selectedSegmentIndex{
 			case 0:
 				let cell = tableView.dequeueReusableCell(withIdentifier: "MatchInfoCell", for: indexPath) as! MatchInfoCell
-				cell.styleItself(dateLabel: team?.matchHistory[indexPath.row].date, team1Name: team?.matchHistory[indexPath.row].team1Name, team2Name: team?.matchHistory[indexPath.row].team2Name)
+				cell.styleItself(dateLabel: team?.matchHistory![indexPath.row].date, team1Name: team?.matchHistory![indexPath.row].team1Name, team2Name: team?.matchHistory![indexPath.row].team2Name)
 				return cell
 			
 			case 1:
 				let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerInfoCell", for: indexPath) as! PlayerInfoCell
-				cell.styleItself(playerImage: team?.teamPlayers[indexPath.row].playerIconImage, name: team?.teamPlayers[indexPath.row].name, position: team?.teamPlayers[indexPath.row].position)
+				cell.styleItself(playerImage: team?.teamPlayers![indexPath.row].playerIconImage, name: team?.teamPlayers![indexPath.row].name, position: team?.teamPlayers![indexPath.row].position)
 				return cell
 			default:
 				return UITableViewCell()

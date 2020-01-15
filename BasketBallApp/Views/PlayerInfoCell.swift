@@ -23,7 +23,9 @@ class PlayerInfoCell: UITableViewCell {
 
 	func styleItself(playerImage:String? , name:String?, position:String?){
 		if let image = playerImage{
-			playerImageOutlet.image = UIImage(systemName: image)
+			let url = URL(string: image)
+			playerImageOutlet.load(url: url!)
+			
 		}
 		else{
 			playerImageOutlet.image = UIImage(systemName: "square")

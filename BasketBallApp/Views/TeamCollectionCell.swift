@@ -39,7 +39,9 @@ class TeamCollectionCell: UICollectionViewCell {
 			teamDescriptionOutlet.text = _teamDescription
 		}
 		if let iconString = teamIcon{
-			teamIconOutlet.image = UIImage(systemName: iconString)
+			
+			let url = URL(string: iconString)
+			teamIconOutlet.load(url: url!)
 		}
 		else{
 			teamIconOutlet.image = UIImage(systemName: "square")

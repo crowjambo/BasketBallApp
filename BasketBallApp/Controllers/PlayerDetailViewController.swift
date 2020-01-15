@@ -38,7 +38,11 @@ class PlayerDetailViewController: UIViewController {
 				weightOutlet.text = String(weight)
 			}
 			if let playerMainImage = player.playerMainImage{
-				mainPlayerImage.image = UIImage(named: playerMainImage)
+				let url = URL(string: playerMainImage)
+				mainPlayerImage.load(url: url!)
+			}
+			else{
+				mainPlayerImage.image = UIImage(systemName: "square")
 			}
 			descriptionOutlet.text = player.description
 			descriptionOutlet.sizeToFit()
