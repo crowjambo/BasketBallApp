@@ -1,4 +1,5 @@
 import Foundation
+import Alamofire
 
 class NetworkAccess {
 	
@@ -10,7 +11,7 @@ class NetworkAccess {
 		let task = session.dataTask(with: url) { (data, response, error) in
 			guard let data = data else { return }
 			do {
-				let teams = try JSONDecoder().decode(TeamsDatabase.self, from: data)
+				let teams = try JSONDecoder().decode(TeamsJsonResponse.self, from: data)
 				guard let _teams = teams.teams else { return }
 				completionHandler(_teams)
 			} catch {
@@ -32,7 +33,7 @@ class NetworkAccess {
 			//print(String(data: data, encoding: .utf8))
 			
 			do {
-				let players = try JSONDecoder().decode(PlayerDatabase.self, from: data)
+				let players = try JSONDecoder().decode(PlayerJsonResponse.self, from: data)
 				completionHandler(players.player!)
 			} catch {
 				print("error")
@@ -49,7 +50,7 @@ class NetworkAccess {
 		let task = session.dataTask(with: url) { (data, response, error) in
 			guard let data = data else { return }
 			do {
-				let matches = try JSONDecoder().decode(MatchHistoryDatabase.self, from: data)
+				let matches = try JSONDecoder().decode(MatchHistoryJsonResponse.self, from: data)
 				completionHandler(matches.results!)
 			} catch {
 			}

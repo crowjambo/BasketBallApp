@@ -3,15 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		802AF94A23CCA282000EC555 /* BasketBallAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802AF94923CCA282000EC555 /* BasketBallAppTests.swift */; };
 		802AF95823CCA2EB000EC555 /* BasketBallAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802AF95723CCA2EB000EC555 /* BasketBallAppUITests.swift */; };
 		8098B21D23CF0C0F00822774 /* NetworkAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8098B21C23CF0C0F00822774 /* NetworkAccess.swift */; };
-		8098B22123CF38F200822774 /* PlayerDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8098B22023CF38F200822774 /* PlayerDatabase.swift */; };
-		8098B22323CF3EE300822774 /* MatchHistoryDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8098B22223CF3EE300822774 /* MatchHistoryDatabase.swift */; };
+		8098B22323CF3EE300822774 /* JsonResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8098B22223CF3EE300822774 /* JsonResponses.swift */; };
 		8098B22523CF3FF400822774 /* ImageLoadFromURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8098B22423CF3FF400822774 /* ImageLoadFromURL.swift */; };
 		80A3C12923C61F8900D5A6C2 /* TeamCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A3C12823C61F8900D5A6C2 /* TeamCollectionCell.swift */; };
 		80A97AC223C7270B008014CF /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A97AC123C7270B008014CF /* PlayerModel.swift */; };
@@ -20,7 +19,6 @@
 		80A97AC823C734D7008014CF /* MatchInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A97AC723C734D7008014CF /* MatchInfoCell.swift */; };
 		80A97ACA23C73B6F008014CF /* PlayerInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A97AC923C73B6F008014CF /* PlayerInfoCell.swift */; };
 		80A97ACC23C742A5008014CF /* PlayerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A97ACB23C742A5008014CF /* PlayerDetailViewController.swift */; };
-		80A97AD023C75248008014CF /* TeamsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A97ACF23C75248008014CF /* TeamsDatabase.swift */; };
 		80B10A6C23C6013D00CC987F /* TeamInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B10A6B23C6013D00CC987F /* TeamInfoModel.swift */; };
 		80CBBE0123C5F1E40064CFFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CBBE0023C5F1E40064CFFD /* AppDelegate.swift */; };
 		80CBBE0323C5F1E40064CFFD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CBBE0223C5F1E40064CFFD /* SceneDelegate.swift */; };
@@ -28,6 +26,9 @@
 		80CBBE0823C5F1E40064CFFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80CBBE0623C5F1E40064CFFD /* Main.storyboard */; };
 		80CBBE0A23C5F1E60064CFFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80CBBE0923C5F1E60064CFFD /* Assets.xcassets */; };
 		80CBBE0D23C5F1E60064CFFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80CBBE0B23C5F1E60064CFFD /* LaunchScreen.storyboard */; };
+		BA99B18C45A24C185B09089D /* Pods_BasketBallApp_BasketBallAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3435C0E26E3339A37F59C8ED /* Pods_BasketBallApp_BasketBallAppUITests.framework */; };
+		BA9CCE1B3378A94779C5FE01 /* Pods_BasketBallApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD3AB4085CBD5AF985617190 /* Pods_BasketBallApp.framework */; };
+		EA7FB838940BA330F5C03B10 /* Pods_BasketBallAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 280F6C22ADD6C8EC8CA0BF8E /* Pods_BasketBallAppTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0AFF13F2A56A2E457B3BD4E7 /* Pods-BasketBallAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasketBallAppTests.debug.xcconfig"; path = "Target Support Files/Pods-BasketBallAppTests/Pods-BasketBallAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		280F6C22ADD6C8EC8CA0BF8E /* Pods_BasketBallAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BasketBallAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3435C0E26E3339A37F59C8ED /* Pods_BasketBallApp_BasketBallAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BasketBallApp_BasketBallAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C2CFE2D8CE245727D371F02 /* Pods-BasketBallApp-BasketBallAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasketBallApp-BasketBallAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-BasketBallApp-BasketBallAppUITests/Pods-BasketBallApp-BasketBallAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		671791EE2DAAF15F1C7C4804 /* Pods-BasketBallApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasketBallApp.debug.xcconfig"; path = "Target Support Files/Pods-BasketBallApp/Pods-BasketBallApp.debug.xcconfig"; sourceTree = "<group>"; };
 		802AF94723CCA282000EC555 /* BasketBallAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasketBallAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		802AF94923CCA282000EC555 /* BasketBallAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketBallAppTests.swift; sourceTree = "<group>"; };
 		802AF94B23CCA282000EC555 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,8 +61,7 @@
 		802AF95723CCA2EB000EC555 /* BasketBallAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketBallAppUITests.swift; sourceTree = "<group>"; };
 		802AF95923CCA2EB000EC555 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8098B21C23CF0C0F00822774 /* NetworkAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAccess.swift; sourceTree = "<group>"; };
-		8098B22023CF38F200822774 /* PlayerDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDatabase.swift; sourceTree = "<group>"; };
-		8098B22223CF3EE300822774 /* MatchHistoryDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchHistoryDatabase.swift; sourceTree = "<group>"; };
+		8098B22223CF3EE300822774 /* JsonResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonResponses.swift; sourceTree = "<group>"; };
 		8098B22423CF3FF400822774 /* ImageLoadFromURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadFromURL.swift; sourceTree = "<group>"; };
 		80A3C12823C61F8900D5A6C2 /* TeamCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamCollectionCell.swift; sourceTree = "<group>"; };
 		80A97AC123C7270B008014CF /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
@@ -65,7 +70,6 @@
 		80A97AC723C734D7008014CF /* MatchInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchInfoCell.swift; sourceTree = "<group>"; };
 		80A97AC923C73B6F008014CF /* PlayerInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoCell.swift; sourceTree = "<group>"; };
 		80A97ACB23C742A5008014CF /* PlayerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailViewController.swift; sourceTree = "<group>"; };
-		80A97ACF23C75248008014CF /* TeamsDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsDatabase.swift; sourceTree = "<group>"; };
 		80B10A6B23C6013D00CC987F /* TeamInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoModel.swift; sourceTree = "<group>"; };
 		80CBBDFD23C5F1E40064CFFD /* BasketBallApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasketBallApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CBBE0023C5F1E40064CFFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +79,10 @@
 		80CBBE0923C5F1E60064CFFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80CBBE0C23C5F1E60064CFFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		80CBBE0E23C5F1E60064CFFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		866F025572319EBFED340CDF /* Pods-BasketBallAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasketBallAppTests.release.xcconfig"; path = "Target Support Files/Pods-BasketBallAppTests/Pods-BasketBallAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		CA4EEF1F7B50CB15449873C0 /* Pods-BasketBallApp-BasketBallAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasketBallApp-BasketBallAppUITests.release.xcconfig"; path = "Target Support Files/Pods-BasketBallApp-BasketBallAppUITests/Pods-BasketBallApp-BasketBallAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		EDAFA63CF0DDEEBF61463A1B /* Pods-BasketBallApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasketBallApp.release.xcconfig"; path = "Target Support Files/Pods-BasketBallApp/Pods-BasketBallApp.release.xcconfig"; sourceTree = "<group>"; };
+		FD3AB4085CBD5AF985617190 /* Pods_BasketBallApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BasketBallApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA7FB838940BA330F5C03B10 /* Pods_BasketBallAppTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA99B18C45A24C185B09089D /* Pods_BasketBallApp_BasketBallAppUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,12 +106,44 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA9CCE1B3378A94779C5FE01 /* Pods_BasketBallApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		10E0307E7FE3BB9A440A18FE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				671791EE2DAAF15F1C7C4804 /* Pods-BasketBallApp.debug.xcconfig */,
+				EDAFA63CF0DDEEBF61463A1B /* Pods-BasketBallApp.release.xcconfig */,
+				3C2CFE2D8CE245727D371F02 /* Pods-BasketBallApp-BasketBallAppUITests.debug.xcconfig */,
+				CA4EEF1F7B50CB15449873C0 /* Pods-BasketBallApp-BasketBallAppUITests.release.xcconfig */,
+				0AFF13F2A56A2E457B3BD4E7 /* Pods-BasketBallAppTests.debug.xcconfig */,
+				866F025572319EBFED340CDF /* Pods-BasketBallAppTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		418588C57006CAFD47076C9F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FD3AB4085CBD5AF985617190 /* Pods_BasketBallApp.framework */,
+				3435C0E26E3339A37F59C8ED /* Pods_BasketBallApp_BasketBallAppUITests.framework */,
+				280F6C22ADD6C8EC8CA0BF8E /* Pods_BasketBallAppTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		80240AA023D063F500BA61D6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8098B22423CF3FF400822774 /* ImageLoadFromURL.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		802AF94823CCA282000EC555 /* BasketBallAppTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +169,8 @@
 				802AF94823CCA282000EC555 /* BasketBallAppTests */,
 				802AF95623CCA2EB000EC555 /* BasketBallAppUITests */,
 				80CBBDFE23C5F1E40064CFFD /* Products */,
+				10E0307E7FE3BB9A440A18FE /* Pods */,
+				418588C57006CAFD47076C9F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,6 +187,7 @@
 		80CBBDFF23C5F1E40064CFFD /* BasketBallApp */ = {
 			isa = PBXGroup;
 			children = (
+				80240AA023D063F500BA61D6 /* Extensions */,
 				80CBBE1823C5F28E0064CFFD /* Storyboards */,
 				80CBBE1723C5F2850064CFFD /* Controllers */,
 				80CBBE1623C5F2810064CFFD /* Views */,
@@ -150,7 +195,6 @@
 				80CBBE1423C5F26C0064CFFD /* Project Files */,
 				80CBBE0E23C5F1E60064CFFD /* Info.plist */,
 				8098B21C23CF0C0F00822774 /* NetworkAccess.swift */,
-				8098B22423CF3FF400822774 /* ImageLoadFromURL.swift */,
 			);
 			path = BasketBallApp;
 			sourceTree = "<group>";
@@ -170,9 +214,7 @@
 				80B10A6B23C6013D00CC987F /* TeamInfoModel.swift */,
 				80A97AC123C7270B008014CF /* PlayerModel.swift */,
 				80A97AC323C72860008014CF /* MatchHistoryModel.swift */,
-				80A97ACF23C75248008014CF /* TeamsDatabase.swift */,
-				8098B22023CF38F200822774 /* PlayerDatabase.swift */,
-				8098B22223CF3EE300822774 /* MatchHistoryDatabase.swift */,
+				8098B22223CF3EE300822774 /* JsonResponses.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -214,6 +256,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 802AF94E23CCA282000EC555 /* Build configuration list for PBXNativeTarget "BasketBallAppTests" */;
 			buildPhases = (
+				F113F42E38418B934A8DB6CC /* [CP] Check Pods Manifest.lock */,
 				802AF94323CCA282000EC555 /* Sources */,
 				802AF94423CCA282000EC555 /* Frameworks */,
 				802AF94523CCA282000EC555 /* Resources */,
@@ -232,9 +275,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 802AF95C23CCA2EB000EC555 /* Build configuration list for PBXNativeTarget "BasketBallAppUITests" */;
 			buildPhases = (
+				940BEBBA53BC7DCD82B62A6C /* [CP] Check Pods Manifest.lock */,
 				802AF95123CCA2EB000EC555 /* Sources */,
 				802AF95223CCA2EB000EC555 /* Frameworks */,
 				802AF95323CCA2EB000EC555 /* Resources */,
+				D80F72068E06500E4F4F4ECF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -250,9 +295,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 80CBBE1123C5F1E60064CFFD /* Build configuration list for PBXNativeTarget "BasketBallApp" */;
 			buildPhases = (
+				AF1C201CEA1C0F968071C322 /* [CP] Check Pods Manifest.lock */,
 				80CBBDF923C5F1E40064CFFD /* Sources */,
 				80CBBDFA23C5F1E40064CFFD /* Frameworks */,
 				80CBBDFB23C5F1E40064CFFD /* Resources */,
+				F60191AE11F6DBE4368E8F02 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -333,6 +380,109 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		940BEBBA53BC7DCD82B62A6C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BasketBallApp-BasketBallAppUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF1C201CEA1C0F968071C322 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BasketBallApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D80F72068E06500E4F4F4ECF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BasketBallApp-BasketBallAppUITests/Pods-BasketBallApp-BasketBallAppUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BasketBallApp-BasketBallAppUITests/Pods-BasketBallApp-BasketBallAppUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BasketBallApp-BasketBallAppUITests/Pods-BasketBallApp-BasketBallAppUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F113F42E38418B934A8DB6CC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BasketBallAppTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F60191AE11F6DBE4368E8F02 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BasketBallApp/Pods-BasketBallApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BasketBallApp/Pods-BasketBallApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BasketBallApp/Pods-BasketBallApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		802AF94323CCA282000EC555 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -355,7 +505,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				80A97ACA23C73B6F008014CF /* PlayerInfoCell.swift in Sources */,
-				8098B22123CF38F200822774 /* PlayerDatabase.swift in Sources */,
 				8098B21D23CF0C0F00822774 /* NetworkAccess.swift in Sources */,
 				80A97AC223C7270B008014CF /* PlayerModel.swift in Sources */,
 				80A97AC623C72BFA008014CF /* TeamInfoViewController.swift in Sources */,
@@ -364,10 +513,9 @@
 				80CBBE0523C5F1E40064CFFD /* ViewController.swift in Sources */,
 				80B10A6C23C6013D00CC987F /* TeamInfoModel.swift in Sources */,
 				80CBBE0123C5F1E40064CFFD /* AppDelegate.swift in Sources */,
-				8098B22323CF3EE300822774 /* MatchHistoryDatabase.swift in Sources */,
+				8098B22323CF3EE300822774 /* JsonResponses.swift in Sources */,
 				8098B22523CF3FF400822774 /* ImageLoadFromURL.swift in Sources */,
 				80A97AC823C734D7008014CF /* MatchInfoCell.swift in Sources */,
-				80A97AD023C75248008014CF /* TeamsDatabase.swift in Sources */,
 				80CBBE0323C5F1E40064CFFD /* SceneDelegate.swift in Sources */,
 				80A3C12923C61F8900D5A6C2 /* TeamCollectionCell.swift in Sources */,
 			);
@@ -410,6 +558,7 @@
 /* Begin XCBuildConfiguration section */
 		802AF94F23CCA282000EC555 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AFF13F2A56A2E457B3BD4E7 /* Pods-BasketBallAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -430,6 +579,7 @@
 		};
 		802AF95023CCA282000EC555 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 866F025572319EBFED340CDF /* Pods-BasketBallAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -450,6 +600,7 @@
 		};
 		802AF95D23CCA2EB000EC555 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C2CFE2D8CE245727D371F02 /* Pods-BasketBallApp-BasketBallAppUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 92NU2A4F42;
@@ -469,6 +620,7 @@
 		};
 		802AF95E23CCA2EB000EC555 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA4EEF1F7B50CB15449873C0 /* Pods-BasketBallApp-BasketBallAppUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 92NU2A4F42;
@@ -602,6 +754,7 @@
 		};
 		80CBBE1223C5F1E60064CFFD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 671791EE2DAAF15F1C7C4804 /* Pods-BasketBallApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -620,6 +773,7 @@
 		};
 		80CBBE1323C5F1E60064CFFD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EDAFA63CF0DDEEBF61463A1B /* Pods-BasketBallApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
