@@ -79,11 +79,11 @@ class NetworkAccess {
 			
 					case .failure:
 						debugPrint(response.result)
-
-				}
+						
+					}
 			}
 		}
-	
+
 	class func getPlayers_AF(teamName:String, completionHandler: @escaping PlayersResponse){
 		let escapedString = teamName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
 		let input:String = "https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?t=\(escapedString ?? "" )"

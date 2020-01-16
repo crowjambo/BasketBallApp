@@ -1,11 +1,3 @@
-//
-//  PlayerInfoCell.swift
-//  BasketBallApp
-//
-//  Created by Evaldas on 1/9/20.
-//  Copyright © 2020 Evaldas. All rights reserved.
-//
-
 import UIKit
 
 class PlayerInfoCell: UITableViewCell {
@@ -22,9 +14,11 @@ class PlayerInfoCell: UITableViewCell {
     }
 
 	func styleItself(playerImage:String? , name:String?, position:String?){
+		
 		if let image = playerImage{
 			let url = URL(string: image)
 			playerImageOutlet.load(url: url!)
+			
 			
 		}
 		else{

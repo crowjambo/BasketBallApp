@@ -32,6 +32,10 @@ class TeamCollectionCell: UICollectionViewCell {
 	}
 	
 	func styleItself(teamName:String?, teamDescription:String?, teamIcon:String?){
+		
+		//do loading indicators for images
+		
+		
 		if let _teamName = teamName{
 			teamNameOutlet.text = _teamName
 		}

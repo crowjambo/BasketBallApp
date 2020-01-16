@@ -1,11 +1,3 @@
-//
-//  PlayerDetailViewController.swift
-//  BasketBallApp
-//
-//  Created by Evaldas on 1/9/20.
-//  Copyright © 2020 Evaldas. All rights reserved.
-//
-
 import UIKit
 
 class PlayerDetailViewController: UIViewController {

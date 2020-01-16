@@ -7,6 +7,7 @@ target 'BasketBallApp' do
 
   # Pods for BasketBallApp
 pod 'Alamofire', '~> 5.0.0-rc.3'
+pod 'AlamofireImage', '~> 4.0.0-beta.6'
 
   target 'BasketBallAppTests' do
     inherit! :search_paths

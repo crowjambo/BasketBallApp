@@ -20,25 +20,22 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
 	}
 	
-	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		if let teams = teams {
-			return teams.count
-		}
-		return 0
+		guard let teams = teams else { return 0 }
+		return teams.count
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		
 		if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCollectionCell", for: indexPath) as? TeamCollectionCell {
-			cell.styleItself(teamName: teams![indexPath.row].teamName, teamDescription: teams![indexPath.row].description, teamIcon: teams![indexPath.row].imageIconName)
-
+			if let teams = teams{
+				let team = teams[indexPath.row]
+				cell.styleItself(teamName: team.teamName, teamDescription: team.description, teamIcon: team.imageIconName)
+			}
 			return cell
 		}else{
 			return UICollectionViewCell()
 		}
-		
-
 	}
 	
 	// traverse to next view/controller
@@ -51,11 +48,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 			}
 			let indexPath = CardCollection.indexPath(for: selectedCell)
 			
-			let selectedTeam = teams![indexPath!.row]
-			
-			vc.team = selectedTeam
+			if let teams = teams{
+				if let indexPath = indexPath{
+					let selectedTeam = teams[indexPath.row]
+					vc.team = selectedTeam
+				}
+			}
 		}
-		
 	}
 
 }

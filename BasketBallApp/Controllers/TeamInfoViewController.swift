@@ -15,6 +15,18 @@ class TeamInfoViewController: UIViewController {
         super.viewDidLoad()
 		setViewData()
 		
+    }
+	
+	func setViewData(){
+		if let name = team?.teamName {
+			teamNameLabelOutlet.text = name
+		}
+		
+		if let mainImageName = team?.imageTeamMain {
+			let url = URL(string: mainImageName)
+			mainTeamImageOutlet.load(url: url!)
+			
+		}
 		
 		NetworkAccess.getPlayers_AF(teamName: team!.teamName!, completionHandler: { (players, error) in
 			self.team?.teamPlayers = players
@@ -29,35 +41,24 @@ class TeamInfoViewController: UIViewController {
 				self.tableOutlet.reloadData()
 			}
 		})
-		
-
-
-    }
-	
-	func setViewData(){
-		if let name = team?.teamName {
-			teamNameLabelOutlet.text = name
-		}
-		
-		if let mainImageName = team?.imageTeamMain {
-			let url = URL(string: mainImageName)
-			mainTeamImageOutlet.load(url: url!)
-			
-		}
 	}
     
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let vc = segue.destination as? PlayerDetailViewController{
-			//use sender to decide which team to send (which cell was pressed)
+
 			guard let selectedCell = sender as? PlayerInfoCell else{
 				return
 			}
 			let indexPath = tableOutlet.indexPath(for: selectedCell)
 			
-			let selectedPlayer = team?.teamPlayers![indexPath!.row]
-			
-		
-			vc.player = selectedPlayer
+			if let team = team{
+				if let teamPlayers = team.teamPlayers{
+					if let indexPath = indexPath{
+						let selectedPlayer = teamPlayers[indexPath.row]
+						vc.player = selectedPlayer
+					}
+				}
+			}
 		}
 	}
 	
@@ -76,7 +77,6 @@ class TeamInfoViewController: UIViewController {
 		tableOutlet.reloadData()
 	}
 
-	
 }
 
 extension TeamInfoViewController: UITableViewDelegate, UITableViewDataSource{

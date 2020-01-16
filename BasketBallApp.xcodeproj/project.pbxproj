@@ -20,6 +20,8 @@
 		80A97ACA23C73B6F008014CF /* PlayerInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A97AC923C73B6F008014CF /* PlayerInfoCell.swift */; };
 		80A97ACC23C742A5008014CF /* PlayerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A97ACB23C742A5008014CF /* PlayerDetailViewController.swift */; };
 		80B10A6C23C6013D00CC987F /* TeamInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B10A6B23C6013D00CC987F /* TeamInfoModel.swift */; };
+		80B3B34F23D0A4640032B69E /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B3B34E23D0A4640032B69E /* LoadingIndicator.swift */; };
+		80B3B35223D0AD0B0032B69E /* timeDatabase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80B3B35023D0AD0B0032B69E /* timeDatabase.xcdatamodeld */; };
 		80CBBE0123C5F1E40064CFFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CBBE0023C5F1E40064CFFD /* AppDelegate.swift */; };
 		80CBBE0323C5F1E40064CFFD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CBBE0223C5F1E40064CFFD /* SceneDelegate.swift */; };
 		80CBBE0523C5F1E40064CFFD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CBBE0423C5F1E40064CFFD /* ViewController.swift */; };
@@ -71,6 +73,8 @@
 		80A97AC923C73B6F008014CF /* PlayerInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoCell.swift; sourceTree = "<group>"; };
 		80A97ACB23C742A5008014CF /* PlayerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailViewController.swift; sourceTree = "<group>"; };
 		80B10A6B23C6013D00CC987F /* TeamInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoModel.swift; sourceTree = "<group>"; };
+		80B3B34E23D0A4640032B69E /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
+		80B3B35123D0AD0B0032B69E /* timeDatabase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = timeDatabase.xcdatamodel; sourceTree = "<group>"; };
 		80CBBDFD23C5F1E40064CFFD /* BasketBallApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasketBallApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80CBBE0023C5F1E40064CFFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80CBBE0223C5F1E40064CFFD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				8098B22423CF3FF400822774 /* ImageLoadFromURL.swift */,
+				80B3B34E23D0A4640032B69E /* LoadingIndicator.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -194,7 +199,7 @@
 				80CBBE1523C5F27D0064CFFD /* Models */,
 				80CBBE1423C5F26C0064CFFD /* Project Files */,
 				80CBBE0E23C5F1E60064CFFD /* Info.plist */,
-				8098B21C23CF0C0F00822774 /* NetworkAccess.swift */,
+				80B3B35023D0AD0B0032B69E /* timeDatabase.xcdatamodeld */,
 			);
 			path = BasketBallApp;
 			sourceTree = "<group>";
@@ -211,6 +216,7 @@
 		80CBBE1523C5F27D0064CFFD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8098B21C23CF0C0F00822774 /* NetworkAccess.swift */,
 				80B10A6B23C6013D00CC987F /* TeamInfoModel.swift */,
 				80A97AC123C7270B008014CF /* PlayerModel.swift */,
 				80A97AC323C72860008014CF /* MatchHistoryModel.swift */,
@@ -509,6 +515,7 @@
 				80A97AC223C7270B008014CF /* PlayerModel.swift in Sources */,
 				80A97AC623C72BFA008014CF /* TeamInfoViewController.swift in Sources */,
 				80A97ACC23C742A5008014CF /* PlayerDetailViewController.swift in Sources */,
+				80B3B35223D0AD0B0032B69E /* timeDatabase.xcdatamodeld in Sources */,
 				80A97AC423C72860008014CF /* MatchHistoryModel.swift in Sources */,
 				80CBBE0523C5F1E40064CFFD /* ViewController.swift in Sources */,
 				80B10A6C23C6013D00CC987F /* TeamInfoModel.swift in Sources */,
@@ -516,6 +523,7 @@
 				8098B22323CF3EE300822774 /* JsonResponses.swift in Sources */,
 				8098B22523CF3FF400822774 /* ImageLoadFromURL.swift in Sources */,
 				80A97AC823C734D7008014CF /* MatchInfoCell.swift in Sources */,
+				80B3B34F23D0A4640032B69E /* LoadingIndicator.swift in Sources */,
 				80CBBE0323C5F1E40064CFFD /* SceneDelegate.swift in Sources */,
 				80A3C12923C61F8900D5A6C2 /* TeamCollectionCell.swift in Sources */,
 			);
@@ -830,6 +838,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		80B3B35023D0AD0B0032B69E /* timeDatabase.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				80B3B35123D0AD0B0032B69E /* timeDatabase.xcdatamodel */,
+			);
+			currentVersion = 80B3B35123D0AD0B0032B69E /* timeDatabase.xcdatamodel */;
+			path = timeDatabase.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 80CBBDF523C5F1E40064CFFD /* Project object */;
 }
