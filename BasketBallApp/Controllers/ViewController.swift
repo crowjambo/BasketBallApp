@@ -11,14 +11,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		NetworkAccess.getTeams(completionHandler: { (teams) in
+		NetworkAccess.getTeams_AF(completionHandler: {(teams, error) in
 			self.teams = teams
-			DispatchQueue.main.async {
+			DispatchQueue.main.async{
 				self.CardCollection.reloadData()
 			}
 		})
-		
-		
+
 	}
 	
 	

@@ -16,22 +16,21 @@ class TeamInfoViewController: UIViewController {
 		setViewData()
 		
 		
-		NetworkAccess.getPlayers(teamName: team!.teamName!, completionHandler: { (players) in
+		NetworkAccess.getPlayers_AF(teamName: team!.teamName!, completionHandler: { (players, error) in
 			self.team?.teamPlayers = players
 			DispatchQueue.main.async {
 				self.tableOutlet.reloadData()
 			}
 		})
-		
-		NetworkAccess.getMatches(teamID: team!.teamID!, completionHandler: {(matches) in
+	
+		NetworkAccess.getMatches_AF(teamID: team!.teamID!, completionHandler: {(matches, error) in
 			self.team?.matchHistory = matches
 			DispatchQueue.main.async{
 				self.tableOutlet.reloadData()
 			}
 		})
 		
-		
-		
+
 
     }
 	

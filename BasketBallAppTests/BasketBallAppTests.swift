@@ -11,6 +11,19 @@ class BasketBallAppTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
+	
+	func test_get_Request_loadTeams_matchingName(){
+		var teamsCollection:[TeamInfo]?
+		let expectation = self.expectation(description: "loading")
+		
+		NetworkAccess.getTeams(completionHandler: { (teams) in
+			teamsCollection = teams
+
+			expectation.fulfill()
+		})
+		waitForExpectations(timeout: 5, handler: nil)
+		XCTAssertEqual(teamsCollection?.first?.teamName, "Atlanta Hawks")
+	}
 
 	func test_getRequest_loadPlayers_not_null(){
 		var playerCol:[Player]?
@@ -51,7 +64,7 @@ class BasketBallAppTests: XCTestCase {
 
 			expectation.fulfill()
 		})
-		
+		waitForExpectations(timeout: 5, handler: nil)
 		XCTAssertNotNil(teamsCollection)
 	}
 	
