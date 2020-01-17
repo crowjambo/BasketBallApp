@@ -11,6 +11,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		// TODO: remove redundancy and refactor, increase reusability
 		loadTeamsData()
 }
 
@@ -43,6 +44,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 				}
 			}
 		}
+		// first time launching, no date yet, fetch
 		else {
 				NetworkAccess.getTeams_AF(completionHandler: {(teams, error) in
 						self.teams = teams
@@ -57,6 +59,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 	}
 	
 	func saveTeamsIntoCoreData(){
+		// TODO: refresh/update items, instead of appending on top in data
+		
 		if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
 			guard let teams = teams else { return }
 			for team in teams{
