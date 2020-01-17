@@ -19,7 +19,6 @@ class MatchInfoCell: UITableViewCell {
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
 	
 	func styleItself(dateLabel:String?, team1Name:String?, team2Name:String?){

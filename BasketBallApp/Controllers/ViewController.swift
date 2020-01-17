@@ -11,12 +11,73 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		NetworkAccess.getTeams_AF(completionHandler: {(teams, error) in
-			self.teams = teams
-			DispatchQueue.main.async{
-				self.CardCollection.reloadData()
+
+}
+
+	func loadTeamsData(){
+		// get previously loaded date for Teams
+		let defaults = UserDefaults.standard
+		
+		if var teamUpdate = defaults.object(forKey: String(UpdateTime.Team.rawValue)) as? Date{
+			teamUpdate += 60 * 60
+			
+			if(teamUpdate <= Date()){
+				NetworkAccess.getTeams_AF(completionHandler: {(teams, error) in
+					self.teams = teams
+					DispatchQueue.main.async{
+						self.updateAfterTeamLoad()
+		
+						self.saveTeamsIntoCoreData()
+						debugPrint("fetched and saved into core data")
+					}
+				})
 			}
-		})
+			else{
+				if let result = try? (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext.fetch(TeamData.fetchRequest()) as? [TeamData] {
+					self.teams = []
+					for team in result{
+						teams?.append(TeamInfo(teamID: team.teamID, teamName: team.teamName, description: team.teamDescription, imageIconName: team.teamIconImage, imageTeamMain: team.teamMainImage, matchHistory: nil, teamPlayers: nil))
+						
+					}
+					debugPrint("Loaded from Core data")
+				}
+			}
+		}
+		else {
+				NetworkAccess.getTeams_AF(completionHandler: {(teams, error) in
+						self.teams = teams
+						DispatchQueue.main.async{
+							self.updateAfterTeamLoad()
+			
+							self.saveTeamsIntoCoreData()
+							debugPrint("fetched and saved into core data")
+						}
+					})
+		}
+	}
+	
+	func saveTeamsIntoCoreData(){
+		if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
+			guard let teams = teams else { return }
+			for team in teams{
+				let teamData = TeamData(entity: TeamData.entity(), insertInto: context)
+				teamData.teamName = team.teamName
+				teamData.teamDescription = team.description
+				teamData.teamID = team.teamID
+				teamData.teamMainImage = team.imageTeamMain
+				teamData.teamIconImage = team.imageIconName
+					
+				(UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+			}
+			//mark time changed
+			let defaults = UserDefaults.standard
+			defaults.set(Date(), forKey: String(UpdateTime.Team.rawValue))
+		}
+	}
+	
+	func updateAfterTeamLoad(){
+
+		self.CardCollection.reloadData()
 
 	}
 	
