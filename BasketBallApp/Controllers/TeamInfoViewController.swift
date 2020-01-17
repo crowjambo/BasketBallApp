@@ -28,16 +28,39 @@ class TeamInfoViewController: UIViewController {
 			
 		}
 		
+		loadPlayersData()
+		loadEventsData()
+		
+
+	
+
+	}
+	
+	func loadEventsData(){
+		let defaults = UserDefaults.standard
+		if var eventUpdate = defaults.object(forKey: String(UpdateTime.Event.rawValue)) as? Date{
+			eventUpdate += 60 * 15
+			
+			if (eventUpdate <= Date()){
+				NetworkAccess.getMatches_AF(teamID: team!.teamID!, completionHandler: {(matches, error) in
+					self.team?.matchHistory = matches
+					DispatchQueue.main.async{
+						self.tableOutlet.reloadData()
+					}
+				})
+			}
+			else{
+				if let result = try? (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext.fetch(
+			}
+		}
+		
+
+	}
+	
+	func loadPlayersData(){
 		NetworkAccess.getPlayers_AF(teamName: team!.teamName!, completionHandler: { (players, error) in
 			self.team?.teamPlayers = players
 			DispatchQueue.main.async {
-				self.tableOutlet.reloadData()
-			}
-		})
-	
-		NetworkAccess.getMatches_AF(teamID: team!.teamID!, completionHandler: {(matches, error) in
-			self.team?.matchHistory = matches
-			DispatchQueue.main.async{
 				self.tableOutlet.reloadData()
 			}
 		})

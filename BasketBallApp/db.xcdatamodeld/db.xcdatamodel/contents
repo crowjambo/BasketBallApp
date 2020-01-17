@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G2022" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="EventData" representedClassName="EventData" syncable="YES" codeGenerationType="class">
+        <attribute name="matchDate" optional="YES" attributeType="String"/>
+        <attribute name="team1Name" optional="YES" attributeType="String"/>
+        <attribute name="team2Name" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="PlayerData" representedClassName="PlayerData" syncable="YES" codeGenerationType="class">
+        <attribute name="age" optional="YES" attributeType="String"/>
+        <attribute name="height" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="playerDescription" optional="YES" attributeType="String"/>
+        <attribute name="playerIconImage" optional="YES" attributeType="String"/>
+        <attribute name="playerMainImage" optional="YES" attributeType="String"/>
+        <attribute name="position" optional="YES" attributeType="String"/>
+        <attribute name="weight" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="TeamData" representedClassName="TeamData" syncable="YES" codeGenerationType="class">
         <attribute name="teamDescription" optional="YES" attributeType="String"/>
         <attribute name="teamIconImage" optional="YES" attributeType="String"/>
@@ -9,5 +24,7 @@
     </entity>
     <elements>
         <element name="TeamData" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="EventData" positionX="-63" positionY="18" width="128" height="88"/>
+        <element name="PlayerData" positionX="-54" positionY="36" width="128" height="163"/>
     </elements>
 </model>

@@ -11,7 +11,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-
+		loadTeamsData()
 }
 
 	func loadTeamsData(){
