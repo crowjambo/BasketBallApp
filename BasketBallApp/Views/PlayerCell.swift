@@ -1,6 +1,6 @@
 import UIKit
 
-class PlayerInfoCell: UITableViewCell {
+class PlayerCell: UITableViewCell {
 
 	
 	@IBOutlet weak var playerImageOutlet: UIImageView!
@@ -18,21 +18,19 @@ class PlayerInfoCell: UITableViewCell {
 		if let image = playerImage{
 			let url = URL(string: image)
 			playerImageOutlet.load(url: url!)
-			
-			
 		}
 		else{
 			playerImageOutlet.image = UIImage(systemName: "square")
 		}
-		if let _name = name{
-			if let _position = position{
-				namePositionLabelOutlet.text = _name + " , " + _position
+		
+		if let name = name{
+			if let position = position{
+				namePositionLabelOutlet.text = name + " , " + position
 			}
 		}
 		else{
 			namePositionLabelOutlet.text = "undefined"
 		}
-		
 	}
 	
 }

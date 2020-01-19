@@ -14,10 +14,10 @@ class BasketBallAppTests: XCTestCase {
 	// MARK: - Alamofire tests
 	
 	func test_get_request_loadTeams_Alamofire_names_match(){
-		var teamsCol: [TeamInfo]?
+		var teamsCol: [Team]?
 		let expectation = self.expectation(description: "loading")
 		
-		NetworkAccess.getTeams_AF { (teams, error) in
+		NetworkClient.getTeams { (teams, error) in
 			teamsCol = teams
 			
 			expectation.fulfill()
@@ -30,7 +30,7 @@ class BasketBallAppTests: XCTestCase {
 		var playerCol: [Player]?
 		let expectation = self.expectation(description: "loading")
 		
-		NetworkAccess.getPlayers_AF(teamName: "Atlanta Hawks") { (players, error) in
+		NetworkClient.getPlayers(teamName: "Atlanta Hawks") { (players, error) in
 			playerCol = players
 			
 			expectation.fulfill()
@@ -43,7 +43,7 @@ class BasketBallAppTests: XCTestCase {
 		var matchesCollection: [MatchHistory]?
 		let expectation = self.expectation(description: "loading")
 		
-		NetworkAccess.getMatches_AF(teamID: "134881") { (matches, error) in
+		NetworkClient.getEvents(teamID: "134881") { (matches, error) in
 			matchesCollection = matches
 			
 			expectation.fulfill()
@@ -53,10 +53,10 @@ class BasketBallAppTests: XCTestCase {
 	}
 	
 	func test_get_request_loadTeams_Alamofire_not_null(){
-		var teamsCollection: [TeamInfo]?
+		var teamsCollection: [Team]?
 		let expectation = self.expectation(description: "loading")
 		
-		NetworkAccess.getTeams_AF { (teams, error) in
+		NetworkClient.getTeams { (teams, error) in
 			teamsCollection = teams
 			
 			expectation.fulfill()
@@ -69,10 +69,10 @@ class BasketBallAppTests: XCTestCase {
 	// MARK: - URLSession tests
 	
 	func test_get_Request_loadTeams_matchingName(){
-		var teamsCollection:[TeamInfo]?
+		var teamsCollection:[Team]?
 		let expectation = self.expectation(description: "loading")
 		
-		NetworkAccess.getTeams(completionHandler: { (teams) in
+		NetworkClient.getTeams(completionHandler: { (teams) in
 			teamsCollection = teams
 
 			expectation.fulfill()
@@ -85,7 +85,7 @@ class BasketBallAppTests: XCTestCase {
 		var playerCol:[Player]?
 		let expectation = self.expectation(description: "loading")
 		
-		NetworkAccess.getPlayers(teamName: "Atlanta", completionHandler: {(players) in
+		NetworkClient.getPlayers(teamName: "Atlanta", completionHandler: {(players) in
 			playerCol = players
 			
 			expectation.fulfill()
@@ -99,7 +99,7 @@ class BasketBallAppTests: XCTestCase {
 		var matchCollection:[MatchHistory]?
 		let expectation = self.expectation(description: "loading")
 		
-		NetworkAccess.getMatches(teamID: "134881", completionHandler: { (matches) in
+		NetworkClient.getMatches(teamID: "134881", completionHandler: { (matches) in
 			matchCollection = matches
 			
 			expectation.fulfill()
@@ -112,10 +112,10 @@ class BasketBallAppTests: XCTestCase {
 	
 	func test_getRequest_loadTeams_not_null(){
 		
-		var teamsCollection:[TeamInfo]?
+		var teamsCollection:[Team]?
 		let expectation = self.expectation(description: "loading")
 		
-		NetworkAccess.getTeams(completionHandler: { (teams) in
+		NetworkClient.getTeams(completionHandler: { (teams) in
 			teamsCollection = teams
 
 			expectation.fulfill()

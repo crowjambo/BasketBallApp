@@ -122,7 +122,7 @@
                                 <rect key="frame" x="11" y="384" width="392" height="512"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MatchInfoCell" id="9uc-UT-nJA" customClass="MatchInfoCell" customModule="BasketBallApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MatchInfoCell" id="9uc-UT-nJA" customClass="EventCell" customModule="BasketBallApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="392" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9uc-UT-nJA" id="Ohz-BR-UDd">
@@ -190,7 +190,7 @@
                                             <outlet property="team2NameOutlet" destination="umX-Z5-G37" id="akV-QB-wF5"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlayerInfoCell" rowHeight="50" id="1pU-nF-53V" customClass="PlayerInfoCell" customModule="BasketBallApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlayerInfoCell" rowHeight="50" id="1pU-nF-53V" customClass="PlayerCell" customModule="BasketBallApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="128" width="392" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1pU-nF-53V" id="BmZ-NN-lRI">

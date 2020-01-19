@@ -2,20 +2,40 @@ import UIKit
 
 class TeamInfoViewController: UIViewController {
 
-	//grab TeamInfo from main controller
-	var team:TeamInfo?
+	// MARK: - Variables
 	
+	var team:Team?
+	
+	// MARK: - Outlets
 	
 	@IBOutlet weak var teamNameLabelOutlet: UILabel!
 	@IBOutlet weak var mainTeamImageOutlet: UIImageView!
 	@IBOutlet weak var tableOutlet: UITableView!
 	@IBOutlet weak var segmentOutlet: UISegmentedControl!
 	
+	// MARK: - View Lifecycle
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		setViewData()
 		
     }
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		
+		guard
+			let vc = segue.destination as? PlayerDetailViewController,
+			let selectedCell = sender as? PlayerCell,
+			let indexPath = tableOutlet.indexPath(for: selectedCell),
+			let team = team,
+			let teamPlayers = team.teamPlayers
+		else { return }
+			
+		let selectedPlayer = teamPlayers[indexPath.row]
+		vc.player = selectedPlayer
+	}
+	
+	// MARK: - Functions
 	
 	func setViewData(){
 		if let name = team?.teamName {
@@ -25,169 +45,109 @@ class TeamInfoViewController: UIViewController {
 		if let mainImageName = team?.imageTeamMain {
 			let url = URL(string: mainImageName)
 			mainTeamImageOutlet.load(url: url!)
-			
 		}
-		
 		loadPlayersData()
 		loadEventsData()
-		
-
-	
-
 	}
 	
-	func savePlayersData(){
-		// TODO: refresh/update items, instead of appending on top in data
+	
+	// MARK: - Events loading/saving
+	
+	func loadEventsData(){
 		
-		if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
-			guard let players = team?.teamPlayers else { return }
-			for player in players{
-				let playerData = PlayerData(entity: PlayerData.entity(), insertInto: context)
-				playerData.name = player.name
-				playerData.age = player.age
-				playerData.height = player.height
-				playerData.playerDescription = player.description
-				playerData.playerIconImage = player.playerIconImage
-				playerData.playerMainImage = player.playerMainImage
-				playerData.position = player.position
-					
-				(UIApplication.shared.delegate as? AppDelegate)?.saveContext()
-			}
-			//mark time changed
-			let defaults = UserDefaults.standard
-			defaults.set(Date(), forKey: String(UpdateTime.Player.rawValue))
+		if (DefaultsManager.shouldUpdate(id: UpdateTime.Event)){
+			loadEventsFromApi()
 		}
+		else{
+			loadEventsFromCore()
+		}
+	}
+	func loadEventsFromCore(){
+		let result = DataManager.shared.fetch(Events.self)
+		team?.matchHistory = []
+		for ev in result{
+			team?.matchHistory?.append(Event(homeTeamName: ev.homeTeamName, awayTeamName: ev.awayTeamName, date: ev.matchDate))
+		}
+		debugPrint("Events loaded from Core Data")
+	}
+	func loadEventsFromApi(){
+		NetworkClient.getEvents(teamID: team!.teamID!, completionHandler: {(matches, error) in
+			self.team?.matchHistory = matches
+			DispatchQueue.main.async{
+				self.tableOutlet.reloadData()
+				self.saveEventsData()
+				debugPrint("Events loaded from Fetch")
+			}
+		})
 	}
 	
 	func saveEventsData(){
-		// TODO: refresh/update items, instead of appending on top in data
 		
-		if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
-			guard let events = team?.matchHistory else { return }
-			for event in events{
-				let eventData = EventData(entity: EventData.entity(), insertInto: context)
-				eventData.team1Name = event.team1Name
-				eventData.team2Name = event.team2Name
-				eventData.matchDate = event.date
-					
-				(UIApplication.shared.delegate as? AppDelegate)?.saveContext()
-			}
-			//mark time changed
-			let defaults = UserDefaults.standard
-			defaults.set(Date(), forKey: String(UpdateTime.Event.rawValue))
+		guard let events = team?.matchHistory else { return }
+		DataManager.shared.deleteAllOfType(Events.self)
+
+		for event in events{
+			let eventData = Events(entity: Events.entity(), insertInto: DataManager.shared.context)
+			eventData.homeTeamName = event.homeTeamName
+			eventData.awayTeamName = event.awayTeamName
+			eventData.matchDate = event.date
+				
+			DataManager.shared.save()
 		}
+		DefaultsManager.updateTime(key: UpdateTime.Event.rawValue)
 	}
 	
-	func loadEventsData(){
-		let defaults = UserDefaults.standard
-		if var eventUpdate = defaults.object(forKey: String(UpdateTime.Event.rawValue)) as? Date{
-			eventUpdate += 60 * 15
-			
-			// fetch
-			if (eventUpdate <= Date()){
-				NetworkAccess.getMatches_AF(teamID: team!.teamID!, completionHandler: {(matches, error) in
-					self.team?.matchHistory = matches
-					DispatchQueue.main.async{
-						self.tableOutlet.reloadData()
-						self.saveEventsData()
-						debugPrint("Events loaded from Fetch")
-					}
-				})
-				
-			}
-			// load from core data
-			else{
-				if let result = try? (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext.fetch(EventData.fetchRequest()) as? [EventData]{
-					team?.matchHistory = []
-					for match in result{
-						team?.matchHistory?.append(MatchHistory(team1Name: match.team1Name, team2Name: match.team2Name, date: match.matchDate))
-					}
-				}
-				debugPrint("Events loaded from Core Data")
-			}
-		}
-		// loading for first time
-		else{
-			NetworkAccess.getMatches_AF(teamID: team!.teamID!, completionHandler: {(matches, error) in
-				self.team?.matchHistory = matches
-				DispatchQueue.main.async{
-					self.tableOutlet.reloadData()
-					self.saveEventsData()
-					debugPrint("Events loaded from Fetch (first time) +saved into data")
-				}
-			})
-		}
-		
-
-	}
+	// MARK: - Players loading/saving
 	
 	func loadPlayersData(){
 		
-		let defaults = UserDefaults.standard
-		
-		if var playerUpdate = defaults.object(forKey: String(UpdateTime.Player.rawValue)) as? Date{
-			playerUpdate += 60 * 60
-			
-			if(playerUpdate <= Date()){
-				NetworkAccess.getPlayers_AF(teamName: team!.teamName!, completionHandler: { (players, error) in
-					self.team?.teamPlayers = players
-					DispatchQueue.main.async {
-						self.tableOutlet.reloadData()
-						
-						self.savePlayersData()
-						debugPrint("fetched players and saved into core data")
-					}
-				})
-			}
-			// not old yet, use core data
-			else{
-				if let result = try? (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext.fetch(PlayerData.fetchRequest()) as? [PlayerData] {
-					self.team?.teamPlayers = []
-					for player in result{
-						self.team?.teamPlayers?.append(Player(name: player.name, age: player.age, height: player.height, weight: player.weight, description: player.playerDescription, position: player.position, playerIconImage: player.playerIconImage, playerMainImage: player.playerMainImage))
-					}
-					debugPrint("Loaded from core data")
-				}
-			}
+		if(DefaultsManager.shouldUpdate(id: UpdateTime.Player)){
+			loadPlayersFromApi()
 		}
-		// TODO: Remove this redundancy
-		// first time loading, no date
 		else{
-			NetworkAccess.getPlayers_AF(teamName: team!.teamName!, completionHandler: { (players, error) in
-				self.team?.teamPlayers = players
-				DispatchQueue.main.async {
-					self.tableOutlet.reloadData()
-					
-					self.savePlayersData()
-					debugPrint("first time fetch player and save into DB")
-				}
-			})
+			loadPlayersFromCore()
 		}
-		
-
-		
-		
 	}
-    
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if let vc = segue.destination as? PlayerDetailViewController{
-
-			guard let selectedCell = sender as? PlayerInfoCell else{
-				return
-			}
-			let indexPath = tableOutlet.indexPath(for: selectedCell)
-			
-			if let team = team{
-				if let teamPlayers = team.teamPlayers{
-					if let indexPath = indexPath{
-						let selectedPlayer = teamPlayers[indexPath.row]
-						vc.player = selectedPlayer
-					}
-				}
-			}
+	func loadPlayersFromCore(){
+		let result = DataManager.shared.fetch(Players.self)
+		self.team?.teamPlayers = []
+		for p in result{
+			self.team?.teamPlayers?.append(Player(name: p.name, age: p.age, height: p.height, weight: p.weight, description: p.playerDescription, position: p.position, playerIconImage: p.iconImage, playerMainImage: p.mainImage))
 		}
+		debugPrint("Loaded from core data")
+	}
+	func loadPlayersFromApi(){
+		NetworkClient.getPlayers(teamName: team!.teamName!, completionHandler: { (players, error) in
+			self.team?.teamPlayers = players
+			DispatchQueue.main.async {
+				self.tableOutlet.reloadData()
+				self.savePlayersData()
+				debugPrint("fetched players and saved into core data")
+			}
+		})
 	}
 	
+	func savePlayersData(){
+
+		guard let players = team?.teamPlayers else { return }
+		DataManager.shared.deleteAllOfType(Players.self)
+	
+		for player in players{
+			let playerToSave = Players(entity: Players.entity(), insertInto: DataManager.shared.context)
+			playerToSave.name = player.name
+			playerToSave.age = player.age
+			playerToSave.height = player.height
+			playerToSave.playerDescription = player.description
+			playerToSave.iconImage = player.playerIconImage
+			playerToSave.mainImage = player.playerMainImage
+			playerToSave.position = player.position
+				
+			DataManager.shared.save()
+		}
+		DefaultsManager.updateTime(key: UpdateTime.Player.rawValue)
+	}
+
+	// MARK: - User interaction
 
 	@IBAction func segmentPress(_ sender: Any) {
 		var cellHeight:Float = 0
@@ -205,9 +165,10 @@ class TeamInfoViewController: UIViewController {
 
 }
 
+// MARK: - TableView setup
+
 extension TeamInfoViewController: UITableViewDelegate, UITableViewDataSource{
 
-	//return count
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		
 		switch segmentOutlet.selectedSegmentIndex{
@@ -226,17 +187,16 @@ extension TeamInfoViewController: UITableViewDelegate, UITableViewDataSource{
 		}
 	}
 
-	//creation
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
 		switch segmentOutlet.selectedSegmentIndex{
 			case 0:
-				let cell = tableView.dequeueReusableCell(withIdentifier: "MatchInfoCell", for: indexPath) as! MatchInfoCell
-				cell.styleItself(dateLabel: team?.matchHistory![indexPath.row].date, team1Name: team?.matchHistory![indexPath.row].team1Name, team2Name: team?.matchHistory![indexPath.row].team2Name)
+				let cell = tableView.dequeueReusableCell(withIdentifier: "MatchInfoCell", for: indexPath) as! EventCell
+				cell.styleItself(dateLabel: team?.matchHistory![indexPath.row].date, team1Name: team?.matchHistory![indexPath.row].homeTeamName, team2Name: team?.matchHistory![indexPath.row].awayTeamName)
 				return cell
 			
 			case 1:
-				let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerInfoCell", for: indexPath) as! PlayerInfoCell
+				let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerInfoCell", for: indexPath) as! PlayerCell
 				cell.styleItself(playerImage: team?.teamPlayers![indexPath.row].playerIconImage, name: team?.teamPlayers![indexPath.row].name, position: team?.teamPlayers![indexPath.row].position)
 				return cell
 			default:

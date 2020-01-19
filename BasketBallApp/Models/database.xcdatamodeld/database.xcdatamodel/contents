@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G2022" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Events" representedClassName="Events" syncable="YES" codeGenerationType="class">
+        <attribute name="awayTeamName" optional="YES" attributeType="String"/>
+        <attribute name="homeTeamName" optional="YES" attributeType="String"/>
+        <attribute name="matchDate" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Players" representedClassName="Players" syncable="YES" codeGenerationType="class">
+        <attribute name="age" optional="YES" attributeType="String"/>
+        <attribute name="height" optional="YES" attributeType="String"/>
+        <attribute name="iconImage" optional="YES" attributeType="String"/>
+        <attribute name="mainImage" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="playerDescription" optional="YES" attributeType="String"/>
+        <attribute name="position" optional="YES" attributeType="String"/>
+        <attribute name="weight" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Teams" representedClassName="Teams" syncable="YES" codeGenerationType="class">
+        <attribute name="teamDescription" optional="YES" attributeType="String"/>
+        <attribute name="teamIcon" optional="YES" attributeType="String"/>
+        <attribute name="teamID" optional="YES" attributeType="String"/>
+        <attribute name="teamImage" optional="YES" attributeType="String"/>
+        <attribute name="teamName" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="Teams" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="Players" positionX="-63" positionY="18" width="128" height="163"/>
+        <element name="Events" positionX="-54" positionY="27" width="128" height="88"/>
+    </elements>
+</model>

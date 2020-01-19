@@ -1,11 +1,3 @@
-//
-//  TeamCollectionCell.swift
-//  BasketBallApp
-//
-//  Created by Evaldas on 1/8/20.
-//  Copyright © 2020 Evaldas. All rights reserved.
-//
-
 import UIKit
 
 class TeamCollectionCell: UICollectionViewCell {
@@ -33,26 +25,19 @@ class TeamCollectionCell: UICollectionViewCell {
 	
 	func styleItself(teamName:String?, teamDescription:String?, teamIcon:String?){
 		
-		//do loading indicators for images
-		
-		
-		if let _teamName = teamName{
-			teamNameOutlet.text = _teamName
+		if let teamName = teamName{
+			teamNameOutlet.text = teamName
 		}
-		if let _teamDescription = teamDescription{
-			teamDescriptionOutlet.text = _teamDescription
+		if let teamDescription = teamDescription{
+			teamDescriptionOutlet.text = teamDescription
 		}
-		if let iconString = teamIcon{
-			
-			let url = URL(string: iconString)
+		if let teamIcon = teamIcon{
+			let url = URL(string: teamIcon)
 			teamIconOutlet.load(url: url!)
 		}
 		else{
 			teamIconOutlet.image = UIImage(systemName: "square")
 		}
-		
-		
-
 	}
 	
 
