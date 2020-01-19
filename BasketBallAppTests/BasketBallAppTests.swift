@@ -40,7 +40,7 @@ class BasketBallAppTests: XCTestCase {
 	}
 	
 	func test_get_request_loadMatches_Alamofire_not_null(){
-		var matchesCollection: [MatchHistory]?
+		var matchesCollection: [Event]?
 		let expectation = self.expectation(description: "loading")
 		
 		NetworkClient.getEvents(teamID: "134881") { (matches, error) in
@@ -66,63 +66,7 @@ class BasketBallAppTests: XCTestCase {
 		XCTAssertNotNil(teamsCollection)
 	}
 	
-	// MARK: - URLSession tests
 	
-	func test_get_Request_loadTeams_matchingName(){
-		var teamsCollection:[Team]?
-		let expectation = self.expectation(description: "loading")
-		
-		NetworkClient.getTeams(completionHandler: { (teams) in
-			teamsCollection = teams
-
-			expectation.fulfill()
-		})
-		waitForExpectations(timeout: 5, handler: nil)
-		XCTAssertEqual(teamsCollection?.first?.teamName, "Atlanta Hawks")
-	}
-
-	func test_getRequest_loadPlayers_not_null(){
-		var playerCol:[Player]?
-		let expectation = self.expectation(description: "loading")
-		
-		NetworkClient.getPlayers(teamName: "Atlanta", completionHandler: {(players) in
-			playerCol = players
-			
-			expectation.fulfill()
-		})
-		
-		waitForExpectations(timeout: 5, handler: nil)
-		XCTAssertNotNil([playerCol])
-	}
-	
-	func test_getRequest_loadMatches_not_null(){
-		var matchCollection:[MatchHistory]?
-		let expectation = self.expectation(description: "loading")
-		
-		NetworkClient.getMatches(teamID: "134881", completionHandler: { (matches) in
-			matchCollection = matches
-			
-			expectation.fulfill()
-			
-		})
-		
-		waitForExpectations(timeout: 5, handler: nil)
-		XCTAssertNotNil(matchCollection)
-	}
-	
-	func test_getRequest_loadTeams_not_null(){
-		
-		var teamsCollection:[Team]?
-		let expectation = self.expectation(description: "loading")
-		
-		NetworkClient.getTeams(completionHandler: { (teams) in
-			teamsCollection = teams
-
-			expectation.fulfill()
-		})
-		waitForExpectations(timeout: 5, handler: nil)
-		XCTAssertNotNil(teamsCollection)
-	}
 	
 
 }
