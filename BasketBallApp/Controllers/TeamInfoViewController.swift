@@ -71,11 +71,11 @@ class TeamInfoViewController: UIViewController {
 		debugPrint("Events loaded from Core Data")
 	}
 	func loadEventsFromApi(){
-		NetworkClient.getEvents(teamID: team!.teamID!, completionHandler: {(matches, error) in
-			self.team?.matchHistory = matches
+		NetworkClient.getEvents(teamID: team!.teamID!, completionHandler: { [weak self] (matches, error) in
+			self?.team?.matchHistory = matches
 			DispatchQueue.main.async{
-				self.tableOutlet.reloadData()
-				self.saveEventsData()
+				self?.tableOutlet.reloadData()
+				self?.saveEventsData()
 				debugPrint("Events loaded from Fetch")
 			}
 		})
@@ -108,6 +108,7 @@ class TeamInfoViewController: UIViewController {
 			loadPlayersFromCore()
 		}
 	}
+	
 	func loadPlayersFromCore(){
 		let result = DataManager.shared.fetch(Players.self)
 		self.team?.teamPlayers = []
@@ -116,12 +117,15 @@ class TeamInfoViewController: UIViewController {
 		}
 		debugPrint("Loaded from core data")
 	}
+	
 	func loadPlayersFromApi(){
-		NetworkClient.getPlayers(teamName: team!.teamName!, completionHandler: { (players, error) in
-			self.team?.teamPlayers = players
+
+		guard let teamName = team?.teamName else { return }
+		NetworkClient.getPlayers(teamName: teamName, completionHandler: { [weak self] (players, error) in
+			self?.team?.teamPlayers = players
 			DispatchQueue.main.async {
-				self.tableOutlet.reloadData()
-				self.savePlayersData()
+				self?.tableOutlet.reloadData()
+				self?.savePlayersData()
 				debugPrint("fetched players and saved into core data")
 			}
 		})

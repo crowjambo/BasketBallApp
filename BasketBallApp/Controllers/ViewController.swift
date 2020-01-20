@@ -48,11 +48,11 @@ class ViewController: UIViewController {
 	}
 
 	func loadFromApi(){
-		NetworkClient.getTeams(completionHandler: {(teams, error) in
-			self.teams = teams
+		NetworkClient.getTeams( completionHandler: { [weak self] (teams, error) in
+			self?.teams = teams
 			DispatchQueue.main.async{
-				self.CardCollection.reloadData()
-				self.saveTeamsIntoCoreData()
+				self?.CardCollection.reloadData()
+				self?.saveTeamsIntoCoreData()
 				debugPrint("fetched and saved into core data")
 			}
 		})
