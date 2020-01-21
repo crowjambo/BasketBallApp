@@ -4,12 +4,13 @@ import XCTest
 class BasketBallAppTests: XCTestCase {
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
+	
+	// TODO: API calls should be Mocked to be tested properly
+	// TODO: Use dependency injection to test singletons
 
 	// MARK: - Alamofire tests
 	
