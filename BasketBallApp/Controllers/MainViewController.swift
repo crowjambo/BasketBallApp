@@ -1,6 +1,6 @@
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
 	
 	// MARK: - Variables
 	
@@ -78,7 +78,7 @@ class ViewController: UIViewController {
 
 // MARK: - CollectionView setup
 
-extension ViewController : UICollectionViewDataSource, UICollectionViewDelegate{
+extension MainViewController : UICollectionViewDataSource, UICollectionViewDelegate{
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		guard let teams = teams else { return 0 }

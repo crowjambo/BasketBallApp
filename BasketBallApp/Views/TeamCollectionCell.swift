@@ -25,19 +25,17 @@ class TeamCollectionCell: UICollectionViewCell {
 	
 	func styleItself(teamName:String?, teamDescription:String?, teamIcon:String?){
 		
-		if let teamName = teamName{
-			teamNameOutlet.text = teamName
-		}
-		if let teamDescription = teamDescription{
-			teamDescriptionOutlet.text = teamDescription
-		}
-		if let teamIcon = teamIcon{
-			let url = URL(string: teamIcon)
-			teamIconOutlet.load(url: url!)
-		}
-		else{
-			teamIconOutlet.image = UIImage(systemName: "square")
-		}
+		guard
+			let teamName = teamName,
+			let teamDescription = teamDescription,
+			let teamIcon = teamIcon
+			else { return }
+		
+		teamNameOutlet.text = teamName
+		teamDescriptionOutlet.text = teamDescription
+		let url = URL(string: teamIcon)
+		teamIconOutlet.load(url : url!)
+		
 	}
 	
 

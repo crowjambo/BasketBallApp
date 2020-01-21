@@ -145,6 +145,7 @@ class TeamInfoViewController: UIViewController {
 			playerToSave.iconImage = player.playerIconImage
 			playerToSave.mainImage = player.playerMainImage
 			playerToSave.position = player.position
+			playerToSave.weight = player.weight
 				
 			DataManager.shared.save()
 		}
@@ -195,14 +196,14 @@ extension TeamInfoViewController: UITableViewDelegate, UITableViewDataSource{
 		
 		switch segmentOutlet.selectedSegmentIndex{
 			case 0:
-				let cell = tableView.dequeueReusableCell(withIdentifier: "MatchInfoCell", for: indexPath) as! EventCell
-				cell.styleItself(dateLabel: team?.matchHistory![indexPath.row].date, team1Name: team?.matchHistory![indexPath.row].homeTeamName, team2Name: team?.matchHistory![indexPath.row].awayTeamName)
-				return cell
+				let cell = tableView.dequeueReusableCell(withIdentifier: "MatchInfoCell", for: indexPath) as? EventCell
+				cell?.styleItself(dateLabel: team?.matchHistory?[indexPath.row].date, homeTeamName: team?.matchHistory?[indexPath.row].homeTeamName, awayTeamName: team?.matchHistory?[indexPath.row].awayTeamName)
+				return cell ?? UITableViewCell()
 			
 			case 1:
-				let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerInfoCell", for: indexPath) as! PlayerCell
-				cell.styleItself(playerImage: team?.teamPlayers![indexPath.row].playerIconImage, name: team?.teamPlayers![indexPath.row].name, position: team?.teamPlayers![indexPath.row].position)
-				return cell
+				let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerInfoCell", for: indexPath) as? PlayerCell
+				cell?.styleItself(playerImage: team?.teamPlayers?[indexPath.row].playerIconImage, name: team?.teamPlayers?[indexPath.row].name, position: team?.teamPlayers?[indexPath.row].position)
+				return cell ?? UITableViewCell()
 			default:
 				return UITableViewCell()
 		}

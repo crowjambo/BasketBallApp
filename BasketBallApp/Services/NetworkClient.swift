@@ -3,6 +3,7 @@ import Alamofire
 
 class NetworkClient {
 	
+	// TODO: Use result instead of typealias
 	typealias TeamsResponse = ( [Team]?, Error? ) -> Void
 	typealias PlayersResponse = ( [Player]?, Error? ) -> Void
 	typealias EventsResponse = ( [Event]?, Error? ) -> Void
@@ -23,6 +24,8 @@ class NetworkClient {
 						debugPrint(error)
 					}
 				case .failure:
+					// TODO: show toasts instead of simple debug
+					// TODO: better error handling, in case of error show an error toast or redirect to a different view controller
 					debugPrint(response.result)
 			}
 		}

@@ -13,16 +13,16 @@ class EventCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 	
-	func styleItself(dateLabel:String?, team1Name:String?, team2Name:String?){
-		if let team1Name = team1Name{
-			team1NameOutlet.text = team1Name
-		}
-		if let team2Name = team2Name{
-			team2NameOutlet.text = team2Name
-		}
-		if let dateLabel = dateLabel{
-			dateLabelOutlet.text = dateLabel
-		}
+	func styleItself(dateLabel:String?, homeTeamName:String?, awayTeamName:String?){
+		guard
+			let homeTeamName = homeTeamName,
+			let awayTeamName = awayTeamName,
+			let dateLabel = dateLabel
+			else { return }
+		
+		dateLabelOutlet.text = dateLabel
+		team1NameOutlet.text = homeTeamName
+		team2NameOutlet.text = awayTeamName
 	}
 
 }

@@ -12,6 +12,9 @@ final class DefaultsManager{
 	
 	class func shouldUpdate(id: UpdateTime) -> Bool{
 		
+		//TEMP FOR TESTING API
+		return true
+		
 		if var lastUpdated = defaults.object(forKey: id.rawValue) as? Date{
 			switch id {
 				case .Team:

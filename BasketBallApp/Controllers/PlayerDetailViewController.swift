@@ -24,29 +24,34 @@ class PlayerDetailViewController: UIViewController {
 	
 	// MARK: - Functions
 	
+	// TODO: Make age/height/weight into one outlet for easy aligns in storyboard, calculate age from string date input using Date formatter
+	// https://www.hackingwithswift.com/example-code/system/how-to-convert-dates-and-times-to-a-string-using-dateformatter
+	
 	func loadData(){
 		
-		guard let player = player else { return }
-		playerNameOutlet.text = player.name
+		guard
+			let player = player,
+			let age = player.age,
+			let height = player.height,
+			let weight = player.weight,
+			let playerMainImage = player.playerMainImage,
+			let playerDescription = player.description
+			else { return }
 		
-		if let age = player.age{
-			ageOutlet.text = String(age)
-		}
-		if let height = player.height{
-			heightOutlet.text = String(height)
-		}
-		if let weight = player.weight{
-			weightOutlet.text = String(weight)
-		}
-		if let playerMainImage = player.playerMainImage{
-			let url = URL(string: playerMainImage)
-			mainPlayerImage.load(url: url!)
-		}
-		else{
-			mainPlayerImage.image = UIImage(systemName: "square")
-		}
-		descriptionOutlet.text = player.description
+		playerNameOutlet.text = player.name
+		ageOutlet.text = age
+		heightOutlet.text = height
+		weightOutlet.text = weight
+		descriptionOutlet.text = playerDescription
 		descriptionOutlet.sizeToFit()
+		let url = URL(string: playerMainImage)
+		mainPlayerImage.load(url: url!)
+
+		
+	}
+	
+	func getAgeFromDate(date : String) -> Int{
+		return 0
 		
 	}
     

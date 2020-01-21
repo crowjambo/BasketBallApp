@@ -11,7 +11,7 @@
         <!--NBA-->
         <scene sceneID="vZz-bv-JwZ">
             <objects>
-                <viewController id="Aal-Ie-FUh" customClass="ViewController" customModule="BasketBallApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Aal-Ie-FUh" customClass="MainViewController" customModule="BasketBallApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W5h-dO-QpY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
