@@ -8,9 +8,7 @@ class DataLoadingManager{
 	// Variables
 	var teams : [Team]?
 	let group = DispatchGroup()
-	
-	//fetchRequest.predicate = [NSPredicate predicateWithFormat:@"userid == %@ AND objectids LIKE %@ AND active == %@", user.userid, objectid, @YES];
-	
+
 	func loadData(completionHandler: @escaping ( [Team]? ) -> Void ){
 		
 //		if DefaultsManager.shouldUpdate(id: UpdateTime.Team){
@@ -32,14 +30,23 @@ class DataLoadingManager{
 		
 //			self.loadTeamsCore()
 			
-			
+			//background thread for saving, so UI isnt freezed up
+			self.group.notify(queue: .global(qos: .background)) {
+				self.saveTeamsCore()
+			}
 			
 			self.group.notify(queue: .main) {
-				self.saveTeamsCore()
+				
 				completionHandler(self.teams)
 			}
 			
+			
+			
 		}
+	}
+	
+	func apiHelper(){
+		
 	}
 	
 	
@@ -104,6 +111,8 @@ class DataLoadingManager{
 	
 	private func saveTeamsCore(){
 		
+		group.enter()
+		
 		guard let teams = teams else { return }
 		DataManager.shared.deleteAllOfType(Teams.self)
 		for team in teams{
@@ -153,6 +162,7 @@ class DataLoadingManager{
 		
 			DataManager.shared.save()
 		}
+		group.leave()
 	}
 	
 	// MARK: - PLAYERS LOADING / SAVING
