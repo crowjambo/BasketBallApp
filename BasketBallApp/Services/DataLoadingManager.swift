@@ -69,28 +69,30 @@ class DataLoadingManager{
 				
 				///////////
 				
-				let loadedPlayers = DataManager.shared.fetch(Players.self)
-				
-				
-				
-				//debugPrint(loadedPlayers)
-				
+
+				let loadedPlayers = t.teamPlayers?.array as! [Players]
+					
 				teamToAdd.teamPlayers = []
 				
-				for corePlayer in loadedPlayers{
-					teamToAdd.teamPlayers?.append(Player(name: corePlayer.name, age: corePlayer.age, height: corePlayer.height, weight: corePlayer.weight, description: corePlayer.playerDescription, position: corePlayer.position, playerIconImage: corePlayer.iconImage, playerMainImage: corePlayer.mainImage))
+			
+				for corePlayer in loadedPlayers.enumerated(){
+					
+					teamToAdd.teamPlayers?.append(Player(name: corePlayer.element.name, age: corePlayer.element.age, height: corePlayer.element.height, weight: corePlayer.element.weight, description: corePlayer.element.playerDescription, position: corePlayer.element.position, playerIconImage: corePlayer.element.iconImage, playerMainImage: corePlayer.element.mainImage))
 				}
+				
 				
 				/////////
 				
-				
+				let loadedEvents = t.teamEvents?.array as! [Events]
 				
 				teamToAdd.matchHistory = []
 				
-//				for coreEvent in loadedEvents{
-//					teamToAdd.matchHistory?.append(Event(homeTeamName: coreEvent.homeTeamName, awayTeamName: coreEvent.awayTeamName, date: coreEvent.matchDate))
-//				}
+				for coreEvent in loadedEvents{
+					teamToAdd.matchHistory?.append(Event(homeTeamName: coreEvent.homeTeamName, awayTeamName: coreEvent.awayTeamName, date: coreEvent.matchDate))
+				}
 				
+				
+				self.teams?.append(teamToAdd)
 				
 			}
 			debugPrint("loaded from coreData")
@@ -115,10 +117,6 @@ class DataLoadingManager{
 			//debugPrint(team)
 			
 			for player in team.teamPlayers!{
-	
-				//debugPrint(player)
-				
-				//DataManager.shared.deleteAllOfType(Players.self)
 		
 				var playerToSave = Players(entity: Players.entity(), insertInto: DataManager.shared.context)
 				playerToSave.name = player.name
@@ -129,7 +127,9 @@ class DataLoadingManager{
 				playerToSave.mainImage = player.playerMainImage
 				playerToSave.position = player.position
 				playerToSave.weight = player.weight
+				playerToSave.team = teamData
 				
+				teamData.addToTeamPlayers(playerToSave)
 				
 				DataManager.shared.save()
 			}
@@ -138,16 +138,14 @@ class DataLoadingManager{
 			
 			
 			for event in team.matchHistory!{
-						
-				//debugPrint(event)
-				
-				//DataManager.shared.deleteAllOfType(Events.self)
-		
+							
 				var eventData = Events(entity: Events.entity(), insertInto: DataManager.shared.context)
 				eventData.homeTeamName = event.homeTeamName
 				eventData.awayTeamName = event.awayTeamName
 				eventData.matchDate = event.date
+				eventData.team = teamData
 				
+				teamData.addToTeamEvents(eventData)
 				
 				DataManager.shared.save()
 			}

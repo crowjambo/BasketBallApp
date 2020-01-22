@@ -4,6 +4,7 @@
         <attribute name="awayTeamName" optional="YES" attributeType="String"/>
         <attribute name="homeTeamName" optional="YES" attributeType="String"/>
         <attribute name="matchDate" optional="YES" attributeType="String"/>
+        <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Teams" inverseName="teamEvents" inverseEntity="Teams"/>
     </entity>
     <entity name="Players" representedClassName="Players" syncable="YES" codeGenerationType="class">
         <attribute name="age" optional="YES" attributeType="String"/>
@@ -14,6 +15,7 @@
         <attribute name="playerDescription" optional="YES" attributeType="String"/>
         <attribute name="position" optional="YES" attributeType="String"/>
         <attribute name="weight" optional="YES" attributeType="String"/>
+        <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Teams" inverseName="teamPlayers" inverseEntity="Teams"/>
     </entity>
     <entity name="Teams" representedClassName="Teams" syncable="YES" codeGenerationType="class">
         <attribute name="teamDescription" optional="YES" attributeType="String"/>
@@ -21,10 +23,12 @@
         <attribute name="teamID" optional="YES" attributeType="String"/>
         <attribute name="teamImage" optional="YES" attributeType="String"/>
         <attribute name="teamName" optional="YES" attributeType="String"/>
+        <relationship name="teamEvents" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Events" inverseName="team" inverseEntity="Events"/>
+        <relationship name="teamPlayers" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Players" inverseName="team" inverseEntity="Players"/>
     </entity>
     <elements>
-        <element name="Events" positionX="-54" positionY="27" width="128" height="88"/>
-        <element name="Players" positionX="-63" positionY="18" width="128" height="163"/>
-        <element name="Teams" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="Events" positionX="-54" positionY="27" width="128" height="103"/>
+        <element name="Players" positionX="-63" positionY="18" width="128" height="178"/>
+        <element name="Teams" positionX="-63" positionY="-18" width="128" height="148"/>
     </elements>
 </model>
