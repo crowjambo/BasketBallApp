@@ -36,7 +36,7 @@ final class DefaultsManager{
 		}
 	}
 	
-	class func updateTime(key: String){
-		defaults.set(Date(), forKey: key)
+	class func updateTime(key: UpdateTime){
+		defaults.set(Date(), forKey: key.rawValue)
 	}
 }

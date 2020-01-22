@@ -15,7 +15,9 @@ class MainViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		DataLoadingManager.loadData { (teamsRet) in
+		let dlm = DataLoadingManager()
+		
+		dlm.loadData { (teamsRet) in
 			self.teams = teamsRet
 			
 			DispatchQueue.main.async {
@@ -79,7 +81,7 @@ class MainViewController: UIViewController {
 			teamData.teamIcon = team.imageIconName
 			DataManager.shared.save()
 		}
-		DefaultsManager.updateTime(key: UpdateTime.Team.rawValue)
+		DefaultsManager.updateTime(key: UpdateTime.Team)
 	}
 	
 }

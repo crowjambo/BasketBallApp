@@ -4,51 +4,99 @@ import Foundation
 
 class DataLoadingManager{
 	
-	class func loadData(completionHandler: @escaping ( [Team]? ) -> Void ){
+	// Variables
+	var teams : [Team]?
+	let group = DispatchGroup()
+	
+	func loadData(completionHandler: @escaping ( [Team]? ) -> Void ){
 		
-		
-		// Variables
-		var teams : [Team]?
-		
-		let group = DispatchGroup()
-		
-		// Decide what needs to be pulled from CoreData, what needs to be API fetched
-		if(DefaultsManager.shouldUpdate(id: UpdateTime.Team))
-		
-		
-		
-		// API loading  + Add saving to CoreData (using relationship, for easy fetch from Core too)
-		
-		group.enter()
-		NetworkClient.getTeams { (teamsRet, error) in
-			teams = teamsRet
-			
-			group.leave()
-			
-		}
+//		if DefaultsManager.shouldUpdate(id: UpdateTime.Team){
+//			loadTeamsApi()
+//		}
+//		else{
+//			loadTeamsCore()
+//		}
+		loadTeamsApi()
 		
 		group.notify(queue: .main) {
 			
-			for n in 0..<teams!.count{
+			for index in 0..<self.teams!.count{
 				
-				group.enter()
-				NetworkClient.getPlayers(teamName: teams![n].teamName!) { (playersRet, error) in
-					teams![n].teamPlayers = playersRet
-					group.leave()
-				}
-				group.enter()
-				NetworkClient.getEvents(teamID: teams![n].teamID!) { (eventsRet, error) in
-					teams![n].matchHistory = eventsRet
-					group.leave()
-				}
+				self.loadPlayersApi(teamIndex: index)
+				self.loadEventsApi(teamIndex: index)
+
 			}
 			
-			group.notify(queue: .main) {
-				completionHandler(teams)
+			self.group.notify(queue: .main) {
+				completionHandler(self.teams)
 			}
 			
 		}
 	}
+	
+	
+	// MARK: - TEAMS LOADING / SAVING
+	
+	private func loadTeamsApi(){
+		
+		self.group.enter()
+		NetworkClient.getTeams { (teamsRet, error) in
+			self.teams = teamsRet
+			
+			self.group.leave()
+		}
+	}
+	
+	private func loadTeamsCore(){
+		// load using relationships @ coreData
+		
+	}
+	
+	private func saveTeamsCore(){
+		// call after everything is fetched ( players / events )
+		
+	}
+	
+	// MARK: - PLAYERS LOADING / SAVING
+	
+	private func loadPlayersApi(teamIndex : Int){
+		
+		self.group.enter()
+		
+		NetworkClient.getPlayers(teamName: self.teams![teamIndex].teamName!) { (playersRet, error) in
+			self.teams![teamIndex].teamPlayers = playersRet
+			self.group.leave()
+		}
+	}
+	
+	private func loadPlayersCore(){
+		
+	}
+	
+	private func savePlayersCore(){
+		
+	}
+	
+	// MARK: - EVENTS LOADING / SAVING
+	
+	private func loadEventsApi(teamIndex : Int){
+		
+		self.group.enter()
+		
+		NetworkClient.getEvents(teamID: self.teams![teamIndex].teamID!) { (eventsRet, error) in
+			self.teams![teamIndex].matchHistory = eventsRet
+			self.group.leave()
+		}
+	}
+	
+	private func loadEventsCore(){
+		
+	}
+	
+	private func saveEventsCore(){
+		
+	}
+	
 	
 	
 }
