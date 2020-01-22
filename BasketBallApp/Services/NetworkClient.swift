@@ -74,57 +74,5 @@ class NetworkClient {
 		}
 	}
 	
-	// MARK: - ASYNC TESTING
-	
-	class func asyncLoadingAllData(completionHandler: @escaping ( [Team]? ) -> Void ){
-		
-	}
-	
-//	class func asyncLoadTeamsAndPlayers(completionHandler: @escaping TeamsResponse) {
-//
-//		var teams : [Team]?
-//
-//		let group = DispatchGroup()
-//
-//		group.enter()
-//			NetworkClient.getTeams { (teamsRet, error) in
-//				teams = teamsRet
-//				group.leave()
-//
-//
-//				for team in teams!{
-//
-//					group.enter()
-//					NetworkClient.getPlayers(teamName: team.teamName!) { (playersRet, error) in
-//
-//						
-//
-//
-//						group.leave()
-//					}
-//
-//					group.enter()
-//					NetworkClient.getEvents(teamID: teams![counterE].teamID!) { (eventsRet, error) in
-//						teams![counterE].matchHistory = eventsRet
-//
-//
-//						group.leave()
-//					}
-//
-//
-//
-//				}
-//
-//
-//
-//
-//				group.notify(queue: DispatchQueue.global(qos: .background)) {
-//					completionHandler(teams, error)
-//				}
-//
-//
-//			}
-//	}
-//
 	
 }

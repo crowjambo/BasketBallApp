@@ -3,6 +3,7 @@ import CoreData
 
 // TODO: use dependency injection with swinject storyboards to inject singletons, and make them testable
 // TODO: Watch how to make testable code vid and apply it
+
 final class DataManager{
 	
 	private init(){}

@@ -11,56 +11,20 @@ class MainViewController: UIViewController {
 	@IBOutlet weak var cardCollectionView: UICollectionView!
 	
 	// MARK: - View Lifecycle
-	
-	
-	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
 
-		
-		let group = DispatchGroup()
-		
-		group.enter()
-		NetworkClient.getTeams { (teamsRet, error) in
+		DataLoadingManager.loadData { (teamsRet) in
 			self.teams = teamsRet
-			
-			group.leave()
-			
 			
 			DispatchQueue.main.async {
 				self.cardCollectionView.reloadData()
-				
-				
-			}
-			
-		}
-		
-		group.notify(queue: .main) {
-			
-			for n in 0..<self.teams!.count{
-				
-				NetworkClient.getPlayers(teamName: self.teams![n].teamName!) { (playersRet, error) in
-					self.teams![n].teamPlayers = playersRet
-				}
-				NetworkClient.getEvents(teamID: self.teams![n].teamID!) { (eventsRet, error) in
-					self.teams![n].matchHistory = eventsRet
-				}
-				
-				
 			}
 		}
-		
 
-		
-	
-		
 	}
 		
-		
-
-		
-	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		guard
 			let vc = segue.destination as? TeamInfoViewController,
@@ -73,95 +37,7 @@ class MainViewController: UIViewController {
 		vc.team = selectedTeam
 	}
 	
-	
-	// MARK: - LOAD EVERYTHING
-	
-	// TODO: Clean up and set up these functions to be used normally and clean ( no force unwraps )
-	// TODO: Set up Core data saving and loading after API calls
-	// TODO: Use Defaults Manager to decide whether I need to update something or not with API, or just load parts from core data!
-	
-//	(completionHandler: @escaping ( [Team]? ) -> Void)
-	
-//	func asyncLoadTeamsAndPlayers() {
-//		let group = DispatchGroup()
-////		DispatchQueue.global(qos: .background).async {
-//		group.enter()
-//			NetworkClient.getTeams { (teamsRet, error) in
-//				self.teams = teamsRet
-//				group.leave()
-//				
-//				group.enter()
-//				NetworkClient.getPlayers(teamName: "Atlanta Hawks") { (playersRet, error) in
-//					self.teams![0].teamPlayers = playersRet
-//					
-//					group.leave()
-//				}
-//				
-//				group.enter()
-//				NetworkClient.getEvents(teamID: self.teams![0].teamID!) { (eventsRet, error) in
-//					self.teams![0].matchHistory = eventsRet
-//					
-//					group.leave()
-//				}
-//				
-//				group.notify(queue: DispatchQueue.global(qos: .background)) {
-//					DispatchQueue.main.async {
-//						self.cardCollectionView.reloadData()
-//					}
-//					
-//				}
-//				
-//				//events with id
-//			}
-////		}
-//	}
-	
-//	let dispatchGroup = DispatchGroup()
-//
-//	func _test_LoadTeamsApi(){
-//
-//		dispatchGroup.enter()
-//		NetworkClient.getTeams( completionHandler: { [weak self] (teams, error) in
-//			self?.teams = teams
-//
-//			DispatchQueue.main.async{
-//				self?.CardCollection.reloadData()
-//				//self?.saveTeamsIntoCoreData()
-//				debugPrint("fetched and saved into core data")
-//			}
-//			self?.dispatchGroup.leave()
-//		})
-//	}
-//
-//	func _test_LoadPlayersApi(){
-//
-//		var counter = 0
-//		for team in self.teams!{
-//			_test_loadPlayerApi_single(team: team, counter: counter)
-//			_test_LoadEventsApi(team: team, counter: counter)
-//			counter += 1
-//		}
-//	}
-//
-//	func _test_loadPlayerApi_single(team : Team, counter : Int){
-//
-//		NetworkClient.getPlayers(teamName: team.teamName!, completionHandler: { [weak self] (players, error) in
-//			self?.teams![counter].teamPlayers = players
-//
-//		})
-//	}
-//
-//
-//	func _test_LoadEventsApi(team : Team, counter : Int){
-//
-//		NetworkClient.getEvents(teamID: team.teamID!, completionHandler: { [weak self] (matches, error) in
-//			self?.teams![counter].matchHistory = matches
-//
-//		})
-//
-//	}
-	
-	
+
 	// MARK: - Teams loading/saving
 	
 	func loadTeamsData(){
