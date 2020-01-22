@@ -6,14 +6,12 @@ enum UpdateTime : String{
 	case Player = "3"
 }
 
+// TODO: use dependency injection to make this testable
 final class DefaultsManager{
 	
 	static let defaults = UserDefaults.standard
 	
 	class func shouldUpdate(id: UpdateTime) -> Bool{
-		
-		//TEMP FOR TESTING API
-		return true
 		
 		if var lastUpdated = defaults.object(forKey: id.rawValue) as? Date{
 			switch id {

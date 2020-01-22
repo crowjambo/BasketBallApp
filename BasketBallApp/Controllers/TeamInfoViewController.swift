@@ -8,6 +8,8 @@ class TeamInfoViewController: UIViewController {
 	
 	// MARK: - Outlets
 	
+	// TODO: Clean up and align the Outlets in Storyboard for Teams names displaying
+	
 	@IBOutlet weak var teamNameLabelOutlet: UILabel!
 	@IBOutlet weak var mainTeamImageOutlet: UIImageView!
 	@IBOutlet weak var tableOutlet: UITableView!

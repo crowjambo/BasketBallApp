@@ -15,7 +15,6 @@ class MainViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		//loadTeamsData()
 		_test_LoadTeamsApi()
 		
 		dispatchGroup.notify(queue: .main) {
@@ -43,13 +42,15 @@ class MainViewController: UIViewController {
 	
 	// MARK: - LOAD EVERYTHING
 	
+	// TODO: Clean up and set up these functions to be used normally and clean ( no force unwraps )
+	// TODO: Set up Core data saving and loading after API calls
+	// TODO: Use Defaults Manager to decide whether I need to update something or not with API, or just load parts from core data!
+	
 	let dispatchGroup = DispatchGroup()
 	
 	func _test_LoadTeamsApi(){
 		
 		dispatchGroup.enter()
-		//dispatchGroup.enter()
-
 		NetworkClient.getTeams( completionHandler: { [weak self] (teams, error) in
 			self?.teams = teams
 				
@@ -57,63 +58,36 @@ class MainViewController: UIViewController {
 				self?.CardCollection.reloadData()
 				//self?.saveTeamsIntoCoreData()
 				debugPrint("fetched and saved into core data")
-
-
 			}
 			self?.dispatchGroup.leave()
 		})
-		
-
 	}
 	
 	func _test_LoadPlayersApi(){
 		
 		var counter = 0
-		
 		for team in self.teams!{
-			
-			
-			
 			_test_loadPlayerApi_single(team: team, counter: counter)
-			
-			
-			
+			_test_LoadEventsApi(team: team, counter: counter)
 			counter += 1
-			
 		}
-	
 	}
 	
 	func _test_loadPlayerApi_single(team : Team, counter : Int){
 		
-		//dispatchGroup.enter()
-		
-		// Problem is these async calls, doing racing conditions etc
 		NetworkClient.getPlayers(teamName: team.teamName!, completionHandler: { [weak self] (players, error) in
 			self?.teams![counter].teamPlayers = players
-
-			
-			debugPrint("players loaded")
-			
-			//self?.dispatchGroup.leave()
 
 		})
 	}
 	
 	
-	func _test_LoadEventsApi(){
-		dispatchGroup.wait()
+	func _test_LoadEventsApi(team : Team, counter : Int){
+		
+		NetworkClient.getEvents(teamID: team.teamID!, completionHandler: { [weak self] (matches, error) in
+			self?.teams![counter].matchHistory = matches
 
-		var counter = 0
-		for team in self.teams!{
-			NetworkClient.getEvents(teamID: team.teamID!, completionHandler: { [weak self] (matches, error) in
-				self?.teams![counter].matchHistory = matches
-
-				counter += 1
-				debugPrint("events loaded")
-
-			})
-		}
+		})
 		
 	}
 	
