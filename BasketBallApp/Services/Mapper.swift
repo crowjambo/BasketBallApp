@@ -2,11 +2,67 @@ import Foundation
 
 class Mapper {
 	
+	// MARK: - Models into Core Data
+	
+	//team model into TeamData return ( single ) ( will convert players and events too )
+	class func teamModelToCoreData(team: Team) -> Teams {
+		guard
+			let teamPlayers = team.teamPlayers,
+			let teamEvents = team.matchHistory
+			else { return Teams() }
+		
+		let teamData = Teams(entity: Teams.entity(), insertInto: DataManager.shared.context)
+		teamData.teamName = team.teamName
+		teamData.teamDescription = team.description
+		teamData.teamID = team.teamID
+		teamData.teamImage = team.imageTeamMain
+		teamData.teamIcon = team.imageIconName
+		
+		for player in teamPlayers {
+			let playerToSave = playerModelToCoreData(player: player)
+			playerToSave.team = teamData
+			teamData.addToTeamPlayers(playerToSave)
+		}
+
+		for event in teamEvents {
+			let eventToSave = eventModelToCoreData(event: event)
+			eventToSave.team = teamData
+			teamData.addToTeamEvents(eventToSave)
+		}
+		
+		return teamData
+	}
+	
+	private class func playerModelToCoreData(player: Player) -> Players {
+		let playerToSave = Players(entity: Players.entity(), insertInto: DataManager.shared.context)
+		playerToSave.name = player.name
+		playerToSave.age = player.age
+		playerToSave.height = player.height
+		playerToSave.playerDescription = player.description
+		playerToSave.iconImage = player.playerIconImage
+		playerToSave.mainImage = player.playerMainImage
+		playerToSave.position = player.position
+		playerToSave.weight = player.weight
+		
+		return playerToSave
+	}
+	
+	private class func eventModelToCoreData(event: Event) -> Events {
+		let eventToSave = Events(entity: Events.entity(), insertInto: DataManager.shared.context)
+		eventToSave.homeTeamName = event.homeTeamName
+		eventToSave.awayTeamName = event.awayTeamName
+		eventToSave.matchDate = event.date
+		
+		return eventToSave
+	}
+	
+	// MARK: - Core Data into Models Mapping
+	
 	class func teamDataToTeamModel(team: Teams) -> Team {
 		return Team(teamID: team.teamID, teamName: team.teamName, description: team.teamDescription, imageIconName: team.teamIcon, imageTeamMain: team.teamImage)
 	}
 	
-	class func eventsDataToEventsModelArray(events : [Events]) -> [Event] {
+	class func eventsDataToEventsModelArray(events: [Events]) -> [Event] {
 		var outputEvents: [Event] = []
 		
 		for event in events {

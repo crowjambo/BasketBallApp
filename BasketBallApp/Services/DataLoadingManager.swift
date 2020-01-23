@@ -3,6 +3,8 @@ import Foundation
 // TODO : would Dispatch group still work, if I pass it as a value into functions? Test it out, if it does, then
 // 		  can make it an optional and decouple that dependency at least from my functions, its hard to maintain already
 
+// TODO : make dataloading manager use a protocol Database or so, one for core one for realm, so you can exchange what you prefer
+
 class DataLoadingManager {
 	
 	// Variables
@@ -89,52 +91,16 @@ class DataLoadingManager {
 	private func saveTeamsCore() {
 		
 		group.enter()
-		
+	
 		guard let teams = teams else { return }
 		DataManager.shared.deleteAllOfType(Teams.self)
+		
 		for team in teams {
-			let teamData = Teams(entity: Teams.entity(), insertInto: DataManager.shared.context)
-			teamData.teamName = team.teamName
-			teamData.teamDescription = team.description
-			teamData.teamID = team.teamID
-			teamData.teamImage = team.imageTeamMain
-			teamData.teamIcon = team.imageIconName
-			
-			for player in team.teamPlayers! {
-		
-				var playerToSave = Players(entity: Players.entity(), insertInto: DataManager.shared.context)
-				playerToSave.name = player.name
-				playerToSave.age = player.age
-				playerToSave.height = player.height
-				playerToSave.playerDescription = player.description
-				playerToSave.iconImage = player.playerIconImage
-				playerToSave.mainImage = player.playerMainImage
-				playerToSave.position = player.position
-				playerToSave.weight = player.weight
-				playerToSave.team = teamData
-				
-				teamData.addToTeamPlayers(playerToSave)
-				
-				DataManager.shared.save()
-			}
-			
-			let result = DataManager.shared.fetch(Players.self)
-			
-			for event in team.matchHistory! {
-							
-				var eventData = Events(entity: Events.entity(), insertInto: DataManager.shared.context)
-				eventData.homeTeamName = event.homeTeamName
-				eventData.awayTeamName = event.awayTeamName
-				eventData.matchDate = event.date
-				eventData.team = teamData
-				
-				teamData.addToTeamEvents(eventData)
-				
-				DataManager.shared.save()
-			}
-		
+			let teamData = Mapper.teamModelToCoreData(team: team)
+			debugPrint(teamData.teamName!)
 			DataManager.shared.save()
 		}
+		
 		group.leave()
 	}
 	
