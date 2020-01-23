@@ -27,7 +27,7 @@ final class DataManager {
 		if context.hasChanges {
 			do {
 				try context.save()
-				print("saved successfuly")
+				//print("saved successfuly")
 			} catch {
 				let nserror = error as NSError
 				fatalError("Unresolved error \(nserror), \(nserror.userInfo)")

@@ -9,56 +9,60 @@ class DataLoadingManager {
 	
 	// Variables
 	var teams: [Team]?
-	let group = DispatchGroup()
-	
+
 	let shouldEventUpdate: Bool = DefaultsManager.shouldUpdate(id: UpdateTime.event)
 	let shouldPlayerUpdate: Bool = DefaultsManager.shouldUpdate(id: UpdateTime.player)
 	let shouldTeamUpdate: Bool = DefaultsManager.shouldUpdate(id: UpdateTime.team)
 
 	func loadData(completionHandler: @escaping ( [Team]? ) -> Void ) {
 		
+		let returnGroup = DispatchGroup()
+		returnGroup.enter()
+		
 		if shouldTeamUpdate {
-			loadTeamsApi()
-			loadPlayersApi()
-			loadEventsApi()
+			loadAllFromApi(returnGroup: returnGroup)
 			debugPrint("load all from api")
 		} else {
-			loadTeamsCore()
+			loadTeamsCore(returnGroup: returnGroup)
 			debugPrint("load teams from core")
 		}
 	
-		group.notify(queue: .main) {
-			
-			self.group.notify(queue: .global(qos: .background)) {
+		returnGroup.notify(queue: .main) {
+			DispatchQueue.global(qos: .background).async {
 				self.saveTeamsCore()
 			}
-			
-			self.group.notify(queue: .main) {
-				
-				completionHandler(self.teams)
-			}
+			completionHandler(self.teams)
 		}
 		
 	}
 	
 	// MARK: - TEAMS LOADING / SAVING
 	
-	private func loadTeamsApi() {
+	private func loadAllFromApi(returnGroup: DispatchGroup) {
 		
-		self.group.enter()
+		let apiGroup = DispatchGroup()
+		
+		apiGroup.enter()
 		NetworkClient.getTeams { (teamsRet, _) in
 			self.teams = teamsRet
-			
 			DefaultsManager.updateTime(key: UpdateTime.team)
-			self.group.leave()
+			
+			apiGroup.leave()
+		}
+		
+		apiGroup.notify(queue: .global(qos: .background)) {
+			
+			self.loadPlayersApi(returnGroup: returnGroup)
+			
+			self.loadEventsApi(returnGroup: returnGroup)
+			
+			returnGroup.leave()
 		}
 
 	}
 	
-	private func loadTeamsCore() {
+	private func loadTeamsCore(returnGroup: DispatchGroup) {
 
-		self.group.enter()
-		
 		let result = DataManager.shared.fetch(Teams.self)
 
 			self.teams = []
@@ -74,63 +78,68 @@ class DataLoadingManager {
 				self.teams?.append(teamToAdd)
 				
 				if shouldEventUpdate {
-					loadEventsApi()
+					loadEventsApi(returnGroup: returnGroup)
 				}
 
 				if shouldPlayerUpdate {
-					loadPlayersApi()
+					loadPlayersApi(returnGroup: returnGroup)
 				}
 				
 			}
-			debugPrint("loaded from coreData")
-		
-		self.group.leave()
+		returnGroup.leave()
+		debugPrint("loaded from coreData")
 		
 	}
 	
 	private func saveTeamsCore() {
 		
-		group.enter()
-	
 		guard let teams = teams else { return }
 		DataManager.shared.deleteAllOfType(Teams.self)
 		
 		for team in teams {
 			let teamData = Mapper.teamModelToCoreData(team: team)
-			debugPrint(teamData.teamName!)
+			//debugPrint(teamData.teamName!)
 			DataManager.shared.save()
 		}
-		
-		group.leave()
+
 	}
 	
 	// MARK: - PLAYERS LOADING
 		
-	private func loadPlayersApi() {
+	private func loadPlayersApi(returnGroup: DispatchGroup) {
 		
 		for index in 0..<self.teams!.count {
-			self.group.enter()
+			
+			returnGroup.enter()
+			
 			NetworkClient.getPlayers(teamName: self.teams![index].teamName!) { (playersRet, _) in
 				self.teams![index].teamPlayers = playersRet
 				
 				DefaultsManager.updateTime(key: UpdateTime.player)
-				self.group.leave()
+				debugPrint("Loaded players from API")
+				
+				returnGroup.leave()
 			}
 		}
+		
 
 	}
 	
 	// MARK: - EVENTS LOADING
 	
-	private func loadEventsApi() {
+	private func loadEventsApi(returnGroup: DispatchGroup) {
 		
 		for index in 0..<self.teams!.count {
-			self.group.enter()
+			
+			returnGroup.enter()
+	
 			NetworkClient.getEvents(teamID: self.teams![index].teamID!) { (eventsRet, _) in
 				self.teams![index].matchHistory = eventsRet
 				
 				DefaultsManager.updateTime(key: UpdateTime.event)
-				self.group.leave()
+				debugPrint("Loaded Events from API")
+				
+				returnGroup.leave()
 			}
 		}
 	}

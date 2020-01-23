@@ -4,7 +4,6 @@ class Mapper {
 	
 	// MARK: - Models into Core Data
 	
-	//team model into TeamData return ( single ) ( will convert players and events too )
 	class func teamModelToCoreData(team: Team) -> Teams {
 		guard
 			let teamPlayers = team.teamPlayers,

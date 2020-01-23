@@ -12,7 +12,7 @@ final class DefaultsManager {
 	static let defaults = UserDefaults.standard
 	
 	class func shouldUpdate(id: UpdateTime) -> Bool {
-		
+				
 		if var lastUpdated = defaults.object(forKey: id.rawValue) as? Date {
 			switch id {
 			case .team:
