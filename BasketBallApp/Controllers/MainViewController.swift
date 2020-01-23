@@ -31,8 +31,8 @@ class MainViewController: UIViewController {
 	}
 	
 	func loadData() {
-		let dlm = DataLoadingManager()
 		
+		let dlm = DataLoadingManager()
 		dlm.loadData { (teamsRet) in
 			self.teams = teamsRet
 			
