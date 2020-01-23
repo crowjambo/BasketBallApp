@@ -1,7 +1,6 @@
 import UIKit
 
 class PlayerCell: UITableViewCell {
-
 	
 	@IBOutlet weak var playerImageOutlet: UIImageView!
 	@IBOutlet weak var namePositionLabelOutlet: UILabel!
@@ -13,22 +12,20 @@ class PlayerCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
-	func styleItself(playerImage:String? , name:String?, position:String?){
+	func styleItself(playerImage: String?, name: String?, position: String?) {
 		
-		if let image = playerImage{
+		if let image = playerImage {
 			let url = URL(string: image)
 			playerImageOutlet.load(url: url!)
-		}
-		else{
+		} else {
 			playerImageOutlet.image = UIImage(systemName: "square")
 		}
 		
-		if let name = name{
-			if let position = position{
+		if let name = name {
+			if let position = position {
 				namePositionLabelOutlet.text = name + " , " + position
 			}
-		}
-		else{
+		} else {
 			namePositionLabelOutlet.text = "undefined"
 		}
 	}

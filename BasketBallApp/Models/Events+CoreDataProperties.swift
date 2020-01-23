@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension Events {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Events> {

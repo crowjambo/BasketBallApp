@@ -4,7 +4,7 @@ class PlayerDetailViewController: UIViewController {
 
 	// MARK: - Variables
 	
-	var player:Player?
+	var player: Player?
 	
 	// MARK: - Outlets
 	
@@ -27,7 +27,7 @@ class PlayerDetailViewController: UIViewController {
 	// TODO: Make age/height/weight into one outlet for easy aligns in storyboard, calculate age from string date input using Date formatter
 	// https://www.hackingwithswift.com/example-code/system/how-to-convert-dates-and-times-to-a-string-using-dateformatter
 	
-	func loadData(){
+	func loadData() {
 		
 		guard
 			let player = player,
@@ -46,11 +46,10 @@ class PlayerDetailViewController: UIViewController {
 		descriptionOutlet.sizeToFit()
 		let url = URL(string: playerMainImage)
 		mainPlayerImage.load(url: url!)
-
 		
 	}
 	
-	func getAgeFromDate(date : String) -> Int{
+	func getAgeFromDate(date: String) -> Int {
 		return 0
 		
 	}

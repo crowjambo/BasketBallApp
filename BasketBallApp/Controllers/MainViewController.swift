@@ -14,7 +14,23 @@ class MainViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		loadData()
 
+	}
+		
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		guard
+			let destinationController = segue.destination as? TeamInfoViewController,
+			let selectedCell = sender as? TeamCollectionCell,
+			let indexPath = cardCollectionView.indexPath(for: selectedCell),
+			let teams = teams
+			else { return }
+		
+		let selectedTeam = teams[indexPath.row]
+		destinationController.team = selectedTeam
+	}
+	
+	func loadData() {
 		let dlm = DataLoadingManager()
 		
 		dlm.loadData { (teamsRet) in
@@ -24,71 +40,12 @@ class MainViewController: UIViewController {
 				self.cardCollectionView.reloadData()
 			}
 		}
-
 	}
-		
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		guard
-			let vc = segue.destination as? TeamInfoViewController,
-			let selectedCell = sender as? TeamCollectionCell,
-			let indexPath = cardCollectionView.indexPath(for: selectedCell),
-			let teams = teams
-			else { return }
-		
-		let selectedTeam = teams[indexPath.row]
-		vc.team = selectedTeam
-	}
-	
-
-	// MARK: - Teams loading/saving
-	
-	func loadTeamsData(){
-
-		if(DefaultsManager.shouldUpdate(id: UpdateTime.Team)){
-			loadFromApi()
-		}
-		else{
-			let result = DataManager.shared.fetch(Teams.self)
-			self.teams = []
-			for t in result{
-				self.teams?.append(Team(teamID: t.teamID, teamName: t.teamName, description: t.teamDescription, imageIconName: t.teamIcon, imageTeamMain: t.teamImage))
-			}
-			debugPrint("loaded from coreData")
-		}
-	}
-
-	func loadFromApi(){
-		NetworkClient.getTeams( completionHandler: { [weak self] (teams, error) in
-			self?.teams = teams
-			DispatchQueue.main.async{
-				self?.cardCollectionView.reloadData()
-				self?.saveTeamsIntoCoreData()
-				debugPrint("fetched and saved into core data")
-			}
-		})
-	}
-		
-	func saveTeamsIntoCoreData(){
-		
-		guard let teams = teams else { return }
-		DataManager.shared.deleteAllOfType(Teams.self)
-		for team in teams{
-			let teamData = Teams(entity: Teams.entity(), insertInto: DataManager.shared.context)
-			teamData.teamName = team.teamName
-			teamData.teamDescription = team.description
-			teamData.teamID = team.teamID
-			teamData.teamImage = team.imageTeamMain
-			teamData.teamIcon = team.imageIconName
-			DataManager.shared.save()
-		}
-		DefaultsManager.updateTime(key: UpdateTime.Team)
-	}
-	
 }
 
 // MARK: - CollectionView setup
 
-extension MainViewController : UICollectionViewDataSource, UICollectionViewDelegate{
+extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		guard let teams = teams else { return 0 }
@@ -98,18 +55,13 @@ extension MainViewController : UICollectionViewDataSource, UICollectionViewDeleg
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		
 		if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCollectionCell", for: indexPath) as? TeamCollectionCell {
-			if let teams = teams{
+			if let teams = teams {
 				let team = teams[indexPath.row]
 				cell.styleItself(teamName: team.teamName, teamDescription: team.description, teamIcon: team.imageIconName)
 			}
 			return cell
-		}else{
+		} else {
 			return UICollectionViewCell()
 		}
 	}
 }
-
-
-
-
-

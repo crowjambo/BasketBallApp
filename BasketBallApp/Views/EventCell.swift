@@ -13,7 +13,7 @@ class EventCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 	
-	func styleItself(dateLabel:String?, homeTeamName:String?, awayTeamName:String?){
+	func styleItself(dateLabel: String?, homeTeamName: String?, awayTeamName: String?) {
 		guard
 			let homeTeamName = homeTeamName,
 			let awayTeamName = awayTeamName,

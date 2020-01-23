@@ -23,7 +23,7 @@ class TeamCollectionCell: UICollectionViewCell {
 		layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: contentView.layer.cornerRadius).cgPath
 	}
 	
-	func styleItself(teamName:String?, teamDescription:String?, teamIcon:String?){
+	func styleItself(teamName: String?, teamDescription: String?, teamIcon: String?) {
 		
 		guard
 			let teamName = teamName,
@@ -34,9 +34,8 @@ class TeamCollectionCell: UICollectionViewCell {
 		teamNameOutlet.text = teamName
 		teamDescriptionOutlet.text = teamDescription
 		let url = URL(string: teamIcon)
-		teamIconOutlet.load(url : url!)
+		teamIconOutlet.load(url: url!)
 		
 	}
-	
 
 }
