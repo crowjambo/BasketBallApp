@@ -10,9 +10,9 @@ class DataLoadingManager {
 	// Variables
 	var teams: [Team]?
 
-	let shouldEventUpdate: Bool = DefaultsManager.shouldUpdate(id: UpdateTime.event)
-	let shouldPlayerUpdate: Bool = DefaultsManager.shouldUpdate(id: UpdateTime.player)
-	let shouldTeamUpdate: Bool = DefaultsManager.shouldUpdate(id: UpdateTime.team)
+	let shouldEventUpdate: Bool = DefaultsManager.shouldUpdate(idOfEntity: UpdateTime.event)
+	let shouldPlayerUpdate: Bool = DefaultsManager.shouldUpdate(idOfEntity: UpdateTime.player)
+	let shouldTeamUpdate: Bool = DefaultsManager.shouldUpdate(idOfEntity: UpdateTime.team)
 
 	func loadData(completionHandler: @escaping ( [Team]? ) -> Void ) {
 		
@@ -97,11 +97,10 @@ class DataLoadingManager {
 		DataManager.shared.deleteAllOfType(Teams.self)
 		
 		for team in teams {
-			let teamData = Mapper.teamModelToCoreData(team: team)
-			//debugPrint(teamData.teamName!)
+			_ = Mapper.teamModelToCoreData(team: team)
 			DataManager.shared.save()
 		}
-
+		
 	}
 	
 	// MARK: - PLAYERS LOADING
@@ -116,13 +115,12 @@ class DataLoadingManager {
 				self.teams![index].teamPlayers = playersRet
 				
 				DefaultsManager.updateTime(key: UpdateTime.player)
-				debugPrint("Loaded players from API")
+				//debugPrint("Loaded players from API")
 				
 				returnGroup.leave()
 			}
 		}
 		
-
 	}
 	
 	// MARK: - EVENTS LOADING
@@ -137,7 +135,7 @@ class DataLoadingManager {
 				self.teams![index].matchHistory = eventsRet
 				
 				DefaultsManager.updateTime(key: UpdateTime.event)
-				debugPrint("Loaded Events from API")
+				//debugPrint("Loaded Events from API")
 				
 				returnGroup.leave()
 			}

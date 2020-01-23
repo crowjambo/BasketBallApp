@@ -25,7 +25,7 @@ class TeamInfoViewController: UIViewController {
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		
 		guard
-			let vc = segue.destination as? PlayerDetailViewController,
+			let destinationController = segue.destination as? PlayerDetailViewController,
 			let selectedCell = sender as? PlayerCell,
 			let indexPath = tableOutlet.indexPath(for: selectedCell),
 			let team = team,
@@ -33,7 +33,7 @@ class TeamInfoViewController: UIViewController {
 		else { return }
 			
 		let selectedPlayer = teamPlayers[indexPath.row]
-		vc.player = selectedPlayer
+		destinationController.player = selectedPlayer
 	}
 	
 	// MARK: - Functions

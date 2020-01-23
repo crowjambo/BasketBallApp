@@ -11,10 +11,12 @@ final class DefaultsManager {
 	
 	static let defaults = UserDefaults.standard
 	
-	class func shouldUpdate(id: UpdateTime) -> Bool {
+	class func shouldUpdate(idOfEntity: UpdateTime) -> Bool {
 				
-		if var lastUpdated = defaults.object(forKey: id.rawValue) as? Date {
-			switch id {
+		//return true
+		
+		if var lastUpdated = defaults.object(forKey: idOfEntity.rawValue) as? Date {
+			switch idOfEntity {
 			case .team:
 					lastUpdated += 60 * 60
 			case .event:
