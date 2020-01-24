@@ -12,7 +12,7 @@
 		802AF94A23CCA282000EC555 /* BasketBallAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802AF94923CCA282000EC555 /* BasketBallAppTests.swift */; };
 		802AF95823CCA2EB000EC555 /* BasketBallAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802AF95723CCA2EB000EC555 /* BasketBallAppUITests.swift */; };
 		80304EE523D4FAA500A645BB /* DefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80304EE423D4FAA500A645BB /* DefaultsManager.swift */; };
-		805E855123D865CF005BA2C2 /* DataLoadingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805E855023D865CF005BA2C2 /* DataLoadingManager.swift */; };
+		805E855123D865CF005BA2C2 /* LoadingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805E855023D865CF005BA2C2 /* LoadingManager.swift */; };
 		809840DF23D50B870041C96D /* database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 809840DD23D50B870041C96D /* database.xcdatamodeld */; };
 		8098B21D23CF0C0F00822774 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8098B21C23CF0C0F00822774 /* NetworkClient.swift */; };
 		8098B22523CF3FF400822774 /* ImageLoadFromURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8098B22423CF3FF400822774 /* ImageLoadFromURL.swift */; };
@@ -76,7 +76,7 @@
 		802AF95723CCA2EB000EC555 /* BasketBallAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketBallAppUITests.swift; sourceTree = "<group>"; };
 		802AF95923CCA2EB000EC555 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80304EE423D4FAA500A645BB /* DefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManager.swift; sourceTree = "<group>"; };
-		805E855023D865CF005BA2C2 /* DataLoadingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoadingManager.swift; sourceTree = "<group>"; };
+		805E855023D865CF005BA2C2 /* LoadingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingManager.swift; sourceTree = "<group>"; };
 		809840DE23D50B870041C96D /* database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = database.xcdatamodel; sourceTree = "<group>"; };
 		8098B21C23CF0C0F00822774 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		8098B22423CF3FF400822774 /* ImageLoadFromURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadFromURL.swift; sourceTree = "<group>"; };
@@ -194,7 +194,7 @@
 				8098B21C23CF0C0F00822774 /* NetworkClient.swift */,
 				801D6F4823D4EB6C00C16067 /* DataManager.swift */,
 				80304EE423D4FAA500A645BB /* DefaultsManager.swift */,
-				805E855023D865CF005BA2C2 /* DataLoadingManager.swift */,
+				805E855023D865CF005BA2C2 /* LoadingManager.swift */,
 				80BE6D2123D98E710051BB08 /* Mapper.swift */,
 			);
 			path = Services;
@@ -628,7 +628,7 @@
 				80A97ACC23C742A5008014CF /* PlayerDetailViewController.swift in Sources */,
 				80A97AC423C72860008014CF /* Event.swift in Sources */,
 				801D6F4923D4EB6C00C16067 /* DataManager.swift in Sources */,
-				805E855123D865CF005BA2C2 /* DataLoadingManager.swift in Sources */,
+				805E855123D865CF005BA2C2 /* LoadingManager.swift in Sources */,
 				80CBBE0523C5F1E40064CFFD /* MainViewController.swift in Sources */,
 				80B10A6C23C6013D00CC987F /* Team.swift in Sources */,
 				80CBBE0123C5F1E40064CFFD /* AppDelegate.swift in Sources */,

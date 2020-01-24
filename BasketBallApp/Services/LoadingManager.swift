@@ -5,7 +5,7 @@ import Foundation
 
 // TODO : make dataloading manager use a protocol Database or so, one for core one for realm, so you can exchange what you prefer
 
-class DataLoadingManager {
+class LoadingManager {
 	
 	// Variables
 	var teams: [Team]?
