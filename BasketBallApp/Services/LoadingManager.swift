@@ -134,12 +134,29 @@ class LoadingManager {
 	}
 	
 	// MARK: - PLAYERS LOADING
+	
+	private func loadAllTeamsPlayersApi(teams: [Team]?, completionHandler: @escaping ( [Team]? ) -> Void) {
+		
+		guard let teams = teams else { return }
+		
+		var outputTeams = teams
+		
+		for index in 0..<teams.count {
+			
+			self.loadPlayersApi(teamName: teams[index].teamName!) { (playersRet) in
+				outputTeams[index].teamPlayers = playersRet
+			}
+		}
+		
+		DefaultsManager.updateTime(key: UpdateTime.player)
+		completionHandler(outputTeams)
+	}
 		
 	private func loadPlayersApi(teamName: String, completionHandler: @escaping ( [Player]? ) -> Void) {
 		
 		NetworkClient.getPlayers(teamName: teamName) { (playersRet, _) in
 			
-			DefaultsManager.updateTime(key: UpdateTime.player)
+			//DefaultsManager.updateTime(key: UpdateTime.player)
 			completionHandler(playersRet)
 
 		}
@@ -148,11 +165,28 @@ class LoadingManager {
 	
 	// MARK: - EVENTS LOADING
 	
+	private func loadAllTeamsEventsApi(teams: [Team]?, completionHandler: @escaping ( [Team]? ) -> Void) {
+		
+		guard let teams = teams else { return }
+		
+		var outputTeams = teams
+		
+		for index in 0..<teams.count {
+			
+			self.loadEventsApi(teamId: teams[index].teamID!) { (eventsRet) in
+				outputTeams[index].matchHistory = eventsRet
+			}
+		}
+		
+		DefaultsManager.updateTime(key: UpdateTime.event)
+		completionHandler(outputTeams)
+	}
+	
 	private func loadEventsApi(teamId: String, completionHandler: @escaping ( [Event]? ) -> Void) {
 		
 		NetworkClient.getEvents(teamID: teamId) { (eventsRet, _) in
 			
-			DefaultsManager.updateTime(key: UpdateTime.event)
+			//DefaultsManager.updateTime(key: UpdateTime.event)
 			completionHandler(eventsRet)
 			
 		}
