@@ -4,7 +4,7 @@ import Foundation
 
 class LoadingManager {
 	
-	var teams: [Team]?
+	//var teams: [Team]?
 	
 	// TODO: - remake everything into protocols for loose coupling and easy testing
 	
@@ -17,62 +17,92 @@ class LoadingManager {
 		let returnGroup = DispatchGroup()
 		returnGroup.enter()
 		
+		var outputTeams: [Team]?
+		
 		if shouldTeamUpdate {
-			loadAllFromApi(returnGroup: returnGroup)
-			debugPrint("load all from api")
+			loadTeamsApi { (teamsRet) in
+				outputTeams = teamsRet
+				
+				for index in 0..<outputTeams!.count {
+					returnGroup.enter()
+					self.loadPlayersApi(teamName: outputTeams![index].teamName!) { (playersRet) in
+						outputTeams![index].teamPlayers = playersRet
+						
+						returnGroup.leave()
+					}
+				}
+				
+				for index in 0..<outputTeams!.count {
+					returnGroup.enter()
+					self.loadEventsApi(teamId: outputTeams![index].teamID!) { (eventsRet) in
+						outputTeams![index].matchHistory = eventsRet
+						
+						returnGroup.leave()
+					}
+				}
+				
+				returnGroup.leave()
+				debugPrint("load all from api")
+			}
 		} else {
-			loadTeamsCore(returnGroup: returnGroup)
-			
-			if shouldEventUpdate {
-				loadEventsApi(returnGroup: returnGroup)
-			}
+			loadTeamsCore { (teamsRet) in
+				outputTeams = teamsRet
+				
+				if shouldEventUpdate {
+					for index in 0..<outputTeams!.count {
+						returnGroup.enter()
+						self.loadPlayersApi(teamName: outputTeams![index].teamName!) { (playersRet) in
+							outputTeams![index].teamPlayers = playersRet
+							
+							DefaultsManager.updateTime(key: UpdateTime.player)
+							returnGroup.leave()
+						}
+					}
+				}
 
-			if shouldPlayerUpdate {
-				loadPlayersApi(returnGroup: returnGroup)
+				if shouldPlayerUpdate {
+					for index in 0..<outputTeams!.count {
+						returnGroup.enter()
+						self.loadEventsApi(teamId: outputTeams![index].teamID!) { (eventsRet) in
+							outputTeams![index].matchHistory = eventsRet
+							
+							DefaultsManager.updateTime(key: UpdateTime.event)
+							returnGroup.leave()
+						}
+					}
+				}
+				
+				debugPrint("load teams from core")
+				returnGroup.leave()
 			}
-			
-			debugPrint("load teams from core")
 		}
 	
 		returnGroup.notify(queue: .main) {
 			DispatchQueue.global(qos: .background).async {
-				self.saveTeamsCore()
+				self.saveTeamsCore(teamsToSave: outputTeams)
 			}
-			completionHandler(self.teams)
+			completionHandler(outputTeams)
 		}
 		
 	}
 	
 	// MARK: - TEAMS LOADING / SAVING
 	
-	private func loadAllFromApi(returnGroup: DispatchGroup, completionHandler: @escaping ( [Team]? ) -> Void) {
+	private func loadTeamsApi(completionHandler: @escaping ( [Team]? ) -> Void) {
 		
-		let apiGroup = DispatchGroup()
-		
-		apiGroup.enter()
 		NetworkClient.getTeams { (teamsRet, _) in
-			self.teams = teamsRet
+			
 			DefaultsManager.updateTime(key: UpdateTime.team)
 			
-			apiGroup.leave()
+			completionHandler(teamsRet)
 		}
-		
-		apiGroup.notify(queue: .global(qos: .background)) {
-			
-			self.loadPlayersApi(returnGroup: returnGroup)
-			
-			self.loadEventsApi(returnGroup: returnGroup)
-			
-			returnGroup.leave()
-		}
-
 	}
 	
-	private func loadTeamsCore(returnGroup: DispatchGroup) {
-
+	private func loadTeamsCore(completionHandler: @escaping ( [Team]? ) -> Void) {
+		
 		let result = DataManager.shared.fetch(Teams.self)
-
-			self.teams = []
+		var teamsRet: [Team] = []
+		
 			for team in result {
 				var teamToAdd: Team = Mapper.teamDataToTeamModel(team: team)
 				
@@ -82,20 +112,21 @@ class LoadingManager {
 				guard let loadedEvents = team.teamEvents?.array as? [Events] else { return }
 				teamToAdd.matchHistory = Mapper.eventsDataToEventsModelArray(events: loadedEvents)
 				
-				self.teams?.append(teamToAdd)
+				teamsRet.append(teamToAdd)
 				
 			}
-		returnGroup.leave()
+		completionHandler(teamsRet)
+		
 		debugPrint("loaded from coreData")
 		
 	}
 	
-	private func saveTeamsCore() {
+	private func saveTeamsCore(teamsToSave: [Team]?) {
 		
-		guard let teams = teams else { return }
+		guard let teamsToSave = teamsToSave else { return }
 		DataManager.shared.deleteAllOfType(Teams.self)
 		
-		for team in teams {
+		for team in teamsToSave {
 			_ = Mapper.teamModelToCoreData(team: team)
 			DataManager.shared.save()
 		}
@@ -104,41 +135,28 @@ class LoadingManager {
 	
 	// MARK: - PLAYERS LOADING
 		
-	private func loadPlayersApi(returnGroup: DispatchGroup) {
+	private func loadPlayersApi(teamName: String, completionHandler: @escaping ( [Player]? ) -> Void) {
 		
-		for index in 0..<self.teams!.count {
+		NetworkClient.getPlayers(teamName: teamName) { (playersRet, _) in
 			
-			returnGroup.enter()
-			
-			NetworkClient.getPlayers(teamName: self.teams![index].teamName!) { (playersRet, _) in
-				self.teams![index].teamPlayers = playersRet
-				
-				DefaultsManager.updateTime(key: UpdateTime.player)
-				//debugPrint("Loaded players from API")
-				
-				returnGroup.leave()
-			}
+			DefaultsManager.updateTime(key: UpdateTime.player)
+			completionHandler(playersRet)
+
 		}
 		
 	}
 	
 	// MARK: - EVENTS LOADING
 	
-	private func loadEventsApi(returnGroup: DispatchGroup) {
+	private func loadEventsApi(teamId: String, completionHandler: @escaping ( [Event]? ) -> Void) {
 		
-		for index in 0..<self.teams!.count {
+		NetworkClient.getEvents(teamID: teamId) { (eventsRet, _) in
 			
-			returnGroup.enter()
-	
-			NetworkClient.getEvents(teamID: self.teams![index].teamID!) { (eventsRet, _) in
-				self.teams![index].matchHistory = eventsRet
-				
-				DefaultsManager.updateTime(key: UpdateTime.event)
-				//debugPrint("Loaded Events from API")
-				
-				returnGroup.leave()
-			}
+			DefaultsManager.updateTime(key: UpdateTime.event)
+			completionHandler(eventsRet)
+			
 		}
+		
 	}
 	
 }

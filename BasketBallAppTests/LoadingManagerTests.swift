@@ -9,7 +9,7 @@ class LoadingManagerTests: XCTestCase {
     override func tearDown() {
     }
 
-	func () {
+	func testc () {
 		
 	}
 
