@@ -5,7 +5,7 @@ import Foundation
 class LoadingManager {
 	
 	// Variables
-	//var teams: [Team]?
+	var teams: [Team]?
 	
 	// TODO: - remake everything into protocols for loose coupling and easy testing
 	
@@ -13,14 +13,13 @@ class LoadingManager {
 		shouldTeamUpdate: Bool = DefaultsManager.shouldUpdate(idOfEntity: UpdateTime.team),
 		shouldEventUpdate: Bool = DefaultsManager.shouldUpdate(idOfEntity: UpdateTime.event),
 		shouldPlayerUpdate: Bool = DefaultsManager.shouldUpdate(idOfEntity: UpdateTime.player),
-		teams: inout [Team]?,
 		completionHandler: @escaping ( [Team]? ) -> Void ) {
 		
 		let returnGroup = DispatchGroup()
 		returnGroup.enter()
 		
 		if shouldTeamUpdate {
-			loadAllFromApi(returnGroup: returnGroup, teams: &teams)
+			loadAllFromApi(returnGroup: returnGroup)
 			debugPrint("load all from api")
 		} else {
 			loadTeamsCore(returnGroup: returnGroup)
@@ -40,20 +39,20 @@ class LoadingManager {
 			DispatchQueue.global(qos: .background).async {
 				self.saveTeamsCore()
 			}
-			completionHandler(teams)
+			completionHandler(self.teams)
 		}
 		
 	}
 	
 	// MARK: - TEAMS LOADING / SAVING
 	
-	private func loadAllFromApi(returnGroup: DispatchGroup, teams: inout [Team]?) {
+	private func loadAllFromApi(returnGroup: DispatchGroup) {
 		
 		let apiGroup = DispatchGroup()
 		
 		apiGroup.enter()
 		NetworkClient.getTeams { (teamsRet, _) in
-			teams = teamsRet
+			self.teams = teamsRet
 			DefaultsManager.updateTime(key: UpdateTime.team)
 			
 			apiGroup.leave()
