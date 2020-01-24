@@ -52,13 +52,6 @@
 			remoteGlobalIDString = 80CBBDFC23C5F1E40064CFFD;
 			remoteInfo = BasketBallApp;
 		};
-		80BE6D1C23D986210051BB08 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 80CBBDF523C5F1E40064CFFD /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 80CBBDFC23C5F1E40064CFFD;
-			remoteInfo = BasketBallApp;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -88,7 +81,6 @@
 		80A97AC923C73B6F008014CF /* PlayerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
 		80A97ACB23C742A5008014CF /* PlayerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailViewController.swift; sourceTree = "<group>"; };
 		80B10A6B23C6013D00CC987F /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
-		80BE6D1723D986210051BB08 /* BasketBallAppTests2.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasketBallAppTests2.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		80BE6D2123D98E710051BB08 /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
 		80BE6D2323D999A70051BB08 /* Responses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responses.swift; sourceTree = "<group>"; };
 		80CBBDFD23C5F1E40064CFFD /* BasketBallApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasketBallApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,13 +110,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA99B18C45A24C185B09089D /* Pods_BasketBallApp_BasketBallAppUITests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		80BE6D1423D986210051BB08 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,9 +180,16 @@
 				801D6F4823D4EB6C00C16067 /* DataManager.swift */,
 				80304EE423D4FAA500A645BB /* DefaultsManager.swift */,
 				805E855023D865CF005BA2C2 /* LoadingManager.swift */,
-				80BE6D2123D98E710051BB08 /* Mapper.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		80B3882923DAD466006A71AC /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				80BE6D2123D98E710051BB08 /* Mapper.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		80CBBDF423C5F1E40064CFFD = {
@@ -219,7 +211,6 @@
 				80CBBDFD23C5F1E40064CFFD /* BasketBallApp.app */,
 				802AF94723CCA282000EC555 /* BasketBallAppTests.xctest */,
 				802AF95523CCA2EB000EC555 /* BasketBallAppUITests.xctest */,
-				80BE6D1723D986210051BB08 /* BasketBallAppTests2.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -227,6 +218,7 @@
 		80CBBDFF23C5F1E40064CFFD /* BasketBallApp */ = {
 			isa = PBXGroup;
 			children = (
+				80B3882923DAD466006A71AC /* Utility */,
 				8049B50523D1E5A8006BC720 /* Services */,
 				80CBBE1723C5F2850064CFFD /* Controllers */,
 				80CBBE1623C5F2810064CFFD /* Views */,
@@ -332,24 +324,6 @@
 			productReference = 802AF95523CCA2EB000EC555 /* BasketBallAppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		80BE6D1623D986210051BB08 /* BasketBallAppTests2 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 80BE6D1E23D986210051BB08 /* Build configuration list for PBXNativeTarget "BasketBallAppTests2" */;
-			buildPhases = (
-				80BE6D1323D986210051BB08 /* Sources */,
-				80BE6D1423D986210051BB08 /* Frameworks */,
-				80BE6D1523D986210051BB08 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				80BE6D1D23D986210051BB08 /* PBXTargetDependency */,
-			);
-			name = BasketBallAppTests2;
-			productName = BasketBallAppTests2;
-			productReference = 80BE6D1723D986210051BB08 /* BasketBallAppTests2.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		80CBBDFC23C5F1E40064CFFD /* BasketBallApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 80CBBE1123C5F1E60064CFFD /* Build configuration list for PBXNativeTarget "BasketBallApp" */;
@@ -389,10 +363,6 @@
 						CreatedOnToolsVersion = 11.3;
 						TestTargetID = 80CBBDFC23C5F1E40064CFFD;
 					};
-					80BE6D1623D986210051BB08 = {
-						CreatedOnToolsVersion = 11.3;
-						TestTargetID = 80CBBDFC23C5F1E40064CFFD;
-					};
 					80CBBDFC23C5F1E40064CFFD = {
 						CreatedOnToolsVersion = 11.3;
 					};
@@ -414,7 +384,6 @@
 				80CBBDFC23C5F1E40064CFFD /* BasketBallApp */,
 				802AF94623CCA282000EC555 /* BasketBallAppTests */,
 				802AF95423CCA2EB000EC555 /* BasketBallAppUITests */,
-				80BE6D1623D986210051BB08 /* BasketBallAppTests2 */,
 			);
 		};
 /* End PBXProject section */
@@ -428,13 +397,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		802AF95323CCA2EB000EC555 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		80BE6D1523D986210051BB08 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -608,13 +570,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		80BE6D1323D986210051BB08 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		80CBBDF923C5F1E40064CFFD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -653,11 +608,6 @@
 			isa = PBXTargetDependency;
 			target = 80CBBDFC23C5F1E40064CFFD /* BasketBallApp */;
 			targetProxy = 802AF95A23CCA2EB000EC555 /* PBXContainerItemProxy */;
-		};
-		80BE6D1D23D986210051BB08 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 80CBBDFC23C5F1E40064CFFD /* BasketBallApp */;
-			targetProxy = 80BE6D1C23D986210051BB08 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -760,46 +710,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = BasketBallApp;
-			};
-			name = Release;
-		};
-		80BE6D1F23D986210051BB08 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 92NU2A4F42;
-				INFOPLIST_FILE = BasketBallAppTests2/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = lt.visma.BasketBallAppTests2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BasketBallApp.app/BasketBallApp";
-			};
-			name = Debug;
-		};
-		80BE6D2023D986210051BB08 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 92NU2A4F42;
-				INFOPLIST_FILE = BasketBallAppTests2/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = lt.visma.BasketBallAppTests2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BasketBallApp.app/BasketBallApp";
 			};
 			name = Release;
 		};
@@ -976,15 +886,6 @@
 			buildConfigurations = (
 				802AF95D23CCA2EB000EC555 /* Debug */,
 				802AF95E23CCA2EB000EC555 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		80BE6D1E23D986210051BB08 /* Build configuration list for PBXNativeTarget "BasketBallAppTests2" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				80BE6D1F23D986210051BB08 /* Debug */,
-				80BE6D2023D986210051BB08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

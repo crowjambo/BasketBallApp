@@ -17,7 +17,8 @@ class MainViewController: UIViewController {
 		loadData()
 
 	}
-		
+	
+	// TODO: Test if value gets assigned properly
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		guard
 			let destinationController = segue.destination as? TeamInfoViewController,

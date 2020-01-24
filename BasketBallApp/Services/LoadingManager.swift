@@ -1,29 +1,38 @@
 import Foundation
 
-// TODO : would Dispatch group still work, if I pass it as a value into functions? Test it out, if it does, then
-// 		  can make it an optional and decouple that dependency at least from my functions, its hard to maintain already
-
 // TODO : make dataloading manager use a protocol Database or so, one for core one for realm, so you can exchange what you prefer
 
 class LoadingManager {
 	
 	// Variables
-	var teams: [Team]?
-
-	let shouldEventUpdate: Bool = DefaultsManager.shouldUpdate(idOfEntity: UpdateTime.event)
-	let shouldPlayerUpdate: Bool = DefaultsManager.shouldUpdate(idOfEntity: UpdateTime.player)
-	let shouldTeamUpdate: Bool = DefaultsManager.shouldUpdate(idOfEntity: UpdateTime.team)
-
-	func loadData(completionHandler: @escaping ( [Team]? ) -> Void ) {
+	//var teams: [Team]?
+	
+	// TODO: - remake everything into protocols for loose coupling and easy testing
+	
+	func loadData(
+		shouldTeamUpdate: Bool = DefaultsManager.shouldUpdate(idOfEntity: UpdateTime.team),
+		shouldEventUpdate: Bool = DefaultsManager.shouldUpdate(idOfEntity: UpdateTime.event),
+		shouldPlayerUpdate: Bool = DefaultsManager.shouldUpdate(idOfEntity: UpdateTime.player),
+		teams: inout [Team]?,
+		completionHandler: @escaping ( [Team]? ) -> Void ) {
 		
 		let returnGroup = DispatchGroup()
 		returnGroup.enter()
 		
 		if shouldTeamUpdate {
-			loadAllFromApi(returnGroup: returnGroup)
+			loadAllFromApi(returnGroup: returnGroup, teams: &teams)
 			debugPrint("load all from api")
 		} else {
 			loadTeamsCore(returnGroup: returnGroup)
+			
+			if shouldEventUpdate {
+				loadEventsApi(returnGroup: returnGroup)
+			}
+
+			if shouldPlayerUpdate {
+				loadPlayersApi(returnGroup: returnGroup)
+			}
+			
 			debugPrint("load teams from core")
 		}
 	
@@ -31,20 +40,20 @@ class LoadingManager {
 			DispatchQueue.global(qos: .background).async {
 				self.saveTeamsCore()
 			}
-			completionHandler(self.teams)
+			completionHandler(teams)
 		}
 		
 	}
 	
 	// MARK: - TEAMS LOADING / SAVING
 	
-	private func loadAllFromApi(returnGroup: DispatchGroup) {
+	private func loadAllFromApi(returnGroup: DispatchGroup, teams: inout [Team]?) {
 		
 		let apiGroup = DispatchGroup()
 		
 		apiGroup.enter()
 		NetworkClient.getTeams { (teamsRet, _) in
-			self.teams = teamsRet
+			teams = teamsRet
 			DefaultsManager.updateTime(key: UpdateTime.team)
 			
 			apiGroup.leave()
@@ -76,14 +85,6 @@ class LoadingManager {
 				teamToAdd.matchHistory = Mapper.eventsDataToEventsModelArray(events: loadedEvents)
 				
 				self.teams?.append(teamToAdd)
-				
-				if shouldEventUpdate {
-					loadEventsApi(returnGroup: returnGroup)
-				}
-
-				if shouldPlayerUpdate {
-					loadPlayersApi(returnGroup: returnGroup)
-				}
 				
 			}
 		returnGroup.leave()
