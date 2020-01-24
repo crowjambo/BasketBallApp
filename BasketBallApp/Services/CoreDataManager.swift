@@ -2,10 +2,7 @@ import Foundation
 import CoreData
 
 final class CoreDataManager {
-	
-	private init(){}
-	static let shared = CoreDataManager()
-	
+		
 	lazy var persistentContainer: NSPersistentContainer = {
 		
 		let container = NSPersistentContainer(name: "database")
@@ -65,7 +62,7 @@ final class CoreDataManager {
 		deleteAllOfType(Teams.self)
 		
 		for team in teamsToSave {
-			_ = Mapper.teamModelToCoreData(team: team)
+			_ = Mapper.teamModelToCoreData(team: team, dataManager: self)
 			save()
 		}
 		

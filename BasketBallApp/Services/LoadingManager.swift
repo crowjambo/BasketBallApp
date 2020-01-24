@@ -22,6 +22,7 @@ class LoadingManager {
 		var outputTeams: [Team]?
 		
 		let requestsManager = HttpRequestsManager()
+		let dataManager = CoreDataManager()
 		let defaultsManager = DefaultsManager()
 		
 		if shouldTeamUpdate {
@@ -45,7 +46,7 @@ class LoadingManager {
 				returnGroup.leave()
 			}
 		} else {
-			CoreDataManager.shared.loadTeamsCore { (teamsRet) in
+			dataManager.loadTeamsCore { (teamsRet) in
 				outputTeams = teamsRet
 				
 				if shouldPlayerUpdate {
@@ -74,7 +75,7 @@ class LoadingManager {
 	
 		returnGroup.notify(queue: .main) {
 			DispatchQueue.global(qos: .background).async {
-				CoreDataManager.shared.saveTeamsCore(teamsToSave: outputTeams)
+				dataManager.saveTeamsCore(teamsToSave: outputTeams)
 			}
 			completionHandler(outputTeams)
 		}

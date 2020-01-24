@@ -19,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 	
 	func applicationWillTerminate(_ application: UIApplication) {
-		CoreDataManager.shared.save()
+		let dataManager = CoreDataManager()
+		dataManager.save()
 	}
 
 }
