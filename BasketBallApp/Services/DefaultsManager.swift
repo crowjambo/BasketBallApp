@@ -1,5 +1,9 @@
 import Foundation
 
+protocol ShouldUpdate {
+	
+}
+
 enum UpdateTime: String {
 	case team = "1"
 	case event = "2"

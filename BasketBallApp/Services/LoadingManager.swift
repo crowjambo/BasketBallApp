@@ -11,9 +11,9 @@ class LoadingManager {
 	// TODO: - remake everything into protocols for loose coupling and easy testing
 	
 	func loadData(
-		shouldTeamUpdate: Bool = false,
-		shouldEventUpdate: Bool = false,
-		shouldPlayerUpdate: Bool = false,
+		shouldTeamUpdate: Bool = true,
+		shouldEventUpdate: Bool = true,
+		shouldPlayerUpdate: Bool = true,
 		completionHandler: @escaping ( [Team]? ) -> Void ) {
 		
 		let returnGroup = DispatchGroup()
@@ -33,16 +33,20 @@ class LoadingManager {
 				requestsManager.getAllTeamsPlayersApi(teams: outputTeams) { (teamsRet, _) in
 					outputTeams = teamsRet
 					defaultsManager.updateTime(key: UpdateTime.player)
+					debugPrint("loaded events from API")
 					
 					requestsManager.getAllTeamsEventsApi(teams: outputTeams) { (teamsRet, _) in
 						outputTeams = teamsRet
 						defaultsManager.updateTime(key: UpdateTime.event)
+						debugPrint("loaded players from API")
 						returnGroup.leave()
+						
 					}
+					
 				}
-			
+							
 				defaultsManager.updateTime(key: UpdateTime.team)
-				debugPrint("load all from api")
+				debugPrint("load teams from api")
 				returnGroup.leave()
 			}
 		} else {
@@ -54,8 +58,9 @@ class LoadingManager {
 					requestsManager.getAllTeamsPlayersApi(teams: outputTeams) { (teamsRet, _) in
 						outputTeams = teamsRet
 						defaultsManager.updateTime(key: UpdateTime.player)
-						debugPrint("lodade events from API")
+						debugPrint("loaded events from API")
 						returnGroup.leave()
+						
 					}
 				}
 				
@@ -66,13 +71,14 @@ class LoadingManager {
 						defaultsManager.updateTime(key: UpdateTime.event)
 						debugPrint("loaded players from API")
 						returnGroup.leave()
+						
 					}
 				}
+				
 				returnGroup.leave()
 			}
-	
 		}
-	
+			
 		returnGroup.notify(queue: .main) {
 			DispatchQueue.global(qos: .background).async {
 				dataManager.saveTeamsCore(teamsToSave: outputTeams)
