@@ -45,6 +45,7 @@ class LoadingManager {
 					returnGroup.enter()
 					self.loadAllTeamsEventsApi(teams: outputTeams) { (teamsRet) in
 						outputTeams = teamsRet
+						debugPrint("load events from API")
 						
 						returnGroup.leave()
 					}
@@ -54,6 +55,7 @@ class LoadingManager {
 					returnGroup.enter()
 					self.loadAllTeamsPlayersApi(teams: outputTeams) { (teamsRet) in
 						outputTeams = teamsRet
+						debugPrint("load players from API")
 						
 						returnGroup.leave()
 					}
@@ -75,6 +77,7 @@ class LoadingManager {
 	
 	// MARK: - TEAMS LOADING / SAVING
 	
+	// TODO: - move or delete, its actually useless?
 	private func loadTeamsApi(completionHandler: @escaping ( [Team]? ) -> Void) {
 		
 		NetworkClient.getTeams { (teamsRet, _) in
@@ -85,6 +88,7 @@ class LoadingManager {
 		}
 	}
 	
+	// TODO: - move this to DataManager
 	private func loadTeamsCore(completionHandler: @escaping ( [Team]? ) -> Void) {
 		
 		DispatchQueue.global().async {
@@ -110,6 +114,7 @@ class LoadingManager {
 
 	}
 	
+	// TODO: - move this to DataManager
 	private func saveTeamsCore(teamsToSave: [Team]?) {
 		
 		guard let teamsToSave = teamsToSave else { return }
@@ -123,6 +128,8 @@ class LoadingManager {
 	}
 	
 	// MARK: - PLAYERS LOADING
+	
+	// TODO: - move these to NetworkClient
 	
 	private func loadAllTeamsPlayersApi(teams: [Team]?, completionHandler: @escaping ( [Team]? ) -> Void) {
 		
@@ -148,7 +155,6 @@ class LoadingManager {
 		
 		NetworkClient.getPlayers(teamName: teamName) { (playersRet, _) in
 			
-			//DefaultsManager.updateTime(key: UpdateTime.player)
 			completionHandler(playersRet)
 
 		}
@@ -182,7 +188,6 @@ class LoadingManager {
 		
 		NetworkClient.getEvents(teamID: teamId) { (eventsRet, _) in
 			
-			//DefaultsManager.updateTime(key: UpdateTime.event)
 			completionHandler(eventsRet)
 			
 		}
