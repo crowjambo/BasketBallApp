@@ -4,6 +4,7 @@ class MainViewController: UIViewController {
 	
 	// MARK: - Variables
 	
+	// TODO: Set everything that doesnt need to be public, private
 	var teams: [Team]?
 	
 	// MARK: - Outlets
