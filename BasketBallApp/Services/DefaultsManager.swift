@@ -9,9 +9,9 @@ enum UpdateTime: String {
 // TODO: use dependency injection to make this testable
 final class DefaultsManager {
 	
-	static let defaults = UserDefaults.standard
+	let defaults = UserDefaults.standard
 	
-	class func shouldUpdate(idOfEntity: UpdateTime) -> Bool {
+	func shouldUpdate(idOfEntity: UpdateTime) -> Bool {
 				
 		if var lastUpdated = defaults.object(forKey: idOfEntity.rawValue) as? Date {
 			debugPrint(lastUpdated)
@@ -37,7 +37,7 @@ final class DefaultsManager {
 		}
 	}
 	
-	class func updateTime(key: UpdateTime) {
+	func updateTime(key: UpdateTime) {
 		defaults.set(Date(), forKey: key.rawValue)
 	}
 }

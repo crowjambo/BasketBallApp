@@ -1,13 +1,8 @@
 import Foundation
 import CoreData
 
-// TODO: use dependency injection with swinject storyboards to inject singletons, and make them testable
-
 final class DataManager {
 	
-	private init() {}
-	static let shared = DataManager()
-		
 	lazy var persistentContainer: NSPersistentContainer = {
 		
 		let container = NSPersistentContainer(name: "database")
@@ -26,7 +21,6 @@ final class DataManager {
 		if context.hasChanges {
 			do {
 				try context.save()
-				//print("saved successfuly")
 			} catch {
 				let nserror = error as NSError
 				fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
@@ -58,6 +52,43 @@ final class DataManager {
 			delete(obj)
 		}
 		save()
+	}
+	
+	func saveTeamsCore(teamsToSave: [Team]?) {
+		
+		guard let teamsToSave = teamsToSave else { return }
+		deleteAllOfType(Teams.self)
+		
+		for team in teamsToSave {
+			_ = Mapper.teamModelToCoreData(team: team, dataManager: self)
+			save()
+		}
+		
+	}
+	
+	func loadTeamsCore(completionHandler: @escaping ( [Team]? ) -> Void) {
+		
+		DispatchQueue.global().async {
+			let result = self.fetch(Teams.self)
+			var teamsRet: [Team] = []
+			
+				for team in result {
+					var teamToAdd: Team = Mapper.teamDataToTeamModel(team: team)
+					
+					guard let loadedPlayers = team.teamPlayers?.array as? [Players] else { return }
+					teamToAdd.teamPlayers = Mapper.playersDataToPlayersModelArray(players: loadedPlayers)
+					
+					guard let loadedEvents = team.teamEvents?.array as? [Events] else { return }
+					teamToAdd.matchHistory = Mapper.eventsDataToEventsModelArray(events: loadedEvents)
+					
+					teamsRet.append(teamToAdd)
+					
+				}
+			completionHandler(teamsRet)
+			
+			debugPrint("loaded from coreData")
+		}
+
 	}
 	
 }

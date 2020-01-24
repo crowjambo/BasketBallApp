@@ -16,7 +16,7 @@ class AlamofireTests: XCTestCase {
 		var teamsCol: [Team]?
 		let expectation = self.expectation(description: "loading")
 		
-		NetworkClient.getTeams { (teams, _) in
+		HttpRequestsManager.getTeams { (teams, _) in
 			teamsCol = teams
 			
 			expectation.fulfill()
@@ -29,7 +29,7 @@ class AlamofireTests: XCTestCase {
 		var playerCol: [Player]?
 		let expectation = self.expectation(description: "loading")
 		
-		NetworkClient.getPlayers(teamName: "Atlanta Hawks") { (players, _) in
+		HttpRequestsManager.getPlayers(teamName: "Atlanta Hawks") { (players, _) in
 			playerCol = players
 			
 			expectation.fulfill()
@@ -42,7 +42,7 @@ class AlamofireTests: XCTestCase {
 		var matchesCollection: [Event]?
 		let expectation = self.expectation(description: "loading")
 		
-		NetworkClient.getEvents(teamID: "134881") { (matches, _) in
+		HttpRequestsManager.getEvents(teamID: "134881") { (matches, _) in
 			matchesCollection = matches
 			
 			expectation.fulfill()
@@ -55,7 +55,7 @@ class AlamofireTests: XCTestCase {
 		var teamsCollection: [Team]?
 		let expectation = self.expectation(description: "loading")
 		
-		NetworkClient.getTeams { (teams, _) in
+		HttpRequestsManager.getTeams { (teams, _) in
 			teamsCollection = teams
 			
 			expectation.fulfill()
