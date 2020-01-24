@@ -4,7 +4,6 @@ import Foundation
 
 class LoadingManager {
 	
-	// Variables
 	var teams: [Team]?
 	
 	// TODO: - remake everything into protocols for loose coupling and easy testing
@@ -46,7 +45,7 @@ class LoadingManager {
 	
 	// MARK: - TEAMS LOADING / SAVING
 	
-	private func loadAllFromApi(returnGroup: DispatchGroup) {
+	private func loadAllFromApi(returnGroup: DispatchGroup, completionHandler: @escaping ( [Team]? ) -> Void) {
 		
 		let apiGroup = DispatchGroup()
 		

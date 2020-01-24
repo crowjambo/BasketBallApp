@@ -60,13 +60,11 @@ extension Mapper {
 		
 		for player in teamPlayers {
 			let playerToSave = playerModelToCoreData(player: player)
-			//playerToSave.team = teamData
 			teamData.addToTeamPlayers(playerToSave)
 		}
 
 		for event in teamEvents {
 			let eventToSave = eventModelToCoreData(event: event)
-			//eventToSave.team = teamData
 			teamData.addToTeamEvents(eventToSave)
 		}
 		

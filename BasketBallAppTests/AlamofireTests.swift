@@ -1,7 +1,7 @@
 import XCTest
 @testable import BasketBallApp
 
-class BasketBallAppTests: XCTestCase {
+class AlamofireTests: XCTestCase {
 
     override func setUp() {
     }
@@ -11,8 +11,6 @@ class BasketBallAppTests: XCTestCase {
 	
 	// TODO: API calls should be Mocked to be tested properly
 	// TODO: Use dependency injection to test singletons
-
-	// MARK: - Alamofire tests
 	
 	func test_get_request_loadTeams_Alamofire_names_match() {
 		var teamsCol: [Team]?
@@ -23,7 +21,7 @@ class BasketBallAppTests: XCTestCase {
 			
 			expectation.fulfill()
 		}
-		waitForExpectations(timeout: 5, handler: nil)
+		waitForExpectations(timeout: 21, handler: nil)
 		XCTAssertEqual(teamsCol?.first?.teamName, "Atlanta Hawks")
 	}
 	
@@ -36,7 +34,7 @@ class BasketBallAppTests: XCTestCase {
 			
 			expectation.fulfill()
 		}
-		waitForExpectations(timeout: 5, handler: nil)
+		waitForExpectations(timeout: 2, handler: nil)
 		XCTAssertNotNil(playerCol)
 	}
 	
@@ -49,7 +47,7 @@ class BasketBallAppTests: XCTestCase {
 			
 			expectation.fulfill()
 		}
-		waitForExpectations(timeout: 5, handler: nil)
+		waitForExpectations(timeout: 2, handler: nil)
 		XCTAssertNotNil(matchesCollection)
 	}
 	
@@ -63,7 +61,7 @@ class BasketBallAppTests: XCTestCase {
 			expectation.fulfill()
 		}
 		
-		waitForExpectations(timeout: 5, handler: nil)
+		waitForExpectations(timeout: 2, handler: nil)
 		XCTAssertNotNil(teamsCollection)
 	}
 

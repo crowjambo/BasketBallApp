@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		800339B523DAEC8200F93FC3 /* LoadingManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800339B423DAEC8200F93FC3 /* LoadingManagerTests.swift */; };
 		801D6F4923D4EB6C00C16067 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801D6F4823D4EB6C00C16067 /* DataManager.swift */; };
 		80281AC923D51DD20076B4E5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80281AC823D51DD20076B4E5 /* Default-568h@2x.png */; };
-		802AF94A23CCA282000EC555 /* BasketBallAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802AF94923CCA282000EC555 /* BasketBallAppTests.swift */; };
+		802AF94A23CCA282000EC555 /* AlamofireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802AF94923CCA282000EC555 /* AlamofireTests.swift */; };
 		802AF95823CCA2EB000EC555 /* BasketBallAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802AF95723CCA2EB000EC555 /* BasketBallAppUITests.swift */; };
 		80304EE523D4FAA500A645BB /* DefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80304EE423D4FAA500A645BB /* DefaultsManager.swift */; };
 		805E855123D865CF005BA2C2 /* LoadingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805E855023D865CF005BA2C2 /* LoadingManager.swift */; };
@@ -60,10 +61,11 @@
 		3435C0E26E3339A37F59C8ED /* Pods_BasketBallApp_BasketBallAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BasketBallApp_BasketBallAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C2CFE2D8CE245727D371F02 /* Pods-BasketBallApp-BasketBallAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasketBallApp-BasketBallAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-BasketBallApp-BasketBallAppUITests/Pods-BasketBallApp-BasketBallAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		671791EE2DAAF15F1C7C4804 /* Pods-BasketBallApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasketBallApp.debug.xcconfig"; path = "Target Support Files/Pods-BasketBallApp/Pods-BasketBallApp.debug.xcconfig"; sourceTree = "<group>"; };
+		800339B423DAEC8200F93FC3 /* LoadingManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingManagerTests.swift; sourceTree = "<group>"; };
 		801D6F4823D4EB6C00C16067 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		80281AC823D51DD20076B4E5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		802AF94723CCA282000EC555 /* BasketBallAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasketBallAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		802AF94923CCA282000EC555 /* BasketBallAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketBallAppTests.swift; sourceTree = "<group>"; };
+		802AF94923CCA282000EC555 /* AlamofireTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireTests.swift; sourceTree = "<group>"; };
 		802AF94B23CCA282000EC555 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		802AF95523CCA2EB000EC555 /* BasketBallAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasketBallAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		802AF95723CCA2EB000EC555 /* BasketBallAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketBallAppUITests.swift; sourceTree = "<group>"; };
@@ -158,7 +160,8 @@
 		802AF94823CCA282000EC555 /* BasketBallAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				802AF94923CCA282000EC555 /* BasketBallAppTests.swift */,
+				802AF94923CCA282000EC555 /* AlamofireTests.swift */,
+				800339B423DAEC8200F93FC3 /* LoadingManagerTests.swift */,
 				802AF94B23CCA282000EC555 /* Info.plist */,
 			);
 			path = BasketBallAppTests;
@@ -558,7 +561,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				802AF94A23CCA282000EC555 /* BasketBallAppTests.swift in Sources */,
+				800339B523DAEC8200F93FC3 /* LoadingManagerTests.swift in Sources */,
+				802AF94A23CCA282000EC555 /* AlamofireTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
