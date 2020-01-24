@@ -11,9 +11,9 @@ class LoadingManager {
 	// TODO: - remake everything into protocols for loose coupling and easy testing
 	
 	func loadData(
-		shouldTeamUpdate: Bool = true,
-		shouldEventUpdate: Bool = true,
-		shouldPlayerUpdate: Bool = true,
+		shouldTeamUpdate: Bool = false,
+		shouldEventUpdate: Bool = false,
+		shouldPlayerUpdate: Bool = false,
 		completionHandler: @escaping ( [Team]? ) -> Void ) {
 		
 		let returnGroup = DispatchGroup()
@@ -22,7 +22,6 @@ class LoadingManager {
 		var outputTeams: [Team]?
 		
 		let requestsManager = HttpRequestsManager()
-		let dataManager = DataManager()
 		let defaultsManager = DefaultsManager()
 		
 		if shouldTeamUpdate {
@@ -46,7 +45,7 @@ class LoadingManager {
 				returnGroup.leave()
 			}
 		} else {
-			dataManager.loadTeamsCore { (teamsRet) in
+			CoreDataManager.shared.loadTeamsCore { (teamsRet) in
 				outputTeams = teamsRet
 				
 				if shouldPlayerUpdate {
@@ -68,12 +67,14 @@ class LoadingManager {
 						returnGroup.leave()
 					}
 				}
+				returnGroup.leave()
 			}
+	
 		}
 	
 		returnGroup.notify(queue: .main) {
 			DispatchQueue.global(qos: .background).async {
-				dataManager.saveTeamsCore(teamsToSave: outputTeams)
+				CoreDataManager.shared.saveTeamsCore(teamsToSave: outputTeams)
 			}
 			completionHandler(outputTeams)
 		}

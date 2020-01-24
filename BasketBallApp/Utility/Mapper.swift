@@ -45,13 +45,13 @@ extension Mapper {
 
 extension Mapper {
 	
-	class func teamModelToCoreData(team: Team, dataManager: DataManager) -> Teams {
+	class func teamModelToCoreData(team: Team) -> Teams {
 		guard
 			let teamPlayers = team.teamPlayers,
 			let teamEvents = team.matchHistory
 			else { return Teams() }
 		
-		let teamData = Teams(entity: Teams.entity(), insertInto: dataManager.context)
+		let teamData = Teams(entity: Teams.entity(), insertInto: CoreDataManager.shared.context)
 		teamData.teamName = team.teamName
 		teamData.teamDescription = team.description
 		teamData.teamID = team.teamID
@@ -59,20 +59,22 @@ extension Mapper {
 		teamData.teamIcon = team.imageIconName
 		
 		for player in teamPlayers {
-			let playerToSave = playerModelToCoreData(player: player,dataManager: dataManager)
+			let playerToSave = playerModelToCoreData(player: player)
+			playerToSave.team = teamData
 			teamData.addToTeamPlayers(playerToSave)
 		}
 
 		for event in teamEvents {
-			let eventToSave = eventModelToCoreData(event: event,dataManager: dataManager)
+			let eventToSave = eventModelToCoreData(event: event)
+			eventToSave.team = teamData
 			teamData.addToTeamEvents(eventToSave)
 		}
 		
 		return teamData
 	}
 	
-	private class func playerModelToCoreData(player: Player, dataManager: DataManager) -> Players {
-		let playerToSave = Players(entity: Players.entity(), insertInto: dataManager.context)
+	private class func playerModelToCoreData(player: Player) -> Players {
+		let playerToSave = Players(entity: Players.entity(), insertInto: CoreDataManager.shared.context)
 		playerToSave.name = player.name
 		playerToSave.age = player.age
 		playerToSave.height = player.height
@@ -85,8 +87,8 @@ extension Mapper {
 		return playerToSave
 	}
 	
-	private class func eventModelToCoreData(event: Event, dataManager: DataManager) -> Events {
-		let eventToSave = Events(entity: Events.entity(), insertInto: dataManager.context)
+	private class func eventModelToCoreData(event: Event) -> Events {
+		let eventToSave = Events(entity: Events.entity(), insertInto: CoreDataManager.shared.context)
 		eventToSave.homeTeamName = event.homeTeamName
 		eventToSave.awayTeamName = event.awayTeamName
 		eventToSave.matchDate = event.date

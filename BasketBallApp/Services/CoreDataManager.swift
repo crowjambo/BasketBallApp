@@ -1,7 +1,10 @@
 import Foundation
 import CoreData
 
-final class DataManager {
+final class CoreDataManager {
+	
+	private init(){}
+	static let shared = CoreDataManager()
 	
 	lazy var persistentContainer: NSPersistentContainer = {
 		
@@ -57,10 +60,12 @@ final class DataManager {
 	func saveTeamsCore(teamsToSave: [Team]?) {
 		
 		guard let teamsToSave = teamsToSave else { return }
+		deleteAllOfType(Players.self)
+		deleteAllOfType(Events.self)
 		deleteAllOfType(Teams.self)
 		
 		for team in teamsToSave {
-			_ = Mapper.teamModelToCoreData(team: team, dataManager: self)
+			_ = Mapper.teamModelToCoreData(team: team)
 			save()
 		}
 		
