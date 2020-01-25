@@ -35,8 +35,14 @@ class MainViewController: UIViewController {
 	func loadData() {
 		
 		let dlm = LoadingManager()
-		dlm.loadData { (teamsRet) in
-			self.teams = teamsRet
+		dlm.loadData { (res) in
+			switch res {
+			case .success(let teams):
+				self.teams = teams
+			case .failure(let err):
+				self.teams = []
+				debugPrint(err)
+			}
 			
 			DispatchQueue.main.async {
 				self.cardCollectionView.reloadData()

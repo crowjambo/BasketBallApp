@@ -3,11 +3,10 @@ import Alamofire
 
 class HttpRequestsManager {
 	
-	// TODO: Use result instead of typealias
-	typealias TeamsResponse = ( [Team]?, Error? ) -> Void
-	typealias PlayersResponse = ( [Player]?, Error? ) -> Void
-	typealias EventsResponse = ( [Event]?, Error? ) -> Void
-	
+	typealias TeamsResponse =  (Result<[Team]?, Error>) -> Void
+	typealias PlayersReseponse = (Result<[Player]?, Error>) -> Void
+	typealias EventsResponse = (Result<[Event]?, Error>) -> Void
+		
 	let baseApiURL: String = "https://www.thesportsdb.com/api/v1/json/1/"
 	
 	func getTeams(completionHandler: @escaping TeamsResponse) {
@@ -19,19 +18,21 @@ class HttpRequestsManager {
 				do {
 					guard let data = response.data else { return }
 					let teams = try JSONDecoder().decode(TeamsJsonResponse.self, from: data)
-					completionHandler(teams.teams, response.error)
+					completionHandler(.success(teams.teams))
 					} catch {
 						debugPrint(error)
 					}
 			case .failure:
 					// TODO: show toasts instead of simple debug
 					// TODO: better error handling, in case of error show an error toast or redirect to a different view controller
-					debugPrint(response.result)
+				if let error = response.error {
+					completionHandler(.failure(error))
+				}
 			}
 		}
 	}
 
-	func getPlayers(teamName: String, completionHandler: @escaping PlayersResponse) {
+	func getPlayers(teamName: String, completionHandler: @escaping (Result<[Player]?, Error>) -> ()) {
 		
 		let escapedString = teamName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
 		let input: String = baseApiURL + "searchplayers.php?t=\(escapedString ?? "" )"
@@ -43,15 +44,17 @@ class HttpRequestsManager {
 				do {
 					guard let data = response.data else { return }
 					let players = try JSONDecoder().decode(PlayerJsonResponse.self, from: data)
-					completionHandler(players.player, response.error)
+					completionHandler(.success(players.player))
 					} catch {
 						debugPrint(error)
 					}
 			case .failure:
-					debugPrint(response.result)
+				if let error = response.error {
+					completionHandler(.failure(error))
 				}
 			}
 		}
+	}
 	
 	func getEvents(teamID: String, completionHandler: @escaping EventsResponse) {
 		
@@ -64,12 +67,14 @@ class HttpRequestsManager {
 				do {
 					guard let data = response.data else { return }
 					let matches = try JSONDecoder().decode(MatchHistoryJsonResponse.self, from: data)
-					completionHandler(matches.results, response.error)
+					completionHandler(.success(matches.results))
 					} catch {
 						debugPrint(error)
 					}
 			case .failure:
-					debugPrint(response.result)
+				if let error = response.error {
+					completionHandler(.failure(error))
+				}
 			}
 		}
 	}
@@ -81,14 +86,20 @@ class HttpRequestsManager {
 		
 		for index in 0..<outputTeams.count {
 			apiGroup.enter()
-			getPlayers(teamName: outputTeams[index].teamName!) { (playersRet, error) in
-				outputTeams[index].teamPlayers = playersRet
+			getPlayers(teamName: outputTeams[index].teamName!) { (res) in
+				switch res {
+					case .success(let players):
+						outputTeams[index].teamPlayers = players
+					case .failure(let err):
+						outputTeams[index].teamPlayers = []
+						debugPrint(err)
+					}
 				apiGroup.leave()
 			}
 		}
 			
 		apiGroup.notify(queue: .main) {
-			completionHandler(outputTeams, nil)
+			completionHandler(.success(outputTeams))
 		}
 		
 	}
@@ -101,15 +112,21 @@ class HttpRequestsManager {
 		
 		for index in 0..<outputTeams.count {
 			apiGroup.enter()
-			getEvents(teamID: outputTeams[index].teamID!) { (eventsRet, error) in
-				outputTeams[index].matchHistory = eventsRet
+			getEvents(teamID: outputTeams[index].teamID!) { (res) in
+				switch res {
+					case .success(let events):
+						outputTeams[index].matchHistory = events
+					case .failure(let err):
+						outputTeams[index].matchHistory = []
+						debugPrint(err)
+				}
 				apiGroup.leave()
 			}
 
 		}
 		
 		apiGroup.notify(queue: .main) {
-			completionHandler(outputTeams, nil)
+			completionHandler(.success(outputTeams))
 		}
 		
 	}

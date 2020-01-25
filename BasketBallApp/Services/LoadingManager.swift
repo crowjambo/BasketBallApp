@@ -2,7 +2,6 @@ import Foundation
 
 // TODO : make dataloading manager use a protocol Database or so, one for core one for realm, so you can exchange what you prefer
 
-
 class LoadingManager {
 	
 	//var teams: [Team]?
@@ -11,7 +10,7 @@ class LoadingManager {
 	// TODO: - change shouldTeamUpdate and others into dependency injected values I control
 	// TODO: - use Defaults manager to set shouldTeamUpdate etc, I removed that feature b4
 	// TODO: - dependency inject everything, no mercy. Later changing into protocols will be easy
-	func loadData(completionHandler: @escaping ( [Team]? ) -> Void ) {
+	func loadData(completionHandler: @escaping ( Result<[Team]?, Error>) -> () ) {
 		
 		let returnGroup = DispatchGroup()
 		returnGroup.enter()
@@ -33,23 +32,40 @@ class LoadingManager {
 		// TODO: - just use Load() method for Players/Events, and that Load() method decides itself whether its API or Core load
 		// if its core load, do nothing, because team will automatically core load you due to relationships
 		if shouldTeamUpdate {
-			requestsManager.getTeams { (teamsRet, _) in
-				outputTeams = teamsRet
+			requestsManager.getTeams { (res) in
 				
+				switch res {
+				case .success(let teams):
+					outputTeams = teams
+				case .failure(let err):
+					outputTeams = []
+					debugPrint(err)
+				}
+					
 				returnGroup.enter()
-				requestsManager.getAllTeamsPlayersApi(teams: outputTeams) { (teamsRet, _) in
-					outputTeams = teamsRet
+				
+				requestsManager.getAllTeamsPlayersApi(teams: outputTeams) { (res) in
+					switch res {
+						case .success(let teams):
+							outputTeams = teams
+						case .failure(let err):
+							debugPrint(err)
+					}
 					defaultsManager.updateTime(key: UpdateTime.player)
 					debugPrint("loaded events from API")
 					
-					requestsManager.getAllTeamsEventsApi(teams: outputTeams) { (teamsRet, _) in
-						outputTeams = teamsRet
+					requestsManager.getAllTeamsEventsApi(teams: outputTeams) { (res) in
+						switch res {
+							case .success(let teams):
+								outputTeams = teams
+							case .failure(let err):
+								debugPrint(err)
+						}
 						defaultsManager.updateTime(key: UpdateTime.event)
 						debugPrint("loaded players from API")
 						returnGroup.leave()
 						
 					}
-					
 				}
 							
 				defaultsManager.updateTime(key: UpdateTime.team)
@@ -62,8 +78,13 @@ class LoadingManager {
 				
 				if shouldPlayerUpdate {
 					returnGroup.enter()
-					requestsManager.getAllTeamsPlayersApi(teams: outputTeams) { (teamsRet, _) in
-						outputTeams = teamsRet
+					requestsManager.getAllTeamsPlayersApi(teams: outputTeams) { (res) in
+						switch res {
+							case .success(let teams):
+								outputTeams = teams
+							case .failure(let err):
+								debugPrint(err)
+						}
 						defaultsManager.updateTime(key: UpdateTime.player)
 						debugPrint("loaded events from API")
 						returnGroup.leave()
@@ -73,12 +94,16 @@ class LoadingManager {
 				
 				if shouldEventUpdate {
 					returnGroup.enter()
-					requestsManager.getAllTeamsEventsApi(teams: outputTeams) { (teamsRet, _) in
-						outputTeams = teamsRet
+					requestsManager.getAllTeamsEventsApi(teams: outputTeams) { (res) in
+						switch res {
+							case .success(let teams):
+								outputTeams = teams
+							case .failure(let err):
+								debugPrint(err)
+						}
 						defaultsManager.updateTime(key: UpdateTime.event)
 						debugPrint("loaded players from API")
 						returnGroup.leave()
-						
 					}
 				}
 				
@@ -90,7 +115,7 @@ class LoadingManager {
 			DispatchQueue.global(qos: .background).async {
 				dataManager.saveTeamsCore(teamsToSave: outputTeams)
 			}
-			completionHandler(outputTeams)
+			completionHandler(.success(outputTeams))
 		}
 		
 	}
