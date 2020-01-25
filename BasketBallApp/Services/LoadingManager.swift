@@ -46,20 +46,20 @@ class LoadingManager {
 				
 				requestsManager.getAllTeamsPlayersApi(teams: outputTeams) { (res) in
 					switch res {
-						case .success(let teams):
-							outputTeams = teams
-						case .failure(let err):
-							debugPrint(err)
+					case .success(let teams):
+						outputTeams = teams
+					case .failure(let err):
+						debugPrint(err)
 					}
 					defaultsManager.updateTime(key: UpdateTime.player)
 					debugPrint("loaded events from API")
 					
 					requestsManager.getAllTeamsEventsApi(teams: outputTeams) { (res) in
 						switch res {
-							case .success(let teams):
-								outputTeams = teams
-							case .failure(let err):
-								debugPrint(err)
+						case .success(let teams):
+							outputTeams = teams
+						case .failure(let err):
+							debugPrint(err)
 						}
 						defaultsManager.updateTime(key: UpdateTime.event)
 						debugPrint("loaded players from API")
@@ -73,17 +73,22 @@ class LoadingManager {
 				returnGroup.leave()
 			}
 		} else {
-			dataManager.loadTeamsCore { (teamsRet) in
-				outputTeams = teamsRet
+			dataManager.loadTeamsCore { (res) in
+				switch res {
+				case .success(let teams):
+					outputTeams = teams
+				case .failure(let err):
+					debugPrint(err)
+				}
 				
 				if shouldPlayerUpdate {
 					returnGroup.enter()
 					requestsManager.getAllTeamsPlayersApi(teams: outputTeams) { (res) in
 						switch res {
-							case .success(let teams):
-								outputTeams = teams
-							case .failure(let err):
-								debugPrint(err)
+						case .success(let teams):
+							outputTeams = teams
+						case .failure(let err):
+							debugPrint(err)
 						}
 						defaultsManager.updateTime(key: UpdateTime.player)
 						debugPrint("loaded events from API")
@@ -96,10 +101,10 @@ class LoadingManager {
 					returnGroup.enter()
 					requestsManager.getAllTeamsEventsApi(teams: outputTeams) { (res) in
 						switch res {
-							case .success(let teams):
-								outputTeams = teams
-							case .failure(let err):
-								debugPrint(err)
+						case .success(let teams):
+							outputTeams = teams
+						case .failure(let err):
+							debugPrint(err)
 						}
 						defaultsManager.updateTime(key: UpdateTime.event)
 						debugPrint("loaded players from API")

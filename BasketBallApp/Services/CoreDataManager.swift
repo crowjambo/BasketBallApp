@@ -67,8 +67,8 @@ final class CoreDataManager {
 		}
 		
 	}
-	
-	func loadTeamsCore(completionHandler: @escaping ( [Team]? ) -> Void) {
+
+	func loadTeamsCore(completionHandler: @escaping (Result<[Team]?, Error>) -> Void ) {
 		
 		DispatchQueue.global().async {
 			let result = self.fetch(Teams.self)
@@ -86,7 +86,7 @@ final class CoreDataManager {
 					teamsRet.append(teamToAdd)
 					
 				}
-			completionHandler(teamsRet)
+			completionHandler(.success(teamsRet))
 			
 			debugPrint("loaded from coreData")
 		}
