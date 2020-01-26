@@ -1,18 +1,19 @@
 import Foundation
 
-class Mapper {
+// TODO: make into normal class without static funcs and just inject it where I need it, so I can mock/test this too
+class ModelCoreMapper {
 
 }
 
 // MARK: - Core Data into Models Mapping
 
-extension Mapper {
+extension ModelCoreMapper {
 	
-	class func teamDataToTeamModel(team: Teams) -> Team {
+	func teamDataToTeamModel(team: Teams) -> Team {
 		return Team(teamID: team.teamID, teamName: team.teamName, description: team.teamDescription, imageIconName: team.teamIcon, imageTeamMain: team.teamImage)
 	}
 	
-	class func eventsDataToEventsModelArray(events: [Events]) -> [Event] {
+	func eventsDataToEventsModelArray(events: [Events]) -> [Event] {
 		var outputEvents: [Event] = []
 		
 		for event in events {
@@ -22,11 +23,11 @@ extension Mapper {
 		return outputEvents
 	}
 	
-	private class func eventDataToEventModel(event: Events) -> Event {
+	private func eventDataToEventModel(event: Events) -> Event {
 		return Event(homeTeamName: event.homeTeamName, awayTeamName: event.awayTeamName, date: event.matchDate)
 	}
 	
-	class func playersDataToPlayersModelArray(players: [Players]) -> [Player] {
+	func playersDataToPlayersModelArray(players: [Players]) -> [Player] {
 		var outputPlayers: [Player] = []
 		
 		for player in players {
@@ -36,16 +37,16 @@ extension Mapper {
 		return outputPlayers
 	}
 	
-	private class func playerDataToPlayerModel(player: Players) -> Player {
+	private func playerDataToPlayerModel(player: Players) -> Player {
 		return Player(name: player.name, age: player.age, height: player.height, weight: player.weight, description: player.playerDescription, position: player.position, playerIconImage: player.iconImage, playerMainImage: player.mainImage)
 	}
 }
 
 // MARK: - Models into Core Data
 
-extension Mapper {
+extension ModelCoreMapper {
 	
-	class func teamModelToCoreData(team: Team, dataManager: CoreDataManager) -> Teams {
+	func teamModelToCoreData(team: Team, dataManager: CoreDataManager) -> Teams {
 		guard
 			let teamPlayers = team.teamPlayers,
 			let teamEvents = team.matchHistory
@@ -73,7 +74,7 @@ extension Mapper {
 		return teamData
 	}
 	
-	private class func playerModelToCoreData(player: Player, dataManager: CoreDataManager) -> Players {
+	private func playerModelToCoreData(player: Player, dataManager: CoreDataManager) -> Players {
 		let playerToSave = Players(entity: Players.entity(), insertInto: dataManager.context)
 		playerToSave.name = player.name
 		playerToSave.age = player.age
@@ -87,7 +88,7 @@ extension Mapper {
 		return playerToSave
 	}
 	
-	private class func eventModelToCoreData(event: Event, dataManager: CoreDataManager) -> Events {
+	private func eventModelToCoreData(event: Event, dataManager: CoreDataManager) -> Events {
 		let eventToSave = Events(entity: Events.entity(), insertInto: dataManager.context)
 		eventToSave.homeTeamName = event.homeTeamName
 		eventToSave.awayTeamName = event.awayTeamName

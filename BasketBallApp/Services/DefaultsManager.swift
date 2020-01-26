@@ -13,12 +13,11 @@ enum UpdateTime: String {
 // TODO: use dependency injection to make this testable
 final class DefaultsManager {
 	
+	// TODO: inject the defaults too? that way can mock them? and improve testing by a lot
 	let defaults = UserDefaults.standard
 	
 	func shouldUpdate(idOfEntity: UpdateTime) -> Bool {
 		
-		return true
-				
 		if var lastUpdated = defaults.object(forKey: idOfEntity.rawValue) as? Date {
 			debugPrint(lastUpdated)
 

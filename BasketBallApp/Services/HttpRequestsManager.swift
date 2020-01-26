@@ -32,7 +32,7 @@ class HttpRequestsManager {
 		}
 	}
 
-	func getPlayers(teamName: String, completionHandler: @escaping (Result<[Player]?, Error>) -> ()) {
+	func getPlayers(teamName: String, completionHandler: @escaping (Result<[Player]?, Error>) -> Void ) {
 		
 		let escapedString = teamName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
 		let input: String = baseApiURL + "searchplayers.php?t=\(escapedString ?? "" )"
@@ -88,12 +88,12 @@ class HttpRequestsManager {
 			apiGroup.enter()
 			getPlayers(teamName: outputTeams[index].teamName!) { (res) in
 				switch res {
-					case .success(let players):
-						outputTeams[index].teamPlayers = players
-					case .failure(let err):
-						outputTeams[index].teamPlayers = []
-						debugPrint(err)
-					}
+				case .success(let players):
+					outputTeams[index].teamPlayers = players
+				case .failure(let err):
+					outputTeams[index].teamPlayers = []
+					debugPrint(err)
+				}
 				apiGroup.leave()
 			}
 		}
@@ -114,11 +114,11 @@ class HttpRequestsManager {
 			apiGroup.enter()
 			getEvents(teamID: outputTeams[index].teamID!) { (res) in
 				switch res {
-					case .success(let events):
-						outputTeams[index].matchHistory = events
-					case .failure(let err):
-						outputTeams[index].matchHistory = []
-						debugPrint(err)
+				case .success(let events):
+					outputTeams[index].matchHistory = events
+				case .failure(let err):
+					outputTeams[index].matchHistory = []
+					debugPrint(err)
 				}
 				apiGroup.leave()
 			}

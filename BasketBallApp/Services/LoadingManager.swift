@@ -10,7 +10,7 @@ class LoadingManager {
 	// TODO: - change shouldTeamUpdate and others into dependency injected values I control
 	// TODO: - use Defaults manager to set shouldTeamUpdate etc, I removed that feature b4
 	// TODO: - dependency inject everything, no mercy. Later changing into protocols will be easy
-	func loadData(completionHandler: @escaping ( Result<[Team]?, Error>) -> () ) {
+	func loadData(completionHandler: @escaping ( Result<[Team]?, Error>) -> Void ) {
 		
 		let returnGroup = DispatchGroup()
 		returnGroup.enter()

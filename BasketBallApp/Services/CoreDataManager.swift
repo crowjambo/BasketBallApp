@@ -1,7 +1,14 @@
 import Foundation
 import CoreData
 
+// TODO: - implement this through a protocol? that way can mock it, and check if correct data is sent through in tests
 final class CoreDataManager {
+	
+	let mapper: ModelCoreMapper!
+	
+	init(mapper: ModelCoreMapper = ModelCoreMapper() ) {
+		self.mapper = mapper
+	}
 		
 	lazy var persistentContainer: NSPersistentContainer = {
 		
@@ -62,7 +69,7 @@ final class CoreDataManager {
 		deleteAllOfType(Teams.self)
 		
 		for team in teamsToSave {
-			_ = Mapper.teamModelToCoreData(team: team, dataManager: self)
+			_ = mapper.teamModelToCoreData(team: team, dataManager: self)
 			save()
 		}
 		
@@ -75,13 +82,13 @@ final class CoreDataManager {
 			var teamsRet: [Team] = []
 			
 				for team in result {
-					var teamToAdd: Team = Mapper.teamDataToTeamModel(team: team)
+					var teamToAdd: Team = self.mapper.teamDataToTeamModel(team: team)
 					
 					guard let loadedPlayers = team.teamPlayers?.array as? [Players] else { return }
-					teamToAdd.teamPlayers = Mapper.playersDataToPlayersModelArray(players: loadedPlayers)
+					teamToAdd.teamPlayers = self.mapper.playersDataToPlayersModelArray(players: loadedPlayers)
 					
 					guard let loadedEvents = team.teamEvents?.array as? [Events] else { return }
-					teamToAdd.matchHistory = Mapper.eventsDataToEventsModelArray(events: loadedEvents)
+					teamToAdd.matchHistory = self.mapper.eventsDataToEventsModelArray(events: loadedEvents)
 					
 					teamsRet.append(teamToAdd)
 					
