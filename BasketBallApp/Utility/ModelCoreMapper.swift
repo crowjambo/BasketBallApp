@@ -1,6 +1,5 @@
 import Foundation
 
-// TODO: make into normal class without static funcs and just inject it where I need it, so I can mock/test this too
 class ModelCoreMapper {
 
 }

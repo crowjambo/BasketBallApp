@@ -1,30 +1,58 @@
 import Foundation
 import Alamofire
 
-class HttpRequestsManager {
+//public protocol HTTPClient {
+//	func request(baseAPIURL: String, url: String, completionHandler: @escaping (Result<[Any]?, Error>) -> Void)
+//}
+//
+//class FakeHTTPClient: HTTPClient {
+//	func request(baseAPIURL: String, url: String, completionHandler: @escaping (Result<[Any]?, Error>) -> Void) {
+//		DispatchQueue.global().async {
+//			//read json
+//			//do decoding
+//			//completionHandler return result
+//		}
+//	}
+
+protocol ExternalDataRetrievable {
+	
+	typealias TeamsResponse =  (Result<[Team]?, Error>) -> Void
+	typealias PlayersReseponse = (Result<[Player]?, Error>) -> Void
+	typealias EventsResponse = (Result<[Event]?, Error>) -> Void
+	
+	func getTeams(baseApiURL: String, url: String, completionHandler: @escaping TeamsResponse)
+	func getPlayers(baseApiURL: String, url: String, teamName: String, completionHandler: @escaping PlayersReseponse)
+	func getEvents(baseApiURL: String, url: String, teamID: String, completionHandler: @escaping EventsResponse)
+	func getAllTeamsPlayersApi(teams: [Team]?, completionHandler: @escaping TeamsResponse)
+	func getAllTeamsEventsApi(teams: [Team]?, completionHandler: @escaping TeamsResponse)
+	
+}
+
+class HttpRequestsManager: ExternalDataRetrievable {
 	
 	typealias TeamsResponse =  (Result<[Team]?, Error>) -> Void
 	typealias PlayersReseponse = (Result<[Player]?, Error>) -> Void
 	typealias EventsResponse = (Result<[Event]?, Error>) -> Void
 		
-	let baseApiURL: String = "https://www.thesportsdb.com/api/v1/json/1/"
-	
-	func getTeams(completionHandler: @escaping TeamsResponse) {
+	func getTeams(
+		baseApiURL: String = "https://www.thesportsdb.com/api/v1/json/1/",
+		url: String = "search_all_teams.php?l=NBA",
+		completionHandler: @escaping TeamsResponse) {
 		
-		guard let url = URL(string: baseApiURL + "search_all_teams.php?l=NBA") else { return }
+		guard let url = URL(string: baseApiURL + url) else { return }
 		AF.request(url, method: .get).responseJSON { (response) in
 			switch response.result {
 			case .success:
 				do {
 					guard let data = response.data else { return }
-					let teams = try JSONDecoder().decode(TeamsJsonResponse.self, from: data)
+					let teams = try
+						// TODO: - literally split this and just test separately from file data
+						JSONDecoder().decode(TeamsJsonResponse.self, from: data)
 					completionHandler(.success(teams.teams))
 					} catch {
 						debugPrint(error)
 					}
 			case .failure:
-					// TODO: show toasts instead of simple debug
-					// TODO: better error handling, in case of error show an error toast or redirect to a different view controller
 				if let error = response.error {
 					completionHandler(.failure(error))
 				}
@@ -32,10 +60,14 @@ class HttpRequestsManager {
 		}
 	}
 
-	func getPlayers(teamName: String, completionHandler: @escaping (Result<[Player]?, Error>) -> Void ) {
+	// TODO: - add alamofire into protocol and inject
+	func getPlayers(
+		baseApiURL: String = "https://www.thesportsdb.com/api/v1/json/1/",
+		url: String = "searchplayers.php?t=",
+		teamName: String, completionHandler: @escaping (Result<[Player]?, Error>) -> Void ) {
 		
 		let escapedString = teamName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
-		let input: String = baseApiURL + "searchplayers.php?t=\(escapedString ?? "" )"
+		let input: String = baseApiURL + "\(url)\(escapedString ?? "" )"
 		guard let url = URL(string: input) else { return }
 		
 		AF.request(url, method: .get).responseJSON { (response) in
@@ -56,9 +88,12 @@ class HttpRequestsManager {
 		}
 	}
 	
-	func getEvents(teamID: String, completionHandler: @escaping EventsResponse) {
+	func getEvents(
+		baseApiURL: String = "https://www.thesportsdb.com/api/v1/json/1/",
+		url: String = "eventslast.php?id=",
+		teamID: String, completionHandler: @escaping EventsResponse) {
 		
-		let input: String = baseApiURL + "eventslast.php?id=\(teamID)"
+		let input: String = baseApiURL + "\(url)\(teamID)"
 		guard let url = URL(string: input) else { return }
 		
 		AF.request(url, method: .get).responseJSON { (response) in

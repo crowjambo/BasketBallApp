@@ -1,7 +1,8 @@
 import Foundation
 
-protocol ShouldUpdate {
-	
+protocol LastUpdateTrackable {
+	func shouldUpdate(idOfEntity: UpdateTime) -> Bool
+	func updateTime(key: UpdateTime)
 }
 
 enum UpdateTime: String {
@@ -10,10 +11,8 @@ enum UpdateTime: String {
 	case player = "3"
 }
 
-// TODO: use dependency injection to make this testable
-final class DefaultsManager {
+final class DefaultsManager : LastUpdateTrackable {
 	
-	// TODO: inject the defaults too? that way can mock them? and improve testing by a lot
 	let defaults = UserDefaults.standard
 	
 	func shouldUpdate(idOfEntity: UpdateTime) -> Bool {

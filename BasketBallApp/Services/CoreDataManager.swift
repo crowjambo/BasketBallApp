@@ -1,8 +1,16 @@
 import Foundation
 import CoreData
 
-// TODO: - implement this through a protocol? that way can mock it, and check if correct data is sent through in tests
-final class CoreDataManager {
+protocol DataPersistable {
+	func save()
+	func fetch<T: NSManagedObject>(_ objectType: T.Type) -> [T]
+	func delete(_ object: NSManagedObject)
+	func deleteAllOfType<T: NSManagedObject>(_ objectType: T.Type)
+	func saveTeamsCore(teamsToSave: [Team]?)
+	func loadTeamsCore(completionHandler: @escaping (Result<[Team]?, Error>) -> Void )
+}
+
+final class CoreDataManager: DataPersistable {
 	
 	let mapper: ModelCoreMapper!
 	

@@ -1,10 +1,10 @@
 import UIKit
+import Toast_Swift
 
 class MainViewController: UIViewController {
 	
 	// MARK: - Variables
 	
-	// TODO: Set everything that doesnt need to be public, private
 	var teams: [Team]? {
 		didSet {
 			cardCollectionView.reloadData()
@@ -23,7 +23,6 @@ class MainViewController: UIViewController {
 
 	}
 	
-	// TODO: Test if value gets assigned properly
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		guard
 			let destinationController = segue.destination as? TeamInfoViewController,
@@ -45,6 +44,7 @@ class MainViewController: UIViewController {
 				self?.teams = teams
 			case .failure(let err):
 				self?.teams = []
+				self?.view.makeToast("Failed to load teams", duration: 3.0, position: .bottom)
 				debugPrint(err)
 			}
 			
