@@ -11,7 +11,7 @@ enum UpdateTime: String {
 	case player = "3"
 }
 
-final class DefaultsManager : LastUpdateTrackable {
+final class DefaultsManager: LastUpdateTrackable {
 	
 	let defaults = UserDefaults.standard
 	

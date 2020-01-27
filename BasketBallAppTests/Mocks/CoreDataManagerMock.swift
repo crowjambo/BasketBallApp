@@ -7,7 +7,7 @@ class MockCoreDataManager: DataPersistable {
 		return
 	}
 	
-	func fetch<T>(_ objectType: T.Type) -> [T] where T : NSManagedObject {
+	func fetch<T>(_ objectType: T.Type) -> [T] where T: NSManagedObject {
 		return [T]()
 	}
 	
@@ -15,7 +15,7 @@ class MockCoreDataManager: DataPersistable {
 		return
 	}
 	
-	func deleteAllOfType<T>(_ objectType: T.Type) where T : NSManagedObject {
+	func deleteAllOfType<T>(_ objectType: T.Type) where T: NSManagedObject {
 		return
 	}
 	
@@ -26,6 +26,5 @@ class MockCoreDataManager: DataPersistable {
 	func loadTeamsCore(completionHandler: @escaping (Result<[Team]?, Error>) -> Void) {
 		return
 	}
-	
 	
 }

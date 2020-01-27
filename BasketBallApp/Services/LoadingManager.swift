@@ -1,7 +1,5 @@
 import Foundation
 
-// TODO : make dataloading manager use a protocol Database or so, one for core one for realm, so you can exchange what you prefer
-
 class LoadingManager {
 	
 	//var teams: [Team]?
@@ -19,7 +17,7 @@ class LoadingManager {
 		self.defaultsManager = defaultsManager
 	}
 	
-	// TODO: - remake everything into protocols for loose coupling and easy testing
+	// TODO: refactor to make this function smaller/easier to read
 	func loadData( completionHandler: @escaping ( Result<[Team]?, Error>) -> Void ) {
 		
 		let returnGroup = DispatchGroup()

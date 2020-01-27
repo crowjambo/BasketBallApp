@@ -15,8 +15,6 @@
 		80281AC923D51DD20076B4E5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80281AC823D51DD20076B4E5 /* Default-568h@2x.png */; };
 		802AF94A23CCA282000EC555 /* HttpRequestsManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802AF94923CCA282000EC555 /* HttpRequestsManagerTests.swift */; };
 		80304EE523D4FAA500A645BB /* DefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80304EE423D4FAA500A645BB /* DefaultsManager.swift */; };
-		80383D5123DEFD520052DDFF /* teams2.json in Resources */ = {isa = PBXBuildFile; fileRef = 80383D5023DEFD520052DDFF /* teams2.json */; };
-		80383D5223DEFD520052DDFF /* teams2.json in Resources */ = {isa = PBXBuildFile; fileRef = 80383D5023DEFD520052DDFF /* teams2.json */; };
 		80383D5423DF09AB0052DDFF /* MockRequestsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80383D5323DF09AB0052DDFF /* MockRequestsManager.swift */; };
 		80383D5523DF09AB0052DDFF /* MockRequestsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80383D5323DF09AB0052DDFF /* MockRequestsManager.swift */; };
 		80383D5723DF09D20052DDFF /* DefaultsManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80383D5623DF09D20052DDFF /* DefaultsManagerMock.swift */; };
@@ -24,8 +22,6 @@
 		80383D5A23DF0A2F0052DDFF /* CoreDataManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80383D5923DF0A2F0052DDFF /* CoreDataManagerMock.swift */; };
 		80383D5B23DF0A2F0052DDFF /* CoreDataManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80383D5923DF0A2F0052DDFF /* CoreDataManagerMock.swift */; };
 		805E855123D865CF005BA2C2 /* LoadingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805E855023D865CF005BA2C2 /* LoadingManager.swift */; };
-		806C011B23DEE7D000630C4F /* teams.json in Resources */ = {isa = PBXBuildFile; fileRef = 806C011A23DEE7CF00630C4F /* teams.json */; };
-		806C011C23DEE7D000630C4F /* teams.json in Resources */ = {isa = PBXBuildFile; fileRef = 806C011A23DEE7CF00630C4F /* teams.json */; };
 		809840DF23D50B870041C96D /* database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 809840DD23D50B870041C96D /* database.xcdatamodeld */; };
 		8098B21D23CF0C0F00822774 /* HttpRequestsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8098B21C23CF0C0F00822774 /* HttpRequestsManager.swift */; };
 		8098B22523CF3FF400822774 /* ImageLoadFromURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8098B22423CF3FF400822774 /* ImageLoadFromURL.swift */; };
@@ -45,6 +41,10 @@
 		80CBBE0823C5F1E40064CFFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80CBBE0623C5F1E40064CFFD /* Main.storyboard */; };
 		80CBBE0A23C5F1E60064CFFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80CBBE0923C5F1E60064CFFD /* Assets.xcassets */; };
 		80CBBE0D23C5F1E60064CFFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80CBBE0B23C5F1E60064CFFD /* LaunchScreen.storyboard */; };
+		80E787DA23DF276200AAC897 /* players.json in Resources */ = {isa = PBXBuildFile; fileRef = 80E787D823DF276200AAC897 /* players.json */; };
+		80E787DD23DF277300AAC897 /* teams.json in Resources */ = {isa = PBXBuildFile; fileRef = 80E787DB23DF277300AAC897 /* teams.json */; };
+		80E787DE23DF277300AAC897 /* teams2.json in Resources */ = {isa = PBXBuildFile; fileRef = 80E787DC23DF277300AAC897 /* teams2.json */; };
+		80E787E023DF293700AAC897 /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = 80E787DF23DF293700AAC897 /* events.json */; };
 		BA9CCE1B3378A94779C5FE01 /* Pods_BasketBallApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD3AB4085CBD5AF985617190 /* Pods_BasketBallApp.framework */; };
 		EA7FB838940BA330F5C03B10 /* Pods_BasketBallAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 280F6C22ADD6C8EC8CA0BF8E /* Pods_BasketBallAppTests.framework */; };
 /* End PBXBuildFile section */
@@ -77,12 +77,10 @@
 		802AF95723CCA2EB000EC555 /* BasketBallAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketBallAppUITests.swift; sourceTree = "<group>"; };
 		802AF95923CCA2EB000EC555 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80304EE423D4FAA500A645BB /* DefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManager.swift; sourceTree = "<group>"; };
-		80383D5023DEFD520052DDFF /* teams2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = teams2.json; path = ../../../Desktop/teams2.json; sourceTree = "<group>"; };
 		80383D5323DF09AB0052DDFF /* MockRequestsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRequestsManager.swift; sourceTree = "<group>"; };
 		80383D5623DF09D20052DDFF /* DefaultsManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManagerMock.swift; sourceTree = "<group>"; };
 		80383D5923DF0A2F0052DDFF /* CoreDataManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerMock.swift; sourceTree = "<group>"; };
 		805E855023D865CF005BA2C2 /* LoadingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingManager.swift; sourceTree = "<group>"; };
-		806C011A23DEE7CF00630C4F /* teams.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = teams.json; path = ../../../Desktop/teams.json; sourceTree = "<group>"; };
 		809840DE23D50B870041C96D /* database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = database.xcdatamodel; sourceTree = "<group>"; };
 		8098B21C23CF0C0F00822774 /* HttpRequestsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRequestsManager.swift; sourceTree = "<group>"; };
 		8098B22423CF3FF400822774 /* ImageLoadFromURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadFromURL.swift; sourceTree = "<group>"; };
@@ -103,6 +101,10 @@
 		80CBBE0723C5F1E40064CFFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		80CBBE0923C5F1E60064CFFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80CBBE0C23C5F1E60064CFFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		80E787D823DF276200AAC897 /* players.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = players.json; path = ../../../Desktop/players.json; sourceTree = "<group>"; };
+		80E787DB23DF277300AAC897 /* teams.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = teams.json; path = ../../../Desktop/teams.json; sourceTree = "<group>"; };
+		80E787DC23DF277300AAC897 /* teams2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = teams2.json; path = ../../../Desktop/teams2.json; sourceTree = "<group>"; };
+		80E787DF23DF293700AAC897 /* events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = events.json; path = ../../../Desktop/events.json; sourceTree = "<group>"; };
 		866F025572319EBFED340CDF /* Pods-BasketBallAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasketBallAppTests.release.xcconfig"; path = "Target Support Files/Pods-BasketBallAppTests/Pods-BasketBallAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		CA4EEF1F7B50CB15449873C0 /* Pods-BasketBallApp-BasketBallAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasketBallApp-BasketBallAppUITests.release.xcconfig"; path = "Target Support Files/Pods-BasketBallApp-BasketBallAppUITests/Pods-BasketBallApp-BasketBallAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		EDAFA63CF0DDEEBF61463A1B /* Pods-BasketBallApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasketBallApp.release.xcconfig"; path = "Target Support Files/Pods-BasketBallApp/Pods-BasketBallApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -173,6 +175,10 @@
 		802AF94823CCA282000EC555 /* BasketBallAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				80E787DF23DF293700AAC897 /* events.json */,
+				80E787DB23DF277300AAC897 /* teams.json */,
+				80E787DC23DF277300AAC897 /* teams2.json */,
+				80E787D823DF276200AAC897 /* players.json */,
 				800339B623DB1D2D00F93FC3 /* Mocks */,
 				802AF94923CCA282000EC555 /* HttpRequestsManagerTests.swift */,
 				800339B423DAEC8200F93FC3 /* LoadingManagerTests.swift */,
@@ -237,8 +243,6 @@
 		80CBBDFF23C5F1E40064CFFD /* BasketBallApp */ = {
 			isa = PBXGroup;
 			children = (
-				80383D5023DEFD520052DDFF /* teams2.json */,
-				806C011A23DEE7CF00630C4F /* teams.json */,
 				80B3882923DAD466006A71AC /* Utility */,
 				8049B50523D1E5A8006BC720 /* Services */,
 				80CBBE1723C5F2850064CFFD /* Controllers */,
@@ -389,8 +393,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				806C011C23DEE7D000630C4F /* teams.json in Resources */,
-				80383D5223DEFD520052DDFF /* teams2.json in Resources */,
+				80E787E023DF293700AAC897 /* events.json in Resources */,
+				80E787DE23DF277300AAC897 /* teams2.json in Resources */,
+				80E787DD23DF277300AAC897 /* teams.json in Resources */,
+				80E787DA23DF276200AAC897 /* players.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,9 +407,7 @@
 				80CBBE0D23C5F1E60064CFFD /* LaunchScreen.storyboard in Resources */,
 				80281AC923D51DD20076B4E5 /* Default-568h@2x.png in Resources */,
 				80CBBE0A23C5F1E60064CFFD /* Assets.xcassets in Resources */,
-				80383D5123DEFD520052DDFF /* teams2.json in Resources */,
 				80CBBE0823C5F1E40064CFFD /* Main.storyboard in Resources */,
-				806C011B23DEE7D000630C4F /* teams.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

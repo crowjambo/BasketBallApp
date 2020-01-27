@@ -20,8 +20,10 @@ class LoadingManagerTests: XCTestCase {
 		sut.loadData { (res) in
 			switch res {
 			case .success(let teams):
-			outputTeams = teams
-			case .failure(let err): break
+				outputTeams = teams
+			case .failure(let err):
+				debugPrint(err)
+				break
 			}
 			expectation.fulfill()
 		}
@@ -30,6 +32,4 @@ class LoadingManagerTests: XCTestCase {
 		XCTAssertNotNil(outputTeams)
 	}
 	
-	
-		
 }

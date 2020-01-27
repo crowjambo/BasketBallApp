@@ -1,19 +1,6 @@
 import Foundation
 import Alamofire
 
-//public protocol HTTPClient {
-//	func request(baseAPIURL: String, url: String, completionHandler: @escaping (Result<[Any]?, Error>) -> Void)
-//}
-//
-//class FakeHTTPClient: HTTPClient {
-//	func request(baseAPIURL: String, url: String, completionHandler: @escaping (Result<[Any]?, Error>) -> Void) {
-//		DispatchQueue.global().async {
-//			//read json
-//			//do decoding
-//			//completionHandler return result
-//		}
-//	}
-
 protocol ExternalDataRetrievable {
 	
 	typealias TeamsResponse =  (Result<[Team]?, Error>) -> Void
@@ -45,9 +32,7 @@ class HttpRequestsManager: ExternalDataRetrievable {
 			case .success:
 				do {
 					guard let data = response.data else { return }
-					let teams = try
-						// TODO: - literally split this and just test separately from file data
-						JSONDecoder().decode(TeamsJsonResponse.self, from: data)
+					let teams = try JSONDecoder().decode(TeamsJsonResponse.self, from: data)
 					completionHandler(.success(teams.teams))
 					} catch {
 						debugPrint(error)
@@ -60,7 +45,6 @@ class HttpRequestsManager: ExternalDataRetrievable {
 		}
 	}
 
-	// TODO: - add alamofire into protocol and inject
 	func getPlayers(
 		baseApiURL: String = "https://www.thesportsdb.com/api/v1/json/1/",
 		url: String = "searchplayers.php?t=",

@@ -12,9 +12,9 @@ protocol DataPersistable {
 
 final class CoreDataManager: DataPersistable {
 	
-	let mapper: ModelCoreMapper!
+	let mapper: ModelCoreMappable
 	
-	init(mapper: ModelCoreMapper = ModelCoreMapper() ) {
+	init(mapper: ModelCoreMappable = ModelCoreMapper() ) {
 		self.mapper = mapper
 	}
 		
