@@ -17,6 +17,8 @@ final class DefaultsManager: LastUpdateTrackable {
 	
 	func shouldUpdate(idOfEntity: UpdateTime) -> Bool {
 		
+		return true
+		
 		if var lastUpdated = defaults.object(forKey: idOfEntity.rawValue) as? Date {
 			debugPrint(lastUpdated)
 

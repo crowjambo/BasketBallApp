@@ -23,7 +23,6 @@ class LoadingManagerTests: XCTestCase {
 				outputTeams = teams
 			case .failure(let err):
 				debugPrint(err)
-				break
 			}
 			expectation.fulfill()
 		}

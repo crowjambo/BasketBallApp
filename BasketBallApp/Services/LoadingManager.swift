@@ -2,7 +2,6 @@ import Foundation
 
 class LoadingManager {
 	
-	//var teams: [Team]?
 	let requestsManager: ExternalDataRetrievable
 	let dataManager: DataPersistable
 	let defaultsManager: LastUpdateTrackable
@@ -17,103 +16,41 @@ class LoadingManager {
 		self.defaultsManager = defaultsManager
 	}
 	
-	// TODO: refactor to make this function smaller/easier to read
 	func loadData( completionHandler: @escaping ( Result<[Team]?, Error>) -> Void ) {
 		
+		var outputTeams: [Team]?
+
 		let returnGroup = DispatchGroup()
 		returnGroup.enter()
 		
-		var outputTeams: [Team]?
-		
-		let shouldTeamUpdate = defaultsManager.shouldUpdate(idOfEntity: UpdateTime.team)
-		let shouldEventUpdate = defaultsManager.shouldUpdate(idOfEntity: UpdateTime.event)
-		let shouldPlayerUpdate = defaultsManager.shouldUpdate(idOfEntity: UpdateTime.player)
-		
-		if shouldTeamUpdate {
-			
-		requestsManager.getTeams(baseApiURL: "https://www.thesportsdb.com/api/v1/json/1/", url: "search_all_teams.php?l=NBA") { (res) in
+		teamsUpdate(shouldTeamUpdate: defaultsManager.shouldUpdate(idOfEntity: UpdateTime.team), returnGroup: returnGroup) { (res) in
 			switch res {
 			case .success(let teams):
 				outputTeams = teams
 			case .failure(let err):
-				outputTeams = []
-				completionHandler(.failure(err))
 				debugPrint(err)
 			}
-				returnGroup.enter()
-				
-			self.requestsManager.getAllTeamsPlayersApi(teams: outputTeams) { (res) in
+			
+			self.playerUpdate(sentInTeams: outputTeams, shouldPlayerUpdate: self.defaultsManager.shouldUpdate(idOfEntity: UpdateTime.player), returnGroup: returnGroup) { (res) in
 				switch res {
 				case .success(let teams):
 					outputTeams = teams
 				case .failure(let err):
 					debugPrint(err)
 				}
-				self.defaultsManager.updateTime(key: UpdateTime.player)
-				debugPrint("loaded events from API")
 				
-				self.requestsManager.getAllTeamsEventsApi(teams: outputTeams) { (res) in
+				self.eventUpdate(sentInTeams: outputTeams, shouldEventUpdate: self.defaultsManager.shouldUpdate(idOfEntity: UpdateTime.event), returnGroup: returnGroup) { (res) in
 					switch res {
 					case .success(let teams):
 						outputTeams = teams
 					case .failure(let err):
 						debugPrint(err)
 					}
-					self.defaultsManager.updateTime(key: UpdateTime.event)
-					debugPrint("loaded players from API")
-					returnGroup.leave()
-					
 				}
 			}
-							
-			self.defaultsManager.updateTime(key: UpdateTime.team)
-			debugPrint("load teams from api")
 			returnGroup.leave()
-			}
-		} else {
-			dataManager.loadTeamsCore { (res) in
-				switch res {
-				case .success(let teams):
-					outputTeams = teams
-				case .failure(let err):
-					debugPrint(err)
-				}
-				
-				if shouldPlayerUpdate {
-					returnGroup.enter()
-					self.requestsManager.getAllTeamsPlayersApi(teams: outputTeams) { (res) in
-						switch res {
-						case .success(let teams):
-							outputTeams = teams
-						case .failure(let err):
-							debugPrint(err)
-						}
-						self.defaultsManager.updateTime(key: UpdateTime.player)
-						debugPrint("loaded events from API")
-						returnGroup.leave()
-						
-					}
-				}
-				
-				if shouldEventUpdate {
-					returnGroup.enter()
-					self.requestsManager.getAllTeamsEventsApi(teams: outputTeams) { (res) in
-						switch res {
-						case .success(let teams):
-							outputTeams = teams
-						case .failure(let err):
-							debugPrint(err)
-						}
-						self.defaultsManager.updateTime(key: UpdateTime.event)
-						debugPrint("loaded players from API")
-						returnGroup.leave()
-					}
-				}
-				
-				returnGroup.leave()
-			}
 		}
-			
+		
 		returnGroup.notify(queue: .main) {
 			DispatchQueue.global(qos: .background).async {
 				self.dataManager.saveTeamsCore(teamsToSave: outputTeams)
@@ -121,6 +58,77 @@ class LoadingManager {
 			completionHandler(.success(outputTeams))
 		}
 		
+	}
+	
+	private func teamsUpdate(shouldTeamUpdate: Bool, returnGroup: DispatchGroup, completion: @escaping (Result<[Team]?, Error>) -> Void ) {
+		
+		var outputTeams: [Team]?
+		
+		if shouldTeamUpdate {
+			requestsManager.getTeams(baseApiURL: "https://www.thesportsdb.com/api/v1/json/1/", url: "search_all_teams.php?l=NBA") { (res) in
+				switch res {
+				case .success(let teams):
+					outputTeams = teams
+					completion(.success(outputTeams))
+				case .failure(let err):
+					completion(.failure(err))
+				}
+				self.defaultsManager.updateTime(key: UpdateTime.team)
+			}
+		} else {
+			dataManager.loadTeamsCore { (res) in
+				switch res {
+				case .success(let teams):
+					outputTeams = teams
+					completion(.success(outputTeams))
+				case .failure(let err):
+					completion(.failure(err))
+				}
+			}
+		}
+	}
+	
+	private func playerUpdate(sentInTeams: [Team]?, shouldPlayerUpdate: Bool, returnGroup: DispatchGroup, completion: @escaping (Result<[Team]?, Error>) -> Void ) {
+		
+		if shouldPlayerUpdate {
+			var outputTeams = sentInTeams
+			
+			returnGroup.enter()
+			self.requestsManager.getAllTeamsPlayersApi(teams: outputTeams) { (res) in
+				switch res {
+				case .success(let teams):
+					outputTeams = teams
+					completion(.success(outputTeams))
+				case .failure(let err):
+					completion(.failure(err))
+				}
+				self.defaultsManager.updateTime(key: UpdateTime.player)
+				returnGroup.leave()
+			}
+		} else {
+			return
+		}
+	}
+	
+	private func eventUpdate(sentInTeams: [Team]?, shouldEventUpdate: Bool, returnGroup: DispatchGroup, completion: @escaping (Result<[Team]?, Error>) -> Void) {
+		if shouldEventUpdate {
+			var outputTeams = sentInTeams
+			
+			returnGroup.enter()
+			self.requestsManager.getAllTeamsEventsApi(teams: outputTeams) { (res) in
+				switch res {
+				case .success(let teams):
+					outputTeams = teams
+					completion(.success(outputTeams))
+				case .failure(let err):
+					completion(.failure(err))
+				}
+				self.defaultsManager.updateTime(key: UpdateTime.event)
+				returnGroup.leave()
+			}
+		} else {
+			return
+		}
 	}
 
 }
