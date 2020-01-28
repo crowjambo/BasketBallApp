@@ -10,9 +10,7 @@ class PlayerDetailViewController: UIViewController {
 	
 	@IBOutlet weak var mainPlayerImage: UIImageView!
 	@IBOutlet weak var playerNameOutlet: UILabel!
-	@IBOutlet weak var ageOutlet: UILabel!
-	@IBOutlet weak var heightOutlet: UILabel!
-	@IBOutlet weak var weightOutlet: UILabel!
+	@IBOutlet weak var playerDetailsOutlet: UILabel!
 	@IBOutlet weak var descriptionOutlet: UILabel!
 	
 	// MARK: - View Lifecycle
@@ -23,9 +21,6 @@ class PlayerDetailViewController: UIViewController {
     }
 	
 	// MARK: - Functions
-	
-	// TODO: Make age/height/weight into one outlet for easy aligns in storyboard, calculate age from string date input using Date formatter
-	// https://www.hackingwithswift.com/example-code/system/how-to-convert-dates-and-times-to-a-string-using-dateformatter
 	
 	func loadData() {
 		
@@ -39,9 +34,7 @@ class PlayerDetailViewController: UIViewController {
 			else { return }
 		
 		playerNameOutlet.text = player.name
-		ageOutlet.text = age
-		heightOutlet.text = height
-		weightOutlet.text = weight
+		playerDetailsOutlet.text = "\(getAgeFromDate(date: age))        \(weight)        \(height)"
 		descriptionOutlet.text = playerDescription
 		descriptionOutlet.sizeToFit()
 		let url = URL(string: playerMainImage)
@@ -49,8 +42,20 @@ class PlayerDetailViewController: UIViewController {
 		
 	}
 	
-	func getAgeFromDate(date: String) -> Int {
-		return 0
+	func getAgeFromDate(date: String) -> String {
+		
+		let formatter = DateFormatter()
+		formatter.dateFormat = "yyyy-mm-dd"
+		let formattedDate = formatter.date(from: date)
+
+		let calendar = Calendar.current
+		let components = calendar.dateComponents([.year], from: formattedDate ?? Date(), to: Date())
+		
+		let finalDate = calendar.date(from: components)
+		
+		formatter.dateFormat = "y"
+		
+		return formatter.string(from: finalDate!)
 		
 	}
     
