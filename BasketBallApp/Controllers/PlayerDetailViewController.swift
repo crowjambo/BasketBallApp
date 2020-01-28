@@ -34,12 +34,22 @@ class PlayerDetailViewController: UIViewController {
 			else { return }
 		
 		playerNameOutlet.text = player.name
-		playerDetailsOutlet.text = "\(getAgeFromDate(date: age)) ! \(weight) ! \(height)"
+		playerDetailsOutlet.text = "\(getAgeFromDate(date: age))  \(splitWeight(weight: weight)) lbs  \(splitHeight(height: height))"
 		descriptionOutlet.text = playerDescription
 		descriptionOutlet.sizeToFit()
 		let url = URL(string: playerMainImage)
 		mainPlayerImage.load(url: url!)
 		
+	}
+	
+	func splitHeight(height: String) -> String {
+		let array = height.components(separatedBy: "(")
+		return array[0]
+	}
+	
+	func splitWeight(weight: String) -> String {
+		let array = weight.components(separatedBy: " ")
+		return array[0]
 	}
 	
 	func getAgeFromDate(date: String) -> String {

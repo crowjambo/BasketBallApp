@@ -77,7 +77,7 @@ class RealmDataManager: DataPersistable {
 				let mappedTeam = self.mapper.realmToTeamModel(from: team)
 				outputTeams.append(mappedTeam)
 			}
-			
+			print(Realm.Configuration.defaultConfiguration.fileURL!)
 			debugPrint("Loaded from Realm DB")
 			completionHandler(.success(outputTeams))
 		}
