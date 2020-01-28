@@ -10,8 +10,10 @@ Simple app made to practice unit testing, mocking and other good development pra
 
 ## Screenshots
 
-![Image of MainScreen](appImages/1.png | width=250 )
-![Image of TeamInfo1](appImages/2.png | width=250 )
-![Image of TeamInfo2](appImages/3.png | width=250 )
-![Image of PlayerInfo](appImages/4.png | width=250 )
+<a href="#"><img src="appImages/1.png" align="left" width="250" ></a>
+<a href="#"><img src="appImages/2.png" align="left" width="250" ></a>
+<a href="#"><img src="appImages/3.png" align="left" width="250" ></a>
+<a href="#"><img src="appImages/4.png" align="left" width="250" ></a>
+
+
 
