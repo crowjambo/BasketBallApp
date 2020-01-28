@@ -34,7 +34,7 @@ class PlayerDetailViewController: UIViewController {
 			else { return }
 		
 		playerNameOutlet.text = player.name
-		playerDetailsOutlet.text = "\(getAgeFromDate(date: age))        \(weight)        \(height)"
+		playerDetailsOutlet.text = "\(getAgeFromDate(date: age)) ! \(weight) ! \(height)"
 		descriptionOutlet.text = playerDescription
 		descriptionOutlet.sizeToFit()
 		let url = URL(string: playerMainImage)

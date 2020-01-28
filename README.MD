@@ -2,6 +2,8 @@
 
 Simple app made to practice unit testing, mocking and other good development practices for iOS
 
+[![codebeat badge](https://codebeat.co/badges/8fdcd8fd-5082-40f5-98d7-133846eb08ce)](https://codebeat.co/projects/github-com-crowjambo-basketballapp-master)
+
 ## Built with
 
 * Alamofire
