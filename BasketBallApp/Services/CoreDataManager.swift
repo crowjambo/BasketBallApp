@@ -1,15 +1,6 @@
 import Foundation
 import CoreData
 
-//protocol DataPersistable {
-//	func save()
-//	func fetch<T: NSManagedObject>(_ objectType: T.Type) -> [T]
-//	func delete(_ object: NSManagedObject)
-//	func deleteAllOfType<T: NSManagedObject>(_ objectType: T.Type)
-//	func saveTeamsCore(teamsToSave: [Team]?)
-//	func loadTeamsCore(completionHandler: @escaping (Result<[Team]?, Error>) -> Void )
-//}
-
 protocol DataPersistable {
 	func save()
 	func fetch<T>(_ objectType: T.Type) -> [T]
