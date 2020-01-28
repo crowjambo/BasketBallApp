@@ -1,29 +1,52 @@
 import Foundation
 import RealmSwift
 
+// TODO: refactor DataPersistable to lessen useless methods, or create adapters in them to repurpose stuff
+// TODO: only load teams and save teams really needs to be public API's in current usecase, easy abstraction
+
 class RealmDataManager: DataPersistable {
 	
 	let mapper: ModelRealmMapper = ModelRealmMapper()
 	
 	func save() {
-		//save to context
-		
+		//useless, dont really need this in realm
 	}
 	
 	func fetch<T>(_ objectType: T.Type) -> [T] {
-		//helper method used in loadTeams only
+
+//		guard let realm = try? Realm() else { return [T]() }
+//
+//		let entityName = String(describing: objectType)
+//
+//		if entityName == "RealmTeam" {
+//			let objToFetch = RealmTeam()
+//
+//			let objects = realm.objects(type(of: objToFetch))
+//			for obj in objects {
+//				return objects
+//			}
+//		}
+		// dont really need this with Realm, and it uses very different return type
 		
 		return [T]()
 	}
 	
 	func delete(_ object: Any) {
-		//delete passed object
+		guard let realm = try? Realm() else { return }
+		guard let objToDel = object as? Object else { return }
+		do {
+			try realm.write {
+				realm.delete(objToDel)
+			}
+		} catch {
+			debugPrint("failed to delete one object")
+		}
 		
 	}
 	
 	func deleteAllOfType<T>(_ objectType: T.Type) {
-		//delete all obviously
-		
+		//Useless due to realm.deleteAll() for current usecase
+		//could be used later to delete specific things only
 	}
 	
 	func saveTeams(teamsToSave: [Team]?) {
@@ -33,7 +56,7 @@ class RealmDataManager: DataPersistable {
 		realm.deleteAll()
 		for team in teams {
 			let teamToSave = mapper.modelTeamToRealm(modelTeam: team)
-			do{
+			do {
 				try realm.write {
 					realm.add(teamToSave)
 				}
@@ -45,14 +68,19 @@ class RealmDataManager: DataPersistable {
 	}
 	
 	func loadTeams(completionHandler: @escaping (Result<[Team]?, Error>) -> Void) {
-		//async call with DispatchQueue
-		//create empty [Team]? obj
-		//use fetch and mapper to pull DB models and convert them to [Team]
-		//same for players and events
-		//append everything together
-		//return using completionHandler [Team]? obj you created
+
+		var outputTeams: [Team] = []
 		
-		
+		DispatchQueue.global().async {
+			guard let realm = try? Realm() else { return }
+			let realmTeams = realm.objects(RealmTeam.self)
+			for team in realmTeams {
+				let mappedTeam = self.mapper.realmToTeamModel(realmModel: team)
+				outputTeams.append(mappedTeam)
+			}
+			
+			completionHandler(.success(outputTeams))
+		}
 	}
 	
 }

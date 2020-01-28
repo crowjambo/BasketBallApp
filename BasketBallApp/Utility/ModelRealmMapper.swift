@@ -9,25 +9,54 @@ class ModelRealmMapper {
 extension ModelRealmMapper {
 	
 	func modelTeamToRealm(modelTeam: Team) -> RealmTeam {
-		//conenct all other methods to return fully mapped Realm Object with all team info and players/events
+		guard
+			let teamPlayers = modelTeam.teamPlayers,
+			let teamEvents = modelTeam.matchHistory
+			else { return RealmTeam() }
 		
-		return RealmTeam()
+		let realmTeam = RealmTeam()
+		realmTeam.teamName = modelTeam.teamName
+		realmTeam.teamDescription = modelTeam.description
+		realmTeam.teamID = modelTeam.teamID
+		realmTeam.imageTeamMain = modelTeam.imageTeamMain
+		realmTeam.imageIconName = modelTeam.imageIconName
+		
+		for player in teamPlayers {
+			let playerToSave = modelPlayerToRealm(modelPlayer: player)
+			realmTeam.teamPlayers.append(playerToSave)
+		}
+		
+		for event in teamEvents {
+			let eventToSave = modelEventToRealm(modelEvent: event)
+			realmTeam.matchHistory.append(eventToSave)
+		}
+		
+		return realmTeam
 	}
 	
-	private func modelPlayersToRealm() {
+	private func modelPlayerToRealm(modelPlayer: Player) -> RealmPlayer {
 		
+		let playerToSave = RealmPlayer()
+		playerToSave.name = modelPlayer.name
+		playerToSave.age = modelPlayer.age
+		playerToSave.height = modelPlayer.height
+		playerToSave.playerDescription = modelPlayer.description
+		playerToSave.playerIconImage = modelPlayer.playerIconImage
+		playerToSave.playerMainImage = modelPlayer.playerMainImage
+		playerToSave.position = modelPlayer.position
+		playerToSave.weight = modelPlayer.weight
+		
+		
+		return playerToSave
 	}
 	
-	private func modelEventsToRealm() {
+	private func modelEventToRealm(modelEvent: Event) -> RealmEvent {
+		let eventToSave = RealmEvent()
+		eventToSave.homeTeamName = modelEvent.homeTeamName
+		eventToSave.awayTeamName = modelEvent.awayTeamName
+		eventToSave.date = modelEvent.date
 		
-	}
-	
-	private func modelPlayerToRealm() {
-		
-	}
-	
-	private func modelEventToRealm() {
-		
+		return eventToSave
 	}
 }
 
@@ -35,23 +64,25 @@ extension ModelRealmMapper {
 
 extension ModelRealmMapper {
 	
-	func realmToTeamModel() {
+	func realmToTeamModel(realmModel: RealmTeam) -> Team {
+		
+		return Team()
+	}
+	
+	private func realmToPlayersModel() {
+		// if have to (isnt automatic like coredata), will have to make this public, and send in fetched data
 		
 	}
 	
-	func realmToPlayersModel() {
+	private func realmToEventsModel() {
+		
+	}
+		
+	private func realmToPlayerModel() {
 		
 	}
 	
-	func realmToEventsModel() {
-		
-	}
-		
-	func realmToPlayerModel() {
-		
-	}
-	
-	func realmToEventModel() {
+	private func realmToEventModel() {
 		
 	}
 	
