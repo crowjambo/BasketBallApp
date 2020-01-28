@@ -52,9 +52,6 @@ class LoadingManager {
 		}
 		
 		returnGroup.notify(queue: .main) {
-			DispatchQueue.global(qos: .background).async {
-				self.dataManager.saveTeams(teamsToSave: outputTeams)
-			}
 			completionHandler(.success(outputTeams))
 		}
 		
@@ -124,6 +121,11 @@ class LoadingManager {
 					completion(.failure(err))
 				}
 				self.defaultsManager.updateTime(key: UpdateTime.event)
+				
+				DispatchQueue.global(qos: .background).async {
+					self.dataManager.saveTeams(teamsToSave: outputTeams)
+				}
+				
 				returnGroup.leave()
 			}
 		} else {

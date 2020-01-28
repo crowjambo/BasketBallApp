@@ -4,10 +4,10 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-	let dataManager = CoreDataManager()
+	let dataManager: DataPersistable = CoreDataManager()
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
+		
 		return true
 	}
 
