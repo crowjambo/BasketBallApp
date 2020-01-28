@@ -3,8 +3,7 @@ import UIKit
 class EventCell: UITableViewCell {
 	
 	@IBOutlet weak var dateLabelOutlet: UILabel!
-	@IBOutlet weak var team1NameOutlet: UILabel!
-	@IBOutlet weak var team2NameOutlet: UILabel!
+	@IBOutlet weak var eventNameOutlet: UILabel!
 	
 	override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,8 +20,7 @@ class EventCell: UITableViewCell {
 			else { return }
 		
 		dateLabelOutlet.text = dateLabel
-		team1NameOutlet.text = homeTeamName
-		team2NameOutlet.text = awayTeamName
+		eventNameOutlet.text = "\(homeTeamName)   VS   \(awayTeamName)"
 	}
 
 }
