@@ -1,17 +1,26 @@
 import Foundation
 import CoreData
 
+//protocol DataPersistable {
+//	func save()
+//	func fetch<T: NSManagedObject>(_ objectType: T.Type) -> [T]
+//	func delete(_ object: NSManagedObject)
+//	func deleteAllOfType<T: NSManagedObject>(_ objectType: T.Type)
+//	func saveTeamsCore(teamsToSave: [Team]?)
+//	func loadTeamsCore(completionHandler: @escaping (Result<[Team]?, Error>) -> Void )
+//}
+
 protocol DataPersistable {
 	func save()
-	func fetch<T: NSManagedObject>(_ objectType: T.Type) -> [T]
-	func delete(_ object: NSManagedObject)
-	func deleteAllOfType<T: NSManagedObject>(_ objectType: T.Type)
-	func saveTeamsCore(teamsToSave: [Team]?)
-	func loadTeamsCore(completionHandler: @escaping (Result<[Team]?, Error>) -> Void )
+	func fetch<T>(_ objectType: T.Type) -> [T]
+	func delete(_ object: Any)
+	func deleteAllOfType<T>(_ objectType: T.Type)
+	func saveTeams(teamsToSave: [Team]?)
+	func loadTeams(completionHandler: @escaping (Result<[Team]?, Error>) -> Void )
 }
 
 final class CoreDataManager: DataPersistable {
-	
+		
 	let mapper: ModelCoreMappable
 	
 	init(mapper: ModelCoreMappable = ModelCoreMapper() ) {
@@ -43,7 +52,7 @@ final class CoreDataManager: DataPersistable {
 		}
 	}
 	
-	func fetch<T: NSManagedObject>(_ objectType: T.Type) -> [T] {
+	func fetch<T>(_ objectType: T.Type) -> [T] {
 		
 		let entityName = String(describing: objectType)
 		let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
@@ -56,12 +65,13 @@ final class CoreDataManager: DataPersistable {
 		}
 	}
 	
-	func delete(_ object: NSManagedObject) {
-		context.delete(object)
+	func delete(_ object: Any) {
+		guard let objToDel = object as? NSManagedObject else { return }
+		context.delete(objToDel)
 		save()
 	}
 	
-	func deleteAllOfType<T: NSManagedObject>(_ objectType: T.Type) {
+	func deleteAllOfType<T>(_ objectType: T.Type) {
 		let allObjects = fetch(objectType)
 		for obj in allObjects {
 			delete(obj)
@@ -69,7 +79,7 @@ final class CoreDataManager: DataPersistable {
 		save()
 	}
 	
-	func saveTeamsCore(teamsToSave: [Team]?) {
+	func saveTeams(teamsToSave: [Team]?) {
 		
 		guard let teamsToSave = teamsToSave else { return }
 		deleteAllOfType(Players.self)
@@ -83,7 +93,7 @@ final class CoreDataManager: DataPersistable {
 		
 	}
 
-	func loadTeamsCore(completionHandler: @escaping (Result<[Team]?, Error>) -> Void ) {
+	func loadTeams(completionHandler: @escaping (Result<[Team]?, Error>) -> Void ) {
 		
 		DispatchQueue.global().async {
 			let result = self.fetch(Teams.self)

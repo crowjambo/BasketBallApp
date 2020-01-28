@@ -8,5 +8,4 @@ class CoreDataManagerTests: XCTestCase {
     override func tearDown() {
     }
 
-
 }

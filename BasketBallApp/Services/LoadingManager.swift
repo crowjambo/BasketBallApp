@@ -53,7 +53,7 @@ class LoadingManager {
 		
 		returnGroup.notify(queue: .main) {
 			DispatchQueue.global(qos: .background).async {
-				self.dataManager.saveTeamsCore(teamsToSave: outputTeams)
+				self.dataManager.saveTeams(teamsToSave: outputTeams)
 			}
 			completionHandler(.success(outputTeams))
 		}
@@ -76,7 +76,7 @@ class LoadingManager {
 				self.defaultsManager.updateTime(key: UpdateTime.team)
 			}
 		} else {
-			dataManager.loadTeamsCore { (res) in
+			dataManager.loadTeams { (res) in
 				switch res {
 				case .success(let teams):
 					outputTeams = teams

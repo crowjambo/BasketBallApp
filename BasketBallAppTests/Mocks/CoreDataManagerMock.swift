@@ -7,23 +7,23 @@ class MockCoreDataManager: DataPersistable {
 		return
 	}
 	
-	func fetch<T>(_ objectType: T.Type) -> [T] where T: NSManagedObject {
+	func fetch<T>(_ objectType: T.Type) -> [T] {
 		return [T]()
 	}
 	
-	func delete(_ object: NSManagedObject) {
+	func delete(_ object: Any) {
 		return
 	}
 	
-	func deleteAllOfType<T>(_ objectType: T.Type) where T: NSManagedObject {
+	func deleteAllOfType<T>(_ objectType: T.Type) {
 		return
 	}
 	
-	func saveTeamsCore(teamsToSave: [Team]?) {
+	func saveTeams(teamsToSave: [Team]?) {
 		return
 	}
 	
-	func loadTeamsCore(completionHandler: @escaping (Result<[Team]?, Error>) -> Void) {
+	func loadTeams(completionHandler: @escaping (Result<[Team]?, Error>) -> Void) {
 		return
 	}
 	
