@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 class PlayerDetailViewController: UIViewController {
 
@@ -38,7 +39,7 @@ class PlayerDetailViewController: UIViewController {
 		descriptionOutlet.text = playerDescription
 		descriptionOutlet.sizeToFit()
 		let url = URL(string: playerMainImage)
-		mainPlayerImage.load(url: url!)
+		mainPlayerImage.kf.setImage(with: url)
 		
 	}
 	

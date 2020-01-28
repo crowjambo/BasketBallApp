@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 class TeamInfoViewController: UIViewController {
 
@@ -7,9 +8,7 @@ class TeamInfoViewController: UIViewController {
 	var team: Team?
 	
 	// MARK: - Outlets
-	
-	// TODO: Clean up and align the Outlets in Storyboard for Teams names displaying
-	
+		
 	@IBOutlet weak var teamNameLabelOutlet: UILabel!
 	@IBOutlet weak var mainTeamImageOutlet: UIImageView!
 	@IBOutlet weak var tableOutlet: UITableView!
@@ -45,7 +44,7 @@ class TeamInfoViewController: UIViewController {
 		
 		if let mainImageName = team?.imageTeamMain {
 			let url = URL(string: mainImageName)
-			mainTeamImageOutlet.load(url: url!)
+			mainTeamImageOutlet.kf.setImage(with: url)
 		}
 	}
 

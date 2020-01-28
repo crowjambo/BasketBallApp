@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 class PlayerCell: UITableViewCell {
 	
@@ -16,7 +17,7 @@ class PlayerCell: UITableViewCell {
 		
 		if let image = playerImage {
 			let url = URL(string: image)
-			playerImageOutlet.load(url: url!)
+			playerImageOutlet.kf.setImage(with: url)
 		} else {
 			playerImageOutlet.image = UIImage(systemName: "square")
 		}

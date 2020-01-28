@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 class TeamCollectionCell: UICollectionViewCell {
     
@@ -7,10 +8,8 @@ class TeamCollectionCell: UICollectionViewCell {
 	@IBOutlet weak var teamDescriptionOutlet: UILabel!
 	
 	override func awakeFromNib() {
-		//vertical top align for description
 		teamDescriptionOutlet.sizeToFit()
 		
-		//shadow styling for card
 		contentView.layer.cornerRadius = 2.0
 		contentView.layer.borderWidth = 1.0
 		contentView.layer.borderColor = UIColor.clear.cgColor
@@ -34,7 +33,7 @@ class TeamCollectionCell: UICollectionViewCell {
 		teamNameOutlet.text = teamName
 		teamDescriptionOutlet.text = teamDescription
 		let url = URL(string: teamIcon)
-		teamIconOutlet.load(url: url!)
+		teamIconOutlet.kf.setImage(with: url)
 		
 	}
 
