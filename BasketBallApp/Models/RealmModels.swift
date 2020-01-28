@@ -44,5 +44,3 @@ class RealmEvent: Object {
 	@objc dynamic var  awayTeamName: String? = nil
 	@objc dynamic var  date: String? = nil
 }
-
-
