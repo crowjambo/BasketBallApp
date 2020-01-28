@@ -1,6 +1,12 @@
 import UIKit
 import CoreData
 
+//TODO: experiment with swinject https://www.raywenderlich.com/17-swinject-tutorial-for-ios-getting-started
+//https://github.com/Swinject/Swinject
+//https://github.com/Swinject/SwinjectStoryboard
+//https://itnext.io/dependency-injection-with-swinject-73f3144b20f0
+//https://github.com/Swinject/SwinjectSimpleExample pull this example and experiment
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 	

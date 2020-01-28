@@ -14,6 +14,8 @@ pod 'Toast-Swift', '~> 5.0.0'
 pod 'OHHTTPStubs'
 pod 'OHHTTPStubs/Swift'
 pod 'Kingfisher', '~> 5.0'
+pod 'Swinject'
+pod 'SwinjectStoryboard'
 
   target 'BasketBallAppTests' do
     inherit! :search_paths

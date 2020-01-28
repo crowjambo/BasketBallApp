@@ -1,6 +1,8 @@
 import XCTest
 @testable import BasketBallApp
 
+//TODO: write tests
+
 class LoadingManagerTests: XCTestCase {
 
 	var sut: LoadingManager!

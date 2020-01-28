@@ -1,12 +1,6 @@
-//
-//  DefaultsManagerTests.swift
-//  BasketBallAppTests
-//
-//  Created by Evaldas on 1/27/20.
-//  Copyright © 2020 Evaldas. All rights reserved.
-//
-
 import XCTest
+
+//TODO: write tests
 
 class DefaultsManagerTests: XCTestCase {
 

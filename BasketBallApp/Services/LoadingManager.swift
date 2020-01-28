@@ -1,5 +1,7 @@
 import Foundation
 
+//TODO: refactor based on codebeat.co suggestsions, remove redundancies etc.
+
 class LoadingManager {
 	
 	let requestsManager: ExternalDataRetrievable
@@ -23,6 +25,8 @@ class LoadingManager {
 		let returnGroup = DispatchGroup()
 		returnGroup.enter()
 		
+		//TODO: too deep nesting fix
+		//TODO: function too long, shorten it somehow
 		teamsUpdate(shouldTeamUpdate: defaultsManager.shouldUpdate(idOfEntity: UpdateTime.team), returnGroup: returnGroup) { (res) in
 			switch res {
 			case .success(let teams):
@@ -56,7 +60,7 @@ class LoadingManager {
 		}
 		
 	}
-	
+	// TODO: function too long, split it up
 	private func teamsUpdate(shouldTeamUpdate: Bool, returnGroup: DispatchGroup, completion: @escaping (Result<[Team]?, Error>) -> Void ) {
 		
 		var outputTeams: [Team]?
