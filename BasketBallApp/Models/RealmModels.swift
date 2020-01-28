@@ -13,7 +13,6 @@ class RealmTeam: Object {
 	@objc dynamic var imageIconName: String? = nil
 	@objc dynamic var imageTeamMain: String? = nil
 
-	
 	let teamPlayers = List<RealmPlayer>()
 	let matchHistory = List<RealmEvent>()
 

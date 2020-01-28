@@ -1,4 +1,5 @@
 import Foundation
+import RealmSwift
 
 class ModelRealmMapper {
 	
@@ -46,7 +47,6 @@ extension ModelRealmMapper {
 		playerToSave.position = modelPlayer.position
 		playerToSave.weight = modelPlayer.weight
 		
-		
 		return playerToSave
 	}
 	
@@ -64,26 +64,32 @@ extension ModelRealmMapper {
 
 extension ModelRealmMapper {
 	
-	func realmToTeamModel(realmModel: RealmTeam) -> Team {
-		
-		return Team()
+	func realmToTeamModel(realmTeam: RealmTeam) -> Team {
+		return Team(teamID: realmTeam.teamID, teamName: realmTeam.teamName, description: realmTeam.teamDescription, imageIconName: realmTeam.imageIconName, imageTeamMain: realmTeam.imageTeamMain, teamPlayers: realmToPlayersModel(realmPlayers: realmTeam.teamPlayers), matchHistory: realmToEventsModel(realmEvents: realmTeam.matchHistory))
 	}
 	
-	private func realmToPlayersModel() {
-		// if have to (isnt automatic like coredata), will have to make this public, and send in fetched data
-		
+	private func realmToPlayersModel(realmPlayers: List<RealmPlayer>) -> [Player] {
+		var outputPlayers: [Player] = []
+		for player in realmPlayers {
+			outputPlayers.append(realmToPlayerModel(realmPlayer: player))
+		}
+		return outputPlayers
 	}
 	
-	private func realmToEventsModel() {
-		
+	private func realmToEventsModel(realmEvents: List<RealmEvent>) -> [Event] {
+		var outputEvents: [Event] = []
+		for event in realmEvents {
+			outputEvents.append(realmToEventModel(realmEvent: event))
+		}
+		return outputEvents
 	}
 		
-	private func realmToPlayerModel() {
-		
+	private func realmToPlayerModel(realmPlayer: RealmPlayer) -> Player {
+		return Player(name: realmPlayer.name, age: realmPlayer.age, height: realmPlayer.height, weight: realmPlayer.weight, description: realmPlayer.playerDescription, position: realmPlayer.position, playerIconImage: realmPlayer.playerIconImage, playerMainImage: realmPlayer.playerMainImage)
 	}
 	
-	private func realmToEventModel() {
-		
+	private func realmToEventModel(realmEvent: RealmEvent) -> Event {
+		return Event(homeTeamName: realmEvent.homeTeamName, awayTeamName: realmEvent.awayTeamName, date: realmEvent.date)
 	}
 	
 }

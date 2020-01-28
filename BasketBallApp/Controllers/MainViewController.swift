@@ -37,7 +37,7 @@ class MainViewController: UIViewController {
 	
 	func loadData() {
 		
-		let dlm = LoadingManager()
+		let dlm = LoadingManager(dataManager: RealmDataManager())
 		dlm.loadData { [weak self] (res) in
 			switch res {
 			case .success(let teams):
@@ -50,6 +50,9 @@ class MainViewController: UIViewController {
 			
 			DispatchQueue.main.async {
 				self?.cardCollectionView.reloadData()
+				//either run it on background thread safely (as it crashes), or sync but it will freeze!
+				//might not even need it, cuz app delegate calls save by itself anyway
+				dlm.dataManager.saveTeams(teamsToSave: self?.teams)
 			}
 		}
 	}

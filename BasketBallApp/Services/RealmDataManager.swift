@@ -13,20 +13,8 @@ class RealmDataManager: DataPersistable {
 	}
 	
 	func fetch<T>(_ objectType: T.Type) -> [T] {
-
-//		guard let realm = try? Realm() else { return [T]() }
-//
-//		let entityName = String(describing: objectType)
-//
-//		if entityName == "RealmTeam" {
-//			let objToFetch = RealmTeam()
-//
-//			let objects = realm.objects(type(of: objToFetch))
-//			for obj in objects {
-//				return objects
-//			}
-//		}
-		// dont really need this with Realm, and it uses very different return type
+		
+		// could still use this and just craete an array and loop through result!!
 		
 		return [T]()
 	}
@@ -47,13 +35,24 @@ class RealmDataManager: DataPersistable {
 	func deleteAllOfType<T>(_ objectType: T.Type) {
 		//Useless due to realm.deleteAll() for current usecase
 		//could be used later to delete specific things only
+		guard let realm = try? Realm() else { return }
+		do {
+			try realm.write {
+				realm.deleteAll()
+			}
+
+		} catch {
+			
+		}
 	}
 	
 	func saveTeams(teamsToSave: [Team]?) {
 		
 		guard let teams = teamsToSave else { return }
 		guard let realm = try? Realm() else { return }
-		realm.deleteAll()
+		
+		deleteAllOfType(RealmTeam.self)
+	
 		for team in teams {
 			let teamToSave = mapper.modelTeamToRealm(modelTeam: team)
 			do {
@@ -75,10 +74,11 @@ class RealmDataManager: DataPersistable {
 			guard let realm = try? Realm() else { return }
 			let realmTeams = realm.objects(RealmTeam.self)
 			for team in realmTeams {
-				let mappedTeam = self.mapper.realmToTeamModel(realmModel: team)
+				let mappedTeam = self.mapper.realmToTeamModel(realmTeam: team)
 				outputTeams.append(mappedTeam)
 			}
 			
+			debugPrint("Loaded from Realm DB")
 			completionHandler(.success(outputTeams))
 		}
 	}

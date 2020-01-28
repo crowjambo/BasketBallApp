@@ -122,10 +122,6 @@ class LoadingManager {
 				}
 				self.defaultsManager.updateTime(key: UpdateTime.event)
 				
-				DispatchQueue.global(qos: .background).async {
-					self.dataManager.saveTeams(teamsToSave: outputTeams)
-				}
-				
 				returnGroup.leave()
 			}
 		} else {
