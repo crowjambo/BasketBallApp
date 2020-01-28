@@ -54,7 +54,7 @@ class RealmDataManager: DataPersistable {
 		deleteAllOfType(RealmTeam.self)
 	
 		for team in teams {
-			let teamToSave = mapper.modelTeamToRealm(modelTeam: team)
+			let teamToSave = mapper.modelTeamToRealm(from: team)
 			do {
 				try realm.write {
 					realm.add(teamToSave)
@@ -74,7 +74,7 @@ class RealmDataManager: DataPersistable {
 			guard let realm = try? Realm() else { return }
 			let realmTeams = realm.objects(RealmTeam.self)
 			for team in realmTeams {
-				let mappedTeam = self.mapper.realmToTeamModel(realmTeam: team)
+				let mappedTeam = self.mapper.realmToTeamModel(from: team)
 				outputTeams.append(mappedTeam)
 			}
 			

@@ -16,4 +16,3 @@ Simple app made to practice unit testing, mocking and other good development pra
 <a href="#"><img src="appImages/4.png" align="left" width="250" ></a>
 
 
-

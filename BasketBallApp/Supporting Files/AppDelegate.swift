@@ -3,8 +3,6 @@ import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-	//let dataManager: DataPersistable = CoreDataManager()
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		
@@ -22,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	
 	func applicationWillTerminate(_ application: UIApplication) {
 		
-		//dataManager.save()
 	}
 
 }

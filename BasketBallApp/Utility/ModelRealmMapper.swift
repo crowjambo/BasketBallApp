@@ -9,52 +9,52 @@ class ModelRealmMapper {
 
 extension ModelRealmMapper {
 	
-	func modelTeamToRealm(modelTeam: Team) -> RealmTeam {
+	func modelTeamToRealm(from: Team) -> RealmTeam {
 		guard
-			let teamPlayers = modelTeam.teamPlayers,
-			let teamEvents = modelTeam.matchHistory
+			let teamPlayers = from.teamPlayers,
+			let teamEvents = from.matchHistory
 			else { return RealmTeam() }
 		
 		let realmTeam = RealmTeam()
-		realmTeam.teamName = modelTeam.teamName
-		realmTeam.teamDescription = modelTeam.description
-		realmTeam.teamID = modelTeam.teamID
-		realmTeam.imageTeamMain = modelTeam.imageTeamMain
-		realmTeam.imageIconName = modelTeam.imageIconName
+		realmTeam.teamName = from.teamName
+		realmTeam.teamDescription = from.description
+		realmTeam.teamID = from.teamID
+		realmTeam.imageTeamMain = from.imageTeamMain
+		realmTeam.imageIconName = from.imageIconName
 		
 		for player in teamPlayers {
-			let playerToSave = modelPlayerToRealm(modelPlayer: player)
+			let playerToSave = modelPlayerToRealm(from: player)
 			realmTeam.teamPlayers.append(playerToSave)
 		}
 		
 		for event in teamEvents {
-			let eventToSave = modelEventToRealm(modelEvent: event)
+			let eventToSave = modelEventToRealm(from: event)
 			realmTeam.matchHistory.append(eventToSave)
 		}
 		
 		return realmTeam
 	}
 	
-	private func modelPlayerToRealm(modelPlayer: Player) -> RealmPlayer {
+	private func modelPlayerToRealm(from: Player) -> RealmPlayer {
 		
 		let playerToSave = RealmPlayer()
-		playerToSave.name = modelPlayer.name
-		playerToSave.age = modelPlayer.age
-		playerToSave.height = modelPlayer.height
-		playerToSave.playerDescription = modelPlayer.description
-		playerToSave.playerIconImage = modelPlayer.playerIconImage
-		playerToSave.playerMainImage = modelPlayer.playerMainImage
-		playerToSave.position = modelPlayer.position
-		playerToSave.weight = modelPlayer.weight
+		playerToSave.name = from.name
+		playerToSave.age = from.age
+		playerToSave.height = from.height
+		playerToSave.playerDescription = from.description
+		playerToSave.playerIconImage = from.playerIconImage
+		playerToSave.playerMainImage = from.playerMainImage
+		playerToSave.position = from.position
+		playerToSave.weight = from.weight
 		
 		return playerToSave
 	}
 	
-	private func modelEventToRealm(modelEvent: Event) -> RealmEvent {
+	private func modelEventToRealm(from: Event) -> RealmEvent {
 		let eventToSave = RealmEvent()
-		eventToSave.homeTeamName = modelEvent.homeTeamName
-		eventToSave.awayTeamName = modelEvent.awayTeamName
-		eventToSave.date = modelEvent.date
+		eventToSave.homeTeamName = from.homeTeamName
+		eventToSave.awayTeamName = from.awayTeamName
+		eventToSave.date = from.date
 		
 		return eventToSave
 	}
@@ -64,14 +64,14 @@ extension ModelRealmMapper {
 
 extension ModelRealmMapper {
 	
-	func realmToTeamModel(realmTeam: RealmTeam) -> Team {
-		return Team(teamID: realmTeam.teamID, teamName: realmTeam.teamName, description: realmTeam.teamDescription, imageIconName: realmTeam.imageIconName, imageTeamMain: realmTeam.imageTeamMain, teamPlayers: realmToPlayersModel(realmPlayers: realmTeam.teamPlayers), matchHistory: realmToEventsModel(realmEvents: realmTeam.matchHistory))
+	func realmToTeamModel(from: RealmTeam) -> Team {
+		return Team(teamID: from.teamID, teamName: from.teamName, description: from.teamDescription, imageIconName: from.imageIconName, imageTeamMain: from.imageTeamMain, teamPlayers: realmToPlayersModel(realmPlayers: from.teamPlayers), matchHistory: realmToEventsModel(realmEvents: from.matchHistory))
 	}
 	
 	private func realmToPlayersModel(realmPlayers: List<RealmPlayer>) -> [Player] {
 		var outputPlayers: [Player] = []
 		for player in realmPlayers {
-			outputPlayers.append(realmToPlayerModel(realmPlayer: player))
+			outputPlayers.append(realmToPlayerModel(from: player))
 		}
 		return outputPlayers
 	}
@@ -79,17 +79,17 @@ extension ModelRealmMapper {
 	private func realmToEventsModel(realmEvents: List<RealmEvent>) -> [Event] {
 		var outputEvents: [Event] = []
 		for event in realmEvents {
-			outputEvents.append(realmToEventModel(realmEvent: event))
+			outputEvents.append(realmToEventModel(from: event))
 		}
 		return outputEvents
 	}
 		
-	private func realmToPlayerModel(realmPlayer: RealmPlayer) -> Player {
-		return Player(name: realmPlayer.name, age: realmPlayer.age, height: realmPlayer.height, weight: realmPlayer.weight, description: realmPlayer.playerDescription, position: realmPlayer.position, playerIconImage: realmPlayer.playerIconImage, playerMainImage: realmPlayer.playerMainImage)
+	private func realmToPlayerModel(from: RealmPlayer) -> Player {
+		return Player(name: from.name, age: from.age, height: from.height, weight: from.weight, description: from.playerDescription, position: from.position, playerIconImage: from.playerIconImage, playerMainImage: from.playerMainImage)
 	}
 	
-	private func realmToEventModel(realmEvent: RealmEvent) -> Event {
-		return Event(homeTeamName: realmEvent.homeTeamName, awayTeamName: realmEvent.awayTeamName, date: realmEvent.date)
+	private func realmToEventModel(from: RealmEvent) -> Event {
+		return Event(homeTeamName: from.homeTeamName, awayTeamName: from.awayTeamName, date: from.date)
 	}
 	
 }

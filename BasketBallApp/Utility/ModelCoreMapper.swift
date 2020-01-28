@@ -1,18 +1,6 @@
 import Foundation
 
-protocol ModelCoreMappable: ModelToCoreChangable, CoreToModelChangable {}
-
-protocol ModelToCoreChangable {
-	func teamModelToCoreData(team: Team, dataManager: CoreDataManager) -> Teams
-}
-
-protocol CoreToModelChangable {
-	func teamDataToTeamModel(team: Teams) -> Team
-	func eventsDataToEventsModelArray(events: [Events]) -> [Event]
-	func playersDataToPlayersModelArray(players: [Players]) -> [Player]
-}
-
-class ModelCoreMapper: ModelCoreMappable {
+class ModelCoreMapper {
 
 }
 
