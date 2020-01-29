@@ -11,6 +11,8 @@ class MainViewController: UIViewController {
 		}
 	}
 	
+	var dataLoadingManager: TestProtocol?
+	
 	// MARK: - Outlets
 	
 	@IBOutlet weak var cardCollectionView: UICollectionView!
@@ -50,8 +52,7 @@ class MainViewController: UIViewController {
 			
 			DispatchQueue.main.async {
 				self?.cardCollectionView.reloadData()
-				//either run it on background thread safely (as it crashes), or sync but it will freeze!
-				//might not even need it, cuz app delegate calls save by itself anyway
+				//TODO: - make run safely in the background thread
 				dlm.dataManager.saveTeams(teamsToSave: self?.teams)
 			}
 		}

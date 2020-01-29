@@ -29,6 +29,7 @@
 		80695C9723E0803C008CF8B2 /* teams.json in Resources */ = {isa = PBXBuildFile; fileRef = 80695C9323E0803C008CF8B2 /* teams.json */; };
 		80695C9823E0803C008CF8B2 /* teams2.json in Resources */ = {isa = PBXBuildFile; fileRef = 80695C9423E0803C008CF8B2 /* teams2.json */; };
 		80695C9923E0803C008CF8B2 /* players.json in Resources */ = {isa = PBXBuildFile; fileRef = 80695C9523E0803C008CF8B2 /* players.json */; };
+		807C2AC123E1BFC40042F9EC /* SwinjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C2AC023E1BFC40042F9EC /* SwinjectExtension.swift */; };
 		808B0E3F23E017C600885BD8 /* RealmDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808B0E3E23E017C600885BD8 /* RealmDataManager.swift */; };
 		808B0E4623E0186900885BD8 /* RealmModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808B0E4523E0186900885BD8 /* RealmModels.swift */; };
 		809840DF23D50B870041C96D /* database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 809840DD23D50B870041C96D /* database.xcdatamodeld */; };
@@ -92,6 +93,7 @@
 		80695C9323E0803C008CF8B2 /* teams.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = teams.json; sourceTree = "<group>"; };
 		80695C9423E0803C008CF8B2 /* teams2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = teams2.json; sourceTree = "<group>"; };
 		80695C9523E0803C008CF8B2 /* players.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = players.json; sourceTree = "<group>"; };
+		807C2AC023E1BFC40042F9EC /* SwinjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectExtension.swift; sourceTree = "<group>"; };
 		808B0E3E23E017C600885BD8 /* RealmDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataManager.swift; sourceTree = "<group>"; };
 		808B0E4523E0186900885BD8 /* RealmModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModels.swift; sourceTree = "<group>"; };
 		809840DE23D50B870041C96D /* database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = database.xcdatamodel; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			children = (
 				80BE6D2123D98E710051BB08 /* ModelCoreMapper.swift */,
 				803120BB23E02B97005F287F /* ModelRealmMapper.swift */,
+				807C2AC023E1BFC40042F9EC /* SwinjectExtension.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				805E855123D865CF005BA2C2 /* LoadingManager.swift in Sources */,
 				80CBBE0523C5F1E40064CFFD /* MainViewController.swift in Sources */,
 				80B10A6C23C6013D00CC987F /* Team.swift in Sources */,
+				807C2AC123E1BFC40042F9EC /* SwinjectExtension.swift in Sources */,
 				80CBBE0123C5F1E40064CFFD /* AppDelegate.swift in Sources */,
 				80A97AC823C734D7008014CF /* EventCell.swift in Sources */,
 				809840DF23D50B870041C96D /* database.xcdatamodeld in Sources */,

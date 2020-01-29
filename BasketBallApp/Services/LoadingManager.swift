@@ -1,8 +1,13 @@
 import Foundation
 
 //TODO: refactor based on codebeat.co suggestsions, remove redundancies etc.
+//TODO: rewrite code to have external and internal property in function call to make it more readable and smaller
+//TODO: catch all the .failure Results and return it to controller. There call toast message w/ error msg
+protocol TestProtocol {
+	func loadData( completionHandler: @escaping ( Result<[Team]?, Error>) -> Void )
+}
 
-class LoadingManager {
+class LoadingManager: TestProtocol {
 	
 	let requestsManager: ExternalDataRetrievable
 	let dataManager: DataPersistable

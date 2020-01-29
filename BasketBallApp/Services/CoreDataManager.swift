@@ -2,8 +2,6 @@ import Foundation
 import CoreData
 
 protocol DataPersistable {
-	func save()
-	func fetch<T>(_ objectType: T.Type) -> [T]
 	func delete(_ object: Any)
 	func deleteAllOfType<T>(_ objectType: T.Type)
 	func saveTeams(teamsToSave: [Team]?)
@@ -31,7 +29,7 @@ final class CoreDataManager: DataPersistable {
 	
 	lazy var context = persistentContainer.viewContext
 
-	func save() {
+	private func save() {
 		let context = persistentContainer.viewContext
 		if context.hasChanges {
 			do {
@@ -43,7 +41,7 @@ final class CoreDataManager: DataPersistable {
 		}
 	}
 	
-	func fetch<T>(_ objectType: T.Type) -> [T] {
+	private func fetch<T>(_ objectType: T.Type) -> [T] {
 		
 		let entityName = String(describing: objectType)
 		let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)

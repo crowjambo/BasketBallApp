@@ -8,17 +8,6 @@ class RealmDataManager: DataPersistable {
 	
 	let mapper: ModelRealmMapper = ModelRealmMapper()
 	
-	func save() {
-		//useless, dont really need this in realm
-	}
-	
-	func fetch<T>(_ objectType: T.Type) -> [T] {
-		
-		// could still use this and just craete an array and loop through result!!
-		
-		return [T]()
-	}
-	
 	func delete(_ object: Any) {
 		guard let realm = try? Realm() else { return }
 		guard let objToDel = object as? Object else { return }
