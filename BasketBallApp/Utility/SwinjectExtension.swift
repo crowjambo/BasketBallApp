@@ -16,13 +16,10 @@ extension SwinjectStoryboard {
 		
 		defaultContainer.autoregister(TestProtocol.self, initializer: LoadingManager.init)
 		
-		
-		
 		defaultContainer.storyboardInitCompleted(TeamInfoViewController.self) { (res, con) in
 			
 		}
 
-			
 	}
 	
 }

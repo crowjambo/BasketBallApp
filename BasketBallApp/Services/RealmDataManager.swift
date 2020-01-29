@@ -3,6 +3,7 @@ import RealmSwift
 
 // TODO: refactor DataPersistable to lessen useless methods, or create adapters in them to repurpose stuff
 // TODO: only load teams and save teams really needs to be public API's in current usecase, easy abstraction
+//TODO: realm persistable is automatic mapper
 
 class RealmDataManager: DataPersistable {
 	
@@ -29,7 +30,6 @@ class RealmDataManager: DataPersistable {
 			try realm.write {
 				realm.deleteAll()
 			}
-
 		} catch {
 			
 		}
@@ -40,13 +40,14 @@ class RealmDataManager: DataPersistable {
 		guard let teams = teamsToSave else { return }
 		guard let realm = try? Realm() else { return }
 		
+		//might not need this, due to update in add
 		deleteAllOfType(RealmTeam.self)
 	
 		for team in teams {
 			let teamToSave = mapper.modelTeamToRealm(from: team)
 			do {
 				try realm.write {
-					realm.add(teamToSave)
+					realm.add(teamToSave, update: .all)
 				}
 			} catch {
 				debugPrint("failed to write to realm")

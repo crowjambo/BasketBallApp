@@ -12,6 +12,10 @@ class RealmTeam: Object {
 	@objc dynamic var teamDescription: String? = nil
 	@objc dynamic var imageIconName: String? = nil
 	@objc dynamic var imageTeamMain: String? = nil
+	
+	override static func primaryKey() -> String? {
+		return "teamID"
+	}
 
 	let teamPlayers = List<RealmPlayer>()
 	let matchHistory = List<RealmEvent>()
@@ -32,6 +36,8 @@ class RealmPlayer: Object {
 	@objc dynamic var position: String? = nil
 	@objc dynamic var playerIconImage: String? = nil
 	@objc dynamic var playerMainImage: String? = nil
+	
+	
 }
 
 class RealmEvent: Object {
@@ -43,4 +49,6 @@ class RealmEvent: Object {
 	@objc dynamic var  homeTeamName: String? = nil
 	@objc dynamic var  awayTeamName: String? = nil
 	@objc dynamic var  date: String? = nil
+	
+	
 }
