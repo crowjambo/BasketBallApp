@@ -16,6 +16,7 @@ pod 'OHHTTPStubs/Swift'
 pod 'Kingfisher', '~> 5.0'
 pod 'Swinject'
 pod 'SwinjectStoryboard'
+pod 'SwinjectAutoregistration', '2.7.0'
 
   target 'BasketBallAppTests' do
     inherit! :search_paths

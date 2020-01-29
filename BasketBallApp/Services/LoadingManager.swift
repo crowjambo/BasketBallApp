@@ -5,13 +5,18 @@ import Foundation
 //TODO: catch all the .failure Results and return it to controller. There call toast message w/ error msg
 protocol TestProtocol {
 	func loadData( completionHandler: @escaping ( Result<[Team]?, Error>) -> Void )
+	
+	var requestsManager: ExternalDataRetrievable { get set }
+	var dataManager: DataPersistable { get set }
+	var defaultsManager: LastUpdateTrackable { get set }
+	
 }
 
 class LoadingManager: TestProtocol {
 	
-	let requestsManager: ExternalDataRetrievable
-	let dataManager: DataPersistable
-	let defaultsManager: LastUpdateTrackable
+	var requestsManager: ExternalDataRetrievable
+	var dataManager: DataPersistable
+	var defaultsManager: LastUpdateTrackable
 	
 	init(
 		requestsManager: ExternalDataRetrievable = HttpRequestsManager(),

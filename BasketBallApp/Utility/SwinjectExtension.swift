@@ -1,21 +1,27 @@
 import Foundation
 import SwinjectStoryboard
 import Swinject
+import SwinjectAutoregistration
 
 extension SwinjectStoryboard {
 	@objc class func setup() {
+		
+		defaultContainer.storyboardInitCompleted(MainViewController.self) { (res, con) in
+			con.dataLoadingManager = res.resolve(TestProtocol.self)
+		}
+		
 		defaultContainer.register(ExternalDataRetrievable.self) { _ in HttpRequestsManager() }
 		defaultContainer.register(DataPersistable.self) { _ in RealmDataManager() }
 		defaultContainer.register(LastUpdateTrackable.self) { _ in DefaultsManager() }
 		
-		defaultContainer.register(TestProtocol.self) { res in
-			LoadingManager(requestsManager: res.resolve(ExternalDataRetrievable.self)!, dataManager: res.resolve(DataPersistable.self)!, defaultsManager: res.resolve(LastUpdateTrackable.self)!)
+		defaultContainer.autoregister(TestProtocol.self, initializer: LoadingManager.init)
+		
+		
+		
+		defaultContainer.storyboardInitCompleted(TeamInfoViewController.self) { (res, con) in
+			
 		}
-		defaultContainer.register(MainViewController.self) { res in
-			let controller = MainViewController()
-			controller.dataLoadingManager = res.resolve(TestProtocol.self)
-			return controller
-		}
+
 			
 	}
 	
