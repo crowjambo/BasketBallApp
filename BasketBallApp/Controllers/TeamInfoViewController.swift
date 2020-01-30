@@ -23,7 +23,7 @@ class TeamInfoViewController: UIViewController {
 		setViewData()
 		setupNavigationTitleImage()
     }
-	
+
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		
 		guard
