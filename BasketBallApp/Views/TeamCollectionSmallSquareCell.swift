@@ -3,7 +3,6 @@ import Kingfisher
 
 class TeamCollectionSmallSquareCell: UICollectionViewCell {
     
-	
 	@IBOutlet weak var teamLogoOutlet: UIImageView!
 	
 	func styleItself(teamIcon: String?) {
@@ -17,8 +16,3 @@ class TeamCollectionSmallSquareCell: UICollectionViewCell {
 		
 	}
 }
-
-	
-
-
-

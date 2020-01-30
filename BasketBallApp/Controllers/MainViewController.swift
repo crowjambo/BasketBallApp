@@ -24,6 +24,7 @@ class MainViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		setupNavigationTitleImage()
 		addRefreshControl()
 		loadData()
 
@@ -102,6 +103,18 @@ class MainViewController: UIViewController {
 		self.cardCollectionView.reloadData()
 		refreshControl?.endRefreshing()
 	}
+	
+	// MARK: - Navigation bar image
+	
+	func setupNavigationTitleImage() {
+		
+		let titleImageView = UIImageView(image: #imageLiteral(resourceName: "nbalogo") )
+		titleImageView.widthAnchor.constraint(equalToConstant: 64).isActive = true
+		titleImageView.heightAnchor.constraint(equalToConstant: 44).isActive = true
+		titleImageView.contentMode = .scaleAspectFit
+		navigationItem.titleView = titleImageView
+		 
+	  }
 	
 	// MARK: - Layout buttons actions
 	

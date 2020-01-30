@@ -19,6 +19,7 @@ class PlayerDetailViewController: UIViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		loadData()
+		setupNavigationTitleImage()
     }
 	
 	// MARK: - Functions
@@ -70,4 +71,15 @@ class PlayerDetailViewController: UIViewController {
 		
 	}
     
+	// MARK: - Navigation bar image
+	
+	func setupNavigationTitleImage() {
+		
+		let titleImageView = UIImageView(image: #imageLiteral(resourceName: "nbalogo") )
+		titleImageView.widthAnchor.constraint(equalToConstant: 64).isActive = true
+		titleImageView.heightAnchor.constraint(equalToConstant: 44).isActive = true
+		titleImageView.contentMode = .scaleAspectFit
+		navigationItem.titleView = titleImageView
+		 
+	  }
 }

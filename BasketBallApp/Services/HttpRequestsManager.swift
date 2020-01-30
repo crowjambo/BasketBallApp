@@ -105,7 +105,7 @@ class HttpRequestsManager: ExternalDataRetrievable {
 		
 		for index in 0..<outputTeams.count {
 			apiGroup.enter()
-			getPlayers(teamName: outputTeams[index].teamName!) { (res) in
+			getPlayers(teamName: outputTeams[index].teamName ?? "") { (res) in
 				switch res {
 				case .success(let players):
 					outputTeams[index].teamPlayers = players
@@ -131,7 +131,7 @@ class HttpRequestsManager: ExternalDataRetrievable {
 		
 		for index in 0..<outputTeams.count {
 			apiGroup.enter()
-			getEvents(teamID: outputTeams[index].teamID!) { (res) in
+			getEvents(teamID: outputTeams[index].teamID ?? "") { (res) in
 				switch res {
 				case .success(let events):
 					outputTeams[index].matchHistory = events

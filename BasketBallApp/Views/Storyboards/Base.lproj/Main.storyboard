@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--NBA-->
+        <!--Main View Controller-->
         <scene sceneID="vZz-bv-JwZ">
             <objects>
                 <viewController id="Aal-Ie-FUh" customClass="MainViewController" customModule="BasketBallApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -140,7 +140,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="x2T-ZO-f3I"/>
                     </view>
-                    <navigationItem key="navigationItem" title="NBA" id="vpF-SB-J9H">
+                    <navigationItem key="navigationItem" id="vpF-SB-J9H">
                         <rightBarButtonItems>
                             <barButtonItem image="circle.grid.3x3.fill" catalog="system" id="VfF-mB-Z92">
                                 <connections>
@@ -180,7 +180,7 @@
                             </imageView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7I2-iX-S7R">
                                 <rect key="frame" x="9" y="346" width="396" height="32"/>
-                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <segments>
                                     <segment title="News"/>
                                     <segment title="Players"/>
@@ -443,7 +443,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="gMj-Ah-ueC"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="0.86003571748733521" green="0.26527756452560425" blue="0.21699211001396179" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="A8Y-JX-B17" firstAttribute="bottom" secondItem="OX1-kn-3Z8" secondAttribute="bottom" id="EoB-Ru-aiE"/>
                             <constraint firstItem="A8Y-JX-B17" firstAttribute="trailing" secondItem="OX1-kn-3Z8" secondAttribute="trailing" id="nan-DS-I3W"/>
@@ -474,7 +474,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <color key="barTintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
@@ -497,6 +497,6 @@
         <image name="square.and.arrow.up" catalog="system" width="56" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NPb-2L-eKS"/>
+        <segue reference="0dY-fs-7D5"/>
     </inferredMetricsTieBreakers>
 </document>
