@@ -61,7 +61,7 @@ class MainViewController: UIViewController {
 	
 	// MARK: - Refresh control
 	
-	func addRefreshControl() {
+	private func addRefreshControl() {
 		
 		refreshControl = UIRefreshControl()
 		guard let refreshControl = refreshControl else { return }

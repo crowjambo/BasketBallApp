@@ -21,7 +21,6 @@ class TeamInfoViewController: UIViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		setViewData()
-		addRefreshControl()
     }
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -49,6 +48,7 @@ class TeamInfoViewController: UIViewController {
 			let url = URL(string: mainImageName)
 			mainTeamImageOutlet.kf.setImage(with: url)
 		}
+		addRefreshControl()
 	}
 
 	// MARK: - User interaction
@@ -69,7 +69,7 @@ class TeamInfoViewController: UIViewController {
 
 	// MARK: - Refresh control
 	
-	func addRefreshControl() {
+	private func addRefreshControl() {
 		
 		refreshControl = UIRefreshControl()
 		guard let refreshControl = refreshControl else { return }
