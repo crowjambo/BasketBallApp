@@ -22,7 +22,7 @@
 		80383D5823DF09D20052DDFF /* MockUserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80383D5623DF09D20052DDFF /* MockUserDefaultsManager.swift */; };
 		805E855123D865CF005BA2C2 /* LoadingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805E855023D865CF005BA2C2 /* LoadingManager.swift */; };
 		80695C9623E0803C008CF8B2 /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = 80695C9223E0803C008CF8B2 /* events.json */; };
-		80695C9723E0803C008CF8B2 /* teams.json in Resources */ = {isa = PBXBuildFile; fileRef = 80695C9323E0803C008CF8B2 /* teams.json */; };
+		80695C9723E0803C008CF8B2 /* emptyTeams.json in Resources */ = {isa = PBXBuildFile; fileRef = 80695C9323E0803C008CF8B2 /* emptyTeams.json */; };
 		80695C9823E0803C008CF8B2 /* teams2.json in Resources */ = {isa = PBXBuildFile; fileRef = 80695C9423E0803C008CF8B2 /* teams2.json */; };
 		80695C9923E0803C008CF8B2 /* players.json in Resources */ = {isa = PBXBuildFile; fileRef = 80695C9523E0803C008CF8B2 /* players.json */; };
 		807C2AC123E1BFC40042F9EC /* SwinjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807C2AC023E1BFC40042F9EC /* SwinjectExtension.swift */; };
@@ -84,7 +84,7 @@
 		80383D5623DF09D20052DDFF /* MockUserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserDefaultsManager.swift; sourceTree = "<group>"; };
 		805E855023D865CF005BA2C2 /* LoadingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingManager.swift; sourceTree = "<group>"; };
 		80695C9223E0803C008CF8B2 /* events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = events.json; sourceTree = "<group>"; };
-		80695C9323E0803C008CF8B2 /* teams.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = teams.json; sourceTree = "<group>"; };
+		80695C9323E0803C008CF8B2 /* emptyTeams.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emptyTeams.json; sourceTree = "<group>"; };
 		80695C9423E0803C008CF8B2 /* teams2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = teams2.json; sourceTree = "<group>"; };
 		80695C9523E0803C008CF8B2 /* players.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = players.json; sourceTree = "<group>"; };
 		807C2AC023E1BFC40042F9EC /* SwinjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectExtension.swift; sourceTree = "<group>"; };
@@ -174,7 +174,7 @@
 			children = (
 				80695C9223E0803C008CF8B2 /* events.json */,
 				80695C9523E0803C008CF8B2 /* players.json */,
-				80695C9323E0803C008CF8B2 /* teams.json */,
+				80695C9323E0803C008CF8B2 /* emptyTeams.json */,
 				80695C9423E0803C008CF8B2 /* teams2.json */,
 				800339B623DB1D2D00F93FC3 /* Mocks */,
 				802AF94923CCA282000EC555 /* HttpRequestsManagerTests.swift */,
@@ -395,7 +395,7 @@
 			files = (
 				80695C9923E0803C008CF8B2 /* players.json in Resources */,
 				80695C9823E0803C008CF8B2 /* teams2.json in Resources */,
-				80695C9723E0803C008CF8B2 /* teams.json in Resources */,
+				80695C9723E0803C008CF8B2 /* emptyTeams.json in Resources */,
 				80695C9623E0803C008CF8B2 /* events.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

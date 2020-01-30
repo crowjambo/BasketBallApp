@@ -9,7 +9,8 @@ class MockDataManager: DataPersistable {
 	}
 	
 	func loadTeams(completionHandler: @escaping (Result<[Team]?, Error>) -> Void) {
-		return
+		
+		completionHandler(.success([Team]()))
 	}
 	
 }

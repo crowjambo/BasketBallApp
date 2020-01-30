@@ -1,11 +1,13 @@
 import Foundation
 import Alamofire
+import OHHTTPStubs
+
 @testable import BasketBallApp
 
 class MockRequestsManager: ExternalDataRetrievable {
 		
-	func getTeams(baseApiURL: String, url: String, completionHandler: @escaping TeamsResponse) {
-
+	func getTeams(baseApiURL: String = "https://thesportsdb.com/api/v1/json/1/", url: String = "search_all_teams.php?l=NBA", completionHandler: @escaping TeamsResponse) {
+		
 		completionHandler(.success([Team]()))
 	}
 	

@@ -67,14 +67,10 @@ class LoadingManager: TeamsDataLoadable {
 		}
 		
 		returnGroup.notify(queue: .main) {
-			if let outputTeams = outputTeams {
-				if !outputTeams.isEmpty {
-					completionHandler(.success(outputTeams))
-					self.dataManager.saveTeams(teamsToSave: outputTeams)
-				}
-			} else {
-				completionHandler(.failure(TeamsLoadingError.noTeamsLoaded))
-			}
+			
+			completionHandler(.success(outputTeams))
+			self.dataManager.saveTeams(teamsToSave: outputTeams)
+
 			
 		}
 		

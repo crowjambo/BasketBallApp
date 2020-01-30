@@ -13,6 +13,8 @@ extension SwinjectStoryboard {
 		defaultContainer.register(ExternalDataRetrievable.self) { _ in HttpRequestsManager() }
 		defaultContainer.register(DataPersistable.self) { _ in RealmDataManager() }
 		defaultContainer.register(LastUpdateTrackable.self) { _ in DefaultsManager() }
+		
 		defaultContainer.autoregister(TeamsDataLoadable.self, initializer: LoadingManager.init)
+		
 	}
 }
