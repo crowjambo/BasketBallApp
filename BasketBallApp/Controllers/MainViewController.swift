@@ -11,6 +11,8 @@ class MainViewController: UIViewController {
 		}
 	}
 	
+	var refreshControl: UIRefreshControl?
+	
 	var dataLoadingManager: TeamsDataLoadable?
 	
 	// MARK: - Outlets
@@ -21,6 +23,7 @@ class MainViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		addRefreshControl()
 		loadData()
 
 	}
@@ -55,6 +58,50 @@ class MainViewController: UIViewController {
 
 		})
 	}
+	
+	// MARK: - Refresh control
+	
+	func addRefreshControl() {
+		
+		refreshControl = UIRefreshControl()
+		guard let refreshControl = refreshControl else { return }
+		refreshControl.tintColor = UIColor.red
+		refreshControl.addTarget(self, action: #selector(refreshList), for: .valueChanged)
+		cardCollectionView.addSubview(refreshControl)
+	}
+
+	@objc func refreshList() {
+		dataLoadingManager?.requestsManager.getTeams(baseApiURL: "https://www.thesportsdb.com/api/v1/json/1/", url: "search_all_teams.php?l=NBA", completionHandler: { (res) in
+			switch res {
+			case .success(let teams):
+				self.teams = teams
+			case .failure(let err):
+			break
+			}
+			
+			self.dataLoadingManager?.requestsManager.getAllTeamsPlayersApi(teams: self.teams, completionHandler: { (res) in
+				switch res {
+				case .success(let teams):
+					self.teams = teams
+				case .failure(let err):
+				break
+			}
+				
+				self.dataLoadingManager?.requestsManager.getAllTeamsEventsApi(teams: self.teams, completionHandler: { (res) in
+					switch res {
+					case .success(let teams):
+						self.teams = teams
+					case .failure(let err):
+					break
+					}
+				})
+			})
+			
+		})
+		self.cardCollectionView.reloadData()
+		refreshControl?.endRefreshing()
+	}
+	
 }
 
 // MARK: - CollectionView setup

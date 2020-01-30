@@ -10,6 +10,10 @@ extension SwinjectStoryboard {
 			con.dataLoadingManager = res.resolve(TeamsDataLoadable.self)
 		}
 		
+		defaultContainer.storyboardInitCompleted(TeamInfoViewController.self) { (res, con) in
+			con.dataLoadingManager = res.resolve(TeamsDataLoadable.self)
+		}
+		
 		defaultContainer.register(ExternalDataRetrievable.self) { _ in HttpRequestsManager() }
 		defaultContainer.register(DataPersistable.self) { _ in RealmDataManager() }
 		defaultContainer.register(LastUpdateTrackable.self) { _ in DefaultsManager() }

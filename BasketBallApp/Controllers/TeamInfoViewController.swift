@@ -6,6 +6,8 @@ class TeamInfoViewController: UIViewController {
 	// MARK: - Variables
 	
 	var team: Team?
+	var refreshControl: UIRefreshControl?
+	var dataLoadingManager: TeamsDataLoadable?
 	
 	// MARK: - Outlets
 		
@@ -19,6 +21,7 @@ class TeamInfoViewController: UIViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		setViewData()
+		addRefreshControl()
     }
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -64,6 +67,41 @@ class TeamInfoViewController: UIViewController {
 		tableOutlet.reloadData()
 	}
 
+	// MARK: - Refresh control
+	
+	func addRefreshControl() {
+		
+		refreshControl = UIRefreshControl()
+		guard let refreshControl = refreshControl else { return }
+		refreshControl.tintColor = UIColor.red
+		refreshControl.addTarget(self, action: #selector(refreshList), for: .valueChanged)
+		tableOutlet.addSubview(refreshControl)
+	}
+
+	@objc func refreshList() {
+		
+		dataLoadingManager?.requestsManager.getPlayers(baseApiURL: "https://www.thesportsdb.com/api/v1/json/1/", url: "searchplayers.php?t=", teamName: (self.team?.teamName!)!, completionHandler: { (res) in
+			switch res {
+			case .success(let players):
+				self.team?.teamPlayers = players
+			case .failure(let err):
+			break
+			}
+			
+			self.dataLoadingManager?.requestsManager.getEvents(baseApiURL: "https://www.thesportsdb.com/api/v1/json/1/", url: "eventslast.php?id=", teamID: (self.team?.teamID!)!, completionHandler: { (res) in
+				switch res {
+				case .success(let events):
+					self.team?.matchHistory = events
+				case .failure(let err):
+				break
+				}
+			})
+		})
+		
+		self.tableOutlet.reloadData()
+		refreshControl?.endRefreshing()
+	}
+	
 }
 
 // MARK: - TableView setup
