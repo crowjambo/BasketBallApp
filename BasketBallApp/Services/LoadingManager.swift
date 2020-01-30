@@ -1,6 +1,8 @@
 import Foundation
 
-//TODO: catch all the .failure Results and return it to controller. There call toast message w/ error msg
+enum TeamsLoadingError: Error {
+	case noTeamsLoaded
+}
 
 protocol TeamsDataLoadable {
 	func loadData( completionHandler: @escaping ( Result<[Team]?, Error>) -> Void )
@@ -65,8 +67,15 @@ class LoadingManager: TeamsDataLoadable {
 		}
 		
 		returnGroup.notify(queue: .main) {
-			completionHandler(.success(outputTeams))
-			self.dataManager.saveTeams(teamsToSave: outputTeams)
+			if let outputTeams = outputTeams {
+				if !outputTeams.isEmpty {
+					completionHandler(.success(outputTeams))
+					self.dataManager.saveTeams(teamsToSave: outputTeams)
+				}
+			} else {
+				completionHandler(.failure(TeamsLoadingError.noTeamsLoaded))
+			}
+			
 		}
 		
 	}

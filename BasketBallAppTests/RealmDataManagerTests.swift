@@ -1,8 +1,6 @@
 import XCTest
 
-//TODO: write tests
-
-class ModelCoreMapperTests: XCTestCase {
+class RealmDataManagerTests: XCTestCase {
 
     override func setUp() {
     }

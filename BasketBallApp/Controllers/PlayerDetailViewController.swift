@@ -43,17 +43,17 @@ class PlayerDetailViewController: UIViewController {
 		
 	}
 	
-	func splitHeight(height: String) -> String {
+	private func splitHeight(height: String) -> String {
 		let array = height.components(separatedBy: "(")
 		return array[0]
 	}
 	
-	func splitWeight(weight: String) -> String {
+	private func splitWeight(weight: String) -> String {
 		let array = weight.components(separatedBy: " ")
 		return array[0]
 	}
 	
-	func getAgeFromDate(date: String) -> String {
+	private func getAgeFromDate(date: String) -> String {
 		
 		let formatter = DateFormatter()
 		formatter.dateFormat = "yyyy-mm-dd"
