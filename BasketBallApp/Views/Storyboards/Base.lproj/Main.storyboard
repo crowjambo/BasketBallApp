@@ -19,16 +19,43 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LLU-3Y-lpo">
                                 <rect key="frame" x="20" y="108" width="374" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="50" minimumInteritemSpacing="2" id="NOM-cS-hrd">
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="50" minimumInteritemSpacing="2" id="NOM-cS-hrd">
                                     <size key="itemSize" width="325" height="228"/>
-                                    <size key="estimatedItemSize" width="325" height="228"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TeamCollectionSmallSquareCell" id="Kx5-hC-aOC" customClass="TeamCollectionSmallSquareCell" customModule="BasketBallApp" customModuleProvider="target">
+                                        <rect key="frame" x="112" y="0.0" width="150" height="150"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="yvn-KG-Ixm">
+                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1Ir-Mt-8fE">
+                                                    <rect key="frame" x="1" y="1.5" width="148" height="147"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="150" id="55w-zQ-ShC"/>
+                                                        <constraint firstAttribute="width" constant="150" id="b2f-5b-g06"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="1Ir-Mt-8fE" firstAttribute="leading" secondItem="yvn-KG-Ixm" secondAttribute="leading" constant="1" id="2mO-jU-YeI"/>
+                                                <constraint firstAttribute="bottom" secondItem="1Ir-Mt-8fE" secondAttribute="bottom" constant="1" id="IC7-Cp-f5o"/>
+                                                <constraint firstAttribute="trailing" secondItem="1Ir-Mt-8fE" secondAttribute="trailing" constant="1" id="Xig-F4-3lv"/>
+                                                <constraint firstItem="1Ir-Mt-8fE" firstAttribute="top" secondItem="yvn-KG-Ixm" secondAttribute="top" constant="1" id="pgb-nB-hcU"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="150" height="150"/>
+                                        <connections>
+                                            <outlet property="teamLogoOutlet" destination="1Ir-Mt-8fE" id="qac-pY-34O"/>
+                                            <segue destination="1mn-Ee-A9a" kind="show" id="0dY-fs-7D5"/>
+                                        </connections>
+                                    </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" reuseIdentifier="TeamCollectionCell" id="7Zi-Q0-Yqj" customClass="TeamCollectionCell" customModule="BasketBallApp" customModuleProvider="target">
-                                        <rect key="frame" x="24.5" y="0.0" width="325" height="228"/>
+                                        <rect key="frame" x="24.5" y="200" width="325" height="228"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Xee-pg-WO7">
                                             <rect key="frame" x="0.0" y="0.0" width="325" height="228"/>
@@ -89,6 +116,7 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <size key="customSize" width="325" height="228"/>
                                         <connections>
                                             <outlet property="teamDescriptionOutlet" destination="4U5-qF-yQF" id="qlf-2o-K1X"/>
                                             <outlet property="teamIconOutlet" destination="jtL-uh-9rG" id="SJL-S1-ydS"/>
@@ -112,7 +140,20 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="x2T-ZO-f3I"/>
                     </view>
-                    <navigationItem key="navigationItem" title="NBA" id="vpF-SB-J9H"/>
+                    <navigationItem key="navigationItem" title="NBA" id="vpF-SB-J9H">
+                        <rightBarButtonItems>
+                            <barButtonItem image="circle.grid.3x3.fill" catalog="system" id="VfF-mB-Z92">
+                                <connections>
+                                    <action selector="gridLayoutAction:" destination="Aal-Ie-FUh" id="afW-6T-3OK"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="rectangle.grid.1x2" catalog="system" id="FoT-U5-qM0">
+                                <connections>
+                                    <action selector="linearLayoutAction:" destination="Aal-Ie-FUh" id="zLo-sA-s2P"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <connections>
                         <outlet property="cardCollectionView" destination="LLU-3Y-lpo" id="AtW-yc-bMD"/>
                     </connections>
@@ -316,7 +357,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zez-Vx-rS9">
-                                                        <rect key="frame" x="0.0" y="450" width="57" height="29"/>
+                                                        <rect key="frame" x="0.0" y="450" width="394" height="29"/>
                                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.19441247669842585" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="29" id="4UT-bc-umB"/>
@@ -332,7 +373,7 @@
                                                     <constraint firstAttribute="height" constant="500" id="2qp-ka-eAT"/>
                                                     <constraint firstItem="zez-Vx-rS9" firstAttribute="top" secondItem="YCR-QD-pab" secondAttribute="top" constant="450" id="M6S-cV-4St"/>
                                                     <constraint firstAttribute="trailing" secondItem="ELE-ZZ-jEs" secondAttribute="trailing" id="TYp-gm-oRg"/>
-                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zez-Vx-rS9" secondAttribute="trailing" symbolic="YES" id="Ud6-g6-iDg"/>
+                                                    <constraint firstAttribute="trailing" secondItem="zez-Vx-rS9" secondAttribute="trailing" constant="20" symbolic="YES" id="Ud6-g6-iDg"/>
                                                     <constraint firstItem="ELE-ZZ-jEs" firstAttribute="top" secondItem="YCR-QD-pab" secondAttribute="top" id="kp8-tQ-isY"/>
                                                     <constraint firstItem="zez-Vx-rS9" firstAttribute="leading" secondItem="YCR-QD-pab" secondAttribute="leading" id="opw-bj-AgH"/>
                                                 </constraints>
@@ -449,8 +490,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="circle.grid.3x3.fill" catalog="system" width="64" height="56"/>
         <image name="pencil.circle" catalog="system" width="64" height="60"/>
         <image name="pencil.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="rectangle.grid.1x2" catalog="system" width="64" height="50"/>
         <image name="square.and.arrow.up" catalog="system" width="56" height="64"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="NPb-2L-eKS"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -10,6 +10,7 @@ class MainViewController: UIViewController {
 			cardCollectionView.reloadData()
 		}
 	}
+	var displayLinear: Bool = true
 	
 	var refreshControl: UIRefreshControl?
 	
@@ -31,7 +32,7 @@ class MainViewController: UIViewController {
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		guard
 			let destinationController = segue.destination as? TeamInfoViewController,
-			let selectedCell = sender as? TeamCollectionCell,
+			let selectedCell = sender as? UICollectionViewCell,
 			let indexPath = cardCollectionView.indexPath(for: selectedCell),
 			let teams = teams
 			else { return }
@@ -102,6 +103,18 @@ class MainViewController: UIViewController {
 		refreshControl?.endRefreshing()
 	}
 	
+	// MARK: - Layout buttons actions
+	
+	@IBAction func linearLayoutAction(_ sender: Any) {
+		displayLinear = true
+		cardCollectionView.reloadData()
+	}
+	
+	@IBAction func gridLayoutAction(_ sender: Any) {
+		displayLinear = false
+		cardCollectionView.reloadData()
+	}
+	
 }
 
 // MARK: - CollectionView setup
@@ -114,15 +127,28 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		
-		if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCollectionCell", for: indexPath) as? TeamCollectionCell {
-			if let teams = teams {
-				let team = teams[indexPath.row]
-				cell.styleItself(teamName: team.teamName, teamDescription: team.description, teamIcon: team.imageIconName)
+
+		if displayLinear {
+			if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCollectionCell", for: indexPath) as? TeamCollectionCell {
+				if let teams = teams {
+					let team = teams[indexPath.row]
+					cell.styleItself(teamName: team.teamName, teamDescription: team.description, teamIcon: team.imageIconName)
+				}
+				return cell
+			} else {
+				return UICollectionViewCell()
 			}
-			return cell
 		} else {
-			return UICollectionViewCell()
+			if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCollectionSmallSquareCell", for: indexPath) as? TeamCollectionSmallSquareCell {
+				if let teams = teams {
+					let team = teams[indexPath.row]
+					cell.styleItself(teamIcon: team.imageIconName)
+				}
+				return cell
+			} else {
+				return UICollectionViewCell()
+			}
 		}
+		
 	}
 }
