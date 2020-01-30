@@ -37,7 +37,6 @@ class RealmPlayer: Object {
 	@objc dynamic var playerIconImage: String? = nil
 	@objc dynamic var playerMainImage: String? = nil
 	
-	
 }
 
 class RealmEvent: Object {
@@ -49,6 +48,5 @@ class RealmEvent: Object {
 	@objc dynamic var  homeTeamName: String? = nil
 	@objc dynamic var  awayTeamName: String? = nil
 	@objc dynamic var  date: String? = nil
-	
-	
+		
 }

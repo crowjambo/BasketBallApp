@@ -11,7 +11,7 @@ class MainViewController: UIViewController {
 		}
 	}
 	
-	var dataLoadingManager: TestProtocol?
+	var dataLoadingManager: TeamsDataLoadable?
 	
 	// MARK: - Outlets
 	
@@ -51,28 +51,9 @@ class MainViewController: UIViewController {
 			
 			DispatchQueue.main.async {
 				self?.cardCollectionView.reloadData()
-				//TODO: - make run safely in the background thread
-				self?.dataLoadingManager?.dataManager.saveTeams(teamsToSave: self?.teams)
 			}
+
 		})
-		
-//		let dlm = LoadingManager(dataManager: RealmDataManager())
-//		dlm.loadData { [weak self] (res) in
-//			switch res {
-//			case .success(let teams):
-//				self?.teams = teams
-//			case .failure(let err):
-//				self?.teams = []
-//				self?.view.makeToast("Failed to load teams", duration: 3.0, position: .bottom)
-//				debugPrint(err)
-//			}
-//
-//			DispatchQueue.main.async {
-//				self?.cardCollectionView.reloadData()
-//				//TODO: - make run safely in the background thread
-//				dlm.dataManager.saveTeams(teamsToSave: self?.teams)
-//			}
-//		}
 	}
 }
 

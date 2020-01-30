@@ -1,10 +1,8 @@
 import Foundation
 
-//TODO: refactor based on codebeat.co suggestsions, remove redundancies etc.
-//TODO: rewrite code to have external and internal property in function call to make it more readable and smaller
 //TODO: catch all the .failure Results and return it to controller. There call toast message w/ error msg
-//TODO: rename test protocol to something better
-protocol TestProtocol {
+
+protocol TeamsDataLoadable {
 	func loadData( completionHandler: @escaping ( Result<[Team]?, Error>) -> Void )
 	
 	var requestsManager: ExternalDataRetrievable { get set }
@@ -13,16 +11,16 @@ protocol TestProtocol {
 	
 }
 
-class LoadingManager: TestProtocol {
+class LoadingManager: TeamsDataLoadable {
 	
 	var requestsManager: ExternalDataRetrievable
 	var dataManager: DataPersistable
 	var defaultsManager: LastUpdateTrackable
 	
 	init(
-		requestsManager: ExternalDataRetrievable = HttpRequestsManager(),
-		dataManager: DataPersistable = CoreDataManager(),
-		defaultsManager: LastUpdateTrackable = DefaultsManager() ) {
+		requestsManager: ExternalDataRetrievable,
+		dataManager: DataPersistable,
+		defaultsManager: LastUpdateTrackable) {
 		
 		self.requestsManager = requestsManager
 		self.dataManager = dataManager
@@ -68,6 +66,7 @@ class LoadingManager: TestProtocol {
 		
 		returnGroup.notify(queue: .main) {
 			completionHandler(.success(outputTeams))
+			self.dataManager.saveTeams(teamsToSave: outputTeams)
 		}
 		
 	}
@@ -86,12 +85,14 @@ class LoadingManager: TestProtocol {
 					completion(.failure(err))
 				}
 				self.defaultsManager.updateTime(key: UpdateTime.team)
+				debugPrint("teams updated through API")
 			}
 		} else {
 			dataManager.loadTeams { (res) in
 				switch res {
 				case .success(let teams):
 					outputTeams = teams
+					debugPrint("teams loaded from DB")
 					completion(.success(outputTeams))
 				case .failure(let err):
 					completion(.failure(err))
@@ -115,6 +116,7 @@ class LoadingManager: TestProtocol {
 					completion(.failure(err))
 				}
 				self.defaultsManager.updateTime(key: UpdateTime.player)
+				debugPrint("players updated through API")
 				returnGroup.leave()
 			}
 		} else {
@@ -135,6 +137,7 @@ class LoadingManager: TestProtocol {
 				case .failure(let err):
 					completion(.failure(err))
 				}
+				debugPrint("events updated through API")
 				self.defaultsManager.updateTime(key: UpdateTime.event)
 				
 				returnGroup.leave()

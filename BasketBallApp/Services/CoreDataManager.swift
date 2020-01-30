@@ -2,8 +2,6 @@ import Foundation
 import CoreData
 
 protocol DataPersistable {
-	func delete(_ object: Any)
-	func deleteAllOfType<T>(_ objectType: T.Type)
 	func saveTeams(teamsToSave: [Team]?)
 	func loadTeams(completionHandler: @escaping (Result<[Team]?, Error>) -> Void )
 }

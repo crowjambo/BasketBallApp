@@ -22,10 +22,6 @@ extension ModelCoreMapper {
 		return outputEvents
 	}
 	
-	private func eventDataToEventModel(event: Events) -> Event {
-		return Event(homeTeamName: event.homeTeamName, awayTeamName: event.awayTeamName, date: event.matchDate)
-	}
-	
 	func playersDataToPlayersModelArray(players: [Players]) -> [Player] {
 		var outputPlayers: [Player] = []
 		
@@ -34,6 +30,10 @@ extension ModelCoreMapper {
 		}
 		
 		return outputPlayers
+	}
+	
+	private func eventDataToEventModel(event: Events) -> Event {
+		return Event(homeTeamName: event.homeTeamName, awayTeamName: event.awayTeamName, date: event.matchDate)
 	}
 	
 	private func playerDataToPlayerModel(player: Players) -> Player {

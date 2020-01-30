@@ -64,31 +64,31 @@ extension ModelRealmMapper {
 
 extension ModelRealmMapper {
 	
-	func realmToTeamModel(from: RealmTeam) -> Team {
-		return Team(teamID: from.teamID, teamName: from.teamName, description: from.teamDescription, imageIconName: from.imageIconName, imageTeamMain: from.imageTeamMain, teamPlayers: realmToPlayersModel(realmPlayers: from.teamPlayers), matchHistory: realmToEventsModel(realmEvents: from.matchHistory))
+	func realmTeamToModel(from: RealmTeam) -> Team {
+		return Team(teamID: from.teamID, teamName: from.teamName, description: from.teamDescription, imageIconName: from.imageIconName, imageTeamMain: from.imageTeamMain, teamPlayers: realmPlayersToModel(realmPlayers: from.teamPlayers), matchHistory: realmEventsToModel(realmEvents: from.matchHistory))
 	}
 	
-	private func realmToPlayersModel(realmPlayers: List<RealmPlayer>) -> [Player] {
+	private func realmPlayersToModel(realmPlayers: List<RealmPlayer>) -> [Player] {
 		var outputPlayers: [Player] = []
 		for player in realmPlayers {
-			outputPlayers.append(realmToPlayerModel(from: player))
+			outputPlayers.append(realmPlayerToModel(from: player))
 		}
 		return outputPlayers
 	}
 	
-	private func realmToEventsModel(realmEvents: List<RealmEvent>) -> [Event] {
+	private func realmEventsToModel(realmEvents: List<RealmEvent>) -> [Event] {
 		var outputEvents: [Event] = []
 		for event in realmEvents {
-			outputEvents.append(realmToEventModel(from: event))
+			outputEvents.append(realmEventToModel(from: event))
 		}
 		return outputEvents
 	}
 		
-	private func realmToPlayerModel(from: RealmPlayer) -> Player {
+	private func realmPlayerToModel(from: RealmPlayer) -> Player {
 		return Player(name: from.name, age: from.age, height: from.height, weight: from.weight, description: from.playerDescription, position: from.position, playerIconImage: from.playerIconImage, playerMainImage: from.playerMainImage)
 	}
 	
-	private func realmToEventModel(from: RealmEvent) -> Event {
+	private func realmEventToModel(from: RealmEvent) -> Event {
 		return Event(homeTeamName: from.homeTeamName, awayTeamName: from.awayTeamName, date: from.date)
 	}
 	
