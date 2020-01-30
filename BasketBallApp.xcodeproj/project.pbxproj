@@ -10,7 +10,6 @@
 		800339B523DAEC8200F93FC3 /* LoadingManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800339B423DAEC8200F93FC3 /* LoadingManagerTests.swift */; };
 		801D6F4923D4EB6C00C16067 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801D6F4823D4EB6C00C16067 /* CoreDataManager.swift */; };
 		80260E5B23DED4280021216E /* DefaultsManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80260E5A23DED4280021216E /* DefaultsManagerTests.swift */; };
-		80260E5D23DED44B0021216E /* CoreDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80260E5C23DED44B0021216E /* CoreDataManagerTests.swift */; };
 		80281AC923D51DD20076B4E5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80281AC823D51DD20076B4E5 /* Default-568h@2x.png */; };
 		802AF94A23CCA282000EC555 /* HttpRequestsManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802AF94923CCA282000EC555 /* HttpRequestsManagerTests.swift */; };
 		80304EE523D4FAA500A645BB /* DefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80304EE423D4FAA500A645BB /* DefaultsManager.swift */; };
@@ -21,8 +20,6 @@
 		80383D5523DF09AB0052DDFF /* MockRequestsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80383D5323DF09AB0052DDFF /* MockRequestsManager.swift */; };
 		80383D5723DF09D20052DDFF /* MockUserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80383D5623DF09D20052DDFF /* MockUserDefaultsManager.swift */; };
 		80383D5823DF09D20052DDFF /* MockUserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80383D5623DF09D20052DDFF /* MockUserDefaultsManager.swift */; };
-		80383D5A23DF0A2F0052DDFF /* MockCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80383D5923DF0A2F0052DDFF /* MockCoreDataManager.swift */; };
-		80383D5B23DF0A2F0052DDFF /* MockCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80383D5923DF0A2F0052DDFF /* MockCoreDataManager.swift */; };
 		805E855123D865CF005BA2C2 /* LoadingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805E855023D865CF005BA2C2 /* LoadingManager.swift */; };
 		80695C9623E0803C008CF8B2 /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = 80695C9223E0803C008CF8B2 /* events.json */; };
 		80695C9723E0803C008CF8B2 /* teams.json in Resources */ = {isa = PBXBuildFile; fileRef = 80695C9323E0803C008CF8B2 /* teams.json */; };
@@ -41,8 +38,7 @@
 		80A97ACA23C73B6F008014CF /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A97AC923C73B6F008014CF /* PlayerCell.swift */; };
 		80A97ACC23C742A5008014CF /* PlayerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A97ACB23C742A5008014CF /* PlayerDetailViewController.swift */; };
 		80B10A6C23C6013D00CC987F /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B10A6B23C6013D00CC987F /* Team.swift */; };
-		80B68B4E23E2CD6D00963D28 /* RealmDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B68B4D23E2CD6D00963D28 /* RealmDataManagerTests.swift */; };
-		80B68B5023E2CD9300963D28 /* MockRealmDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B68B4F23E2CD9300963D28 /* MockRealmDataManager.swift */; };
+		80B68B5023E2CD9300963D28 /* MockDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B68B4F23E2CD9300963D28 /* MockDataManager.swift */; };
 		80BE6D2223D98E710051BB08 /* ModelCoreMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BE6D2123D98E710051BB08 /* ModelCoreMapper.swift */; };
 		80BE6D2423D999A70051BB08 /* Responses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BE6D2323D999A70051BB08 /* Responses.swift */; };
 		80CBBE0123C5F1E40064CFFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CBBE0023C5F1E40064CFFD /* AppDelegate.swift */; };
@@ -74,7 +70,6 @@
 		800339B423DAEC8200F93FC3 /* LoadingManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingManagerTests.swift; sourceTree = "<group>"; };
 		801D6F4823D4EB6C00C16067 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		80260E5A23DED4280021216E /* DefaultsManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsManagerTests.swift; sourceTree = "<group>"; };
-		80260E5C23DED44B0021216E /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
 		80281AC823D51DD20076B4E5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		802AF94723CCA282000EC555 /* BasketBallAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasketBallAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		802AF94923CCA282000EC555 /* HttpRequestsManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRequestsManagerTests.swift; sourceTree = "<group>"; };
@@ -87,7 +82,6 @@
 		803120C823E04903005F287F /* appImages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = appImages; sourceTree = "<group>"; };
 		80383D5323DF09AB0052DDFF /* MockRequestsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRequestsManager.swift; sourceTree = "<group>"; };
 		80383D5623DF09D20052DDFF /* MockUserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserDefaultsManager.swift; sourceTree = "<group>"; };
-		80383D5923DF0A2F0052DDFF /* MockCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoreDataManager.swift; sourceTree = "<group>"; };
 		805E855023D865CF005BA2C2 /* LoadingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingManager.swift; sourceTree = "<group>"; };
 		80695C9223E0803C008CF8B2 /* events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = events.json; sourceTree = "<group>"; };
 		80695C9323E0803C008CF8B2 /* teams.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = teams.json; sourceTree = "<group>"; };
@@ -106,8 +100,7 @@
 		80A97AC923C73B6F008014CF /* PlayerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
 		80A97ACB23C742A5008014CF /* PlayerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailViewController.swift; sourceTree = "<group>"; };
 		80B10A6B23C6013D00CC987F /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
-		80B68B4D23E2CD6D00963D28 /* RealmDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataManagerTests.swift; sourceTree = "<group>"; };
-		80B68B4F23E2CD9300963D28 /* MockRealmDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRealmDataManager.swift; sourceTree = "<group>"; };
+		80B68B4F23E2CD9300963D28 /* MockDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataManager.swift; sourceTree = "<group>"; };
 		80BE6D2123D98E710051BB08 /* ModelCoreMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCoreMapper.swift; sourceTree = "<group>"; };
 		80BE6D2323D999A70051BB08 /* Responses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responses.swift; sourceTree = "<group>"; };
 		80CBBDFD23C5F1E40064CFFD /* BasketBallApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasketBallApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,8 +164,7 @@
 			children = (
 				80383D5323DF09AB0052DDFF /* MockRequestsManager.swift */,
 				80383D5623DF09D20052DDFF /* MockUserDefaultsManager.swift */,
-				80383D5923DF0A2F0052DDFF /* MockCoreDataManager.swift */,
-				80B68B4F23E2CD9300963D28 /* MockRealmDataManager.swift */,
+				80B68B4F23E2CD9300963D28 /* MockDataManager.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -188,8 +180,6 @@
 				802AF94923CCA282000EC555 /* HttpRequestsManagerTests.swift */,
 				800339B423DAEC8200F93FC3 /* LoadingManagerTests.swift */,
 				80260E5A23DED4280021216E /* DefaultsManagerTests.swift */,
-				80260E5C23DED44B0021216E /* CoreDataManagerTests.swift */,
-				80B68B4D23E2CD6D00963D28 /* RealmDataManagerTests.swift */,
 				802AF94B23CCA282000EC555 /* Info.plist */,
 			);
 			path = BasketBallAppTests;
@@ -530,13 +520,10 @@
 			files = (
 				80260E5B23DED4280021216E /* DefaultsManagerTests.swift in Sources */,
 				800339B523DAEC8200F93FC3 /* LoadingManagerTests.swift in Sources */,
-				80260E5D23DED44B0021216E /* CoreDataManagerTests.swift in Sources */,
-				80383D5B23DF0A2F0052DDFF /* MockCoreDataManager.swift in Sources */,
-				80B68B5023E2CD9300963D28 /* MockRealmDataManager.swift in Sources */,
+				80B68B5023E2CD9300963D28 /* MockDataManager.swift in Sources */,
 				80383D5823DF09D20052DDFF /* MockUserDefaultsManager.swift in Sources */,
 				802AF94A23CCA282000EC555 /* HttpRequestsManagerTests.swift in Sources */,
 				80383D5523DF09AB0052DDFF /* MockRequestsManager.swift in Sources */,
-				80B68B4E23E2CD6D00963D28 /* RealmDataManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,7 +553,6 @@
 				809840DF23D50B870041C96D /* database.xcdatamodeld in Sources */,
 				80CBBE0323C5F1E40064CFFD /* SceneDelegate.swift in Sources */,
 				80A3C12923C61F8900D5A6C2 /* TeamCollectionCell.swift in Sources */,
-				80383D5A23DF0A2F0052DDFF /* MockCoreDataManager.swift in Sources */,
 				80BE6D2223D98E710051BB08 /* ModelCoreMapper.swift in Sources */,
 				803120BC23E02B97005F287F /* ModelRealmMapper.swift in Sources */,
 			);

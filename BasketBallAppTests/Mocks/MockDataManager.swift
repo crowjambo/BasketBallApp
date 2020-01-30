@@ -1,8 +1,8 @@
 import Foundation
-import CoreData
 @testable import BasketBallApp
+import RealmSwift
 
-class MockCoreDataManager: DataPersistable {
+class MockDataManager: DataPersistable {
 	
 	func saveTeams(teamsToSave: [Team]?) {
 		return

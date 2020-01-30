@@ -52,13 +52,13 @@ final class CoreDataManager: DataPersistable {
 		}
 	}
 	
-	func delete(_ object: Any) {
+	private func delete(_ object: Any) {
 		guard let objToDel = object as? NSManagedObject else { return }
 		context.delete(objToDel)
 		save()
 	}
 	
-	func deleteAllOfType<T>(_ objectType: T.Type) {
+	private func deleteAllOfType<T>(_ objectType: T.Type) {
 		let allObjects = fetch(objectType)
 		for obj in allObjects {
 			delete(obj)

@@ -7,7 +7,7 @@ class LoadingManagerTests: XCTestCase {
 	
     override func setUp() {
 
-		sut = LoadingManager(requestsManager: MockRequestsManager(), dataManager: MockCoreDataManager(), defaultsManager: MockUserDefaults())
+		sut = LoadingManager(requestsManager: MockRequestsManager(), dataManager: MockDataManager(), defaultsManager: MockUserDefaults())
     }
 
     override func tearDown() {
@@ -29,6 +29,14 @@ class LoadingManagerTests: XCTestCase {
 		
 		waitForExpectations(timeout: 1, handler: nil)
 		XCTAssertNotNil(outputTeams)
+	}
+	
+	func test_loadData_ReturnsFailure() {
+		
+	}
+	
+	func test_loadData_ReturnsSuccess() {
+		
 	}
 	
 }

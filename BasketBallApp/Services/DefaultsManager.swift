@@ -13,6 +13,17 @@ enum UpdateTime: String {
 
 final class DefaultsManager: LastUpdateTrackable {
 	
+	var updateTimeForTeams: TimeInterval
+	var updateTimeForEvents: TimeInterval
+	var updateTimeForPlayers: TimeInterval
+	
+	init(updateTimeForTeams: TimeInterval = 3600, updateTimeForEvents: TimeInterval = 900, updateTimeForPlayers: TimeInterval = 1800) {
+		
+		self.updateTimeForTeams = updateTimeForTeams
+		self.updateTimeForEvents = updateTimeForEvents
+		self.updateTimeForPlayers = updateTimeForPlayers
+	}
+	
 	let defaults = UserDefaults.standard
 	
 	func shouldUpdate(idOfEntity: UpdateTime) -> Bool {
@@ -22,11 +33,11 @@ final class DefaultsManager: LastUpdateTrackable {
 
 			switch idOfEntity {
 			case .team:
-					lastUpdated += 60 * 60
+					lastUpdated += updateTimeForTeams
 			case .event:
-					lastUpdated += 60 * 15
+					lastUpdated += updateTimeForEvents
 			case .player:
-					lastUpdated += 60 * 30
+					lastUpdated += updateTimeForPlayers
 			}
 			// older than designated update time
 			if lastUpdated < Date() {
