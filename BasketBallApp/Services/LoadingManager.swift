@@ -36,8 +36,6 @@ class LoadingManager: TeamsDataLoadable {
 		let returnGroup = DispatchGroup()
 		returnGroup.enter()
 		
-		//TODO: too deep nesting fix
-		//TODO: function too long, shorten it somehow
 		teamsUpdate(shouldTeamUpdate: defaultsManager.shouldUpdate(idOfEntity: UpdateTime.team), returnGroup: returnGroup) { (res) in
 			switch res {
 			case .success(let teams):
@@ -70,14 +68,11 @@ class LoadingManager: TeamsDataLoadable {
 			
 			completionHandler(.success(outputTeams))
 			self.dataManager.saveTeams(teamsToSave: outputTeams)
-
-			
 		}
 		
 	}
-	// TODO: function too long, split it up
+	
 	private func teamsUpdate(shouldTeamUpdate: Bool, returnGroup: DispatchGroup, completion: @escaping (Result<[Team]?, Error>) -> Void ) {
-		
 		var outputTeams: [Team]?
 		
 		if shouldTeamUpdate {
