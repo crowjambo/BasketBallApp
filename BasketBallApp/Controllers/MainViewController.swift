@@ -7,7 +7,7 @@ class MainViewController: UIViewController {
 	
 	var teams: [Team]? {
 		didSet {
-			cardCollectionView.reloadData()
+//			cardCollectionView.reloadData()
 		}
 	}
 	var displayLinear: Bool = true
@@ -82,6 +82,7 @@ class MainViewController: UIViewController {
 			break
 			}
 			
+			
 			self.dataLoadingManager?.requestsManager.getAllTeamsPlayersApi(teams: self.teams, completionHandler: { (res) in
 				switch res {
 				case .success(let teams):
@@ -97,12 +98,12 @@ class MainViewController: UIViewController {
 					case .failure(let err):
 					break
 					}
+					self.refreshControl?.endRefreshing()
+					self.cardCollectionView.reloadData()
 				})
 			})
 			
 		})
-		self.cardCollectionView.reloadData()
-		refreshControl?.endRefreshing()
 	}
 	
 	// MARK: - Navigation bar image
