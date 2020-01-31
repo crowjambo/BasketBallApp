@@ -1,6 +1,5 @@
 import Foundation
 
-
 extension Date {
 		
 	static func getAgeFromDateOfBirth(date: String) -> String {
