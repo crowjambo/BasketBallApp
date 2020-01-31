@@ -15,7 +15,7 @@ protocol ExternalDataRetrievable {
 	
 }
 
-class HttpRequestsManager: ExternalDataRetrievable {
+class SportsApiService: ExternalDataRetrievable {
 	
 	typealias TeamsResponse =  (Result<[Team]?, Error>) -> Void
 	typealias PlayersReseponse = (Result<[Player]?, Error>) -> Void

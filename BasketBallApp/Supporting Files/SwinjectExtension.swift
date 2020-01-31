@@ -24,7 +24,7 @@ extension SwinjectStoryboard {
 		
 		defaultContainer.register(UIViewController.self) { _ in UIViewController()}
 		
-		defaultContainer.register(ExternalDataRetrievable.self) { _ in HttpRequestsManager() }
+		defaultContainer.register(ExternalDataRetrievable.self) { _ in SportsApiService() }
 		defaultContainer.register(DataPersistable.self) { _ in RealmDataManager() }
 		defaultContainer.register(LastUpdateTrackable.self) { _ in DefaultsManager() }
 		

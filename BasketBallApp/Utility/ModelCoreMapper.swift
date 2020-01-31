@@ -8,11 +8,11 @@ class ModelCoreMapper {
 
 extension ModelCoreMapper {
 	
-	func teamDataToTeamModel(team: Teams) -> Team {
+	func teamDataToTeamModel(team: TeamsCore) -> Team {
 		return Team(teamID: team.teamID, teamName: team.teamName, description: team.teamDescription, imageIconName: team.teamIcon, imageTeamMain: team.teamImage)
 	}
 	
-	func eventsDataToEventsModelArray(events: [Events]) -> [Event] {
+	func eventsDataToEventsModelArray(events: [EventsCore]) -> [Event] {
 		var outputEvents: [Event] = []
 		
 		for event in events {
@@ -22,7 +22,7 @@ extension ModelCoreMapper {
 		return outputEvents
 	}
 	
-	func playersDataToPlayersModelArray(players: [Players]) -> [Player] {
+	func playersDataToPlayersModelArray(players: [PlayersCore]) -> [Player] {
 		var outputPlayers: [Player] = []
 		
 		for player in players {
@@ -32,11 +32,11 @@ extension ModelCoreMapper {
 		return outputPlayers
 	}
 	
-	private func eventDataToEventModel(event: Events) -> Event {
+	private func eventDataToEventModel(event: EventsCore) -> Event {
 		return Event(homeTeamName: event.homeTeamName, awayTeamName: event.awayTeamName, date: event.matchDate)
 	}
 	
-	private func playerDataToPlayerModel(player: Players) -> Player {
+	private func playerDataToPlayerModel(player: PlayersCore) -> Player {
 		return Player(name: player.name, age: player.age, height: player.height, weight: player.weight, description: player.playerDescription, position: player.position, playerIconImage: player.iconImage, playerMainImage: player.mainImage)
 	}
 }
@@ -45,13 +45,13 @@ extension ModelCoreMapper {
 
 extension ModelCoreMapper {
 	
-	func teamModelToCoreData(team: Team, dataManager: CoreDataManager) -> Teams {
+	func teamModelToCoreData(team: Team, dataManager: CoreDataManager) -> TeamsCore {
 		guard
 			let teamPlayers = team.teamPlayers,
 			let teamEvents = team.matchHistory
-			else { return Teams() }
+			else { return TeamsCore() }
 		
-		let teamData = Teams(entity: Teams.entity(), insertInto: dataManager.context)
+		let teamData = TeamsCore(entity: TeamsCore.entity(), insertInto: dataManager.context)
 		teamData.teamName = team.teamName
 		teamData.teamDescription = team.description
 		teamData.teamID = team.teamID
@@ -73,8 +73,8 @@ extension ModelCoreMapper {
 		return teamData
 	}
 	
-	private func playerModelToCoreData(player: Player, dataManager: CoreDataManager) -> Players {
-		let playerToSave = Players(entity: Players.entity(), insertInto: dataManager.context)
+	private func playerModelToCoreData(player: Player, dataManager: CoreDataManager) -> PlayersCore {
+		let playerToSave = PlayersCore(entity: PlayersCore.entity(), insertInto: dataManager.context)
 		playerToSave.name = player.name
 		playerToSave.age = player.age
 		playerToSave.height = player.height
@@ -87,8 +87,8 @@ extension ModelCoreMapper {
 		return playerToSave
 	}
 	
-	private func eventModelToCoreData(event: Event, dataManager: CoreDataManager) -> Events {
-		let eventToSave = Events(entity: Events.entity(), insertInto: dataManager.context)
+	private func eventModelToCoreData(event: Event, dataManager: CoreDataManager) -> EventsCore {
+		let eventToSave = EventsCore(entity: EventsCore.entity(), insertInto: dataManager.context)
 		eventToSave.homeTeamName = event.homeTeamName
 		eventToSave.awayTeamName = event.awayTeamName
 		eventToSave.matchDate = event.date

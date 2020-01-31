@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="18G2022" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Events" representedClassName="Events" syncable="YES" codeGenerationType="class">
+    <entity name="EventsCore" representedClassName="EventsCore" syncable="YES" codeGenerationType="class">
         <attribute name="awayTeamName" optional="YES" attributeType="String"/>
         <attribute name="homeTeamName" optional="YES" attributeType="String"/>
         <attribute name="matchDate" optional="YES" attributeType="String"/>
-        <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Teams" inverseName="teamEvents" inverseEntity="Teams"/>
+        <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TeamsCore" inverseName="teamEvents" inverseEntity="TeamsCore"/>
     </entity>
-    <entity name="Players" representedClassName="Players" syncable="YES" codeGenerationType="class">
+    <entity name="PlayersCore" representedClassName="PlayersCore" syncable="YES" codeGenerationType="class">
         <attribute name="age" optional="YES" attributeType="String"/>
         <attribute name="height" optional="YES" attributeType="String"/>
         <attribute name="iconImage" optional="YES" attributeType="String"/>
@@ -15,20 +15,20 @@
         <attribute name="playerDescription" optional="YES" attributeType="String"/>
         <attribute name="position" optional="YES" attributeType="String"/>
         <attribute name="weight" optional="YES" attributeType="String"/>
-        <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Teams" inverseName="teamPlayers" inverseEntity="Teams"/>
+        <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TeamsCore" inverseName="teamPlayers" inverseEntity="TeamsCore"/>
     </entity>
-    <entity name="Teams" representedClassName="Teams" syncable="YES" codeGenerationType="class">
+    <entity name="TeamsCore" representedClassName="TeamsCore" syncable="YES" codeGenerationType="class">
         <attribute name="teamDescription" optional="YES" attributeType="String"/>
         <attribute name="teamIcon" optional="YES" attributeType="String"/>
         <attribute name="teamID" optional="YES" attributeType="String"/>
         <attribute name="teamImage" optional="YES" attributeType="String"/>
         <attribute name="teamName" optional="YES" attributeType="String"/>
-        <relationship name="teamEvents" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Events" inverseName="team" inverseEntity="Events"/>
-        <relationship name="teamPlayers" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Players" inverseName="team" inverseEntity="Players"/>
+        <relationship name="teamEvents" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="EventsCore" inverseName="team" inverseEntity="EventsCore"/>
+        <relationship name="teamPlayers" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="PlayersCore" inverseName="team" inverseEntity="PlayersCore"/>
     </entity>
     <elements>
-        <element name="Events" positionX="-54" positionY="27" width="128" height="103"/>
-        <element name="Players" positionX="-63" positionY="18" width="128" height="178"/>
-        <element name="Teams" positionX="-63" positionY="-18" width="128" height="148"/>
+        <element name="EventsCore" positionX="-54" positionY="27" width="128" height="103"/>
+        <element name="PlayersCore" positionX="-63" positionY="18" width="128" height="178"/>
+        <element name="TeamsCore" positionX="-63" positionY="-18" width="128" height="148"/>
     </elements>
 </model>

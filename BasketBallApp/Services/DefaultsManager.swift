@@ -39,11 +39,7 @@ final class DefaultsManager: LastUpdateTrackable {
 					lastUpdated += updateTimeForPlayers
 			}
 			// older than designated update time
-			if lastUpdated < Date() {
-				return true
-			} else {
-				return false
-			}
+			return lastUpdated < Date()
 		}
 		// first time launching, should update
 		else {

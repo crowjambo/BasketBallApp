@@ -69,9 +69,9 @@ final class CoreDataManager: DataPersistable {
 	func saveTeams(teamsToSave: [Team]?) {
 		
 		guard let teamsToSave = teamsToSave else { return }
-		deleteAllOfType(Players.self)
-		deleteAllOfType(Events.self)
-		deleteAllOfType(Teams.self)
+		deleteAllOfType(PlayersCore.self)
+		deleteAllOfType(EventsCore.self)
+		deleteAllOfType(TeamsCore.self)
 		
 		for team in teamsToSave {
 			_ = mapper.teamModelToCoreData(team: team, dataManager: self)
@@ -82,16 +82,16 @@ final class CoreDataManager: DataPersistable {
 
 	func loadTeams(completionHandler: @escaping (Result<[Team]?, Error>) -> Void ) {
 		
-		let allTeams = self.fetch(Teams.self)
+		let allTeams = self.fetch(TeamsCore.self)
 		var teamsRet: [Team] = []
 		
 			for team in allTeams {
 				var teamToAdd: Team = self.mapper.teamDataToTeamModel(team: team)
 				
-				guard let loadedPlayers = team.teamPlayers?.array as? [Players] else { return }
+				guard let loadedPlayers = team.teamPlayers?.array as? [PlayersCore] else { return }
 				teamToAdd.teamPlayers = self.mapper.playersDataToPlayersModelArray(players: loadedPlayers)
 				
-				guard let loadedEvents = team.teamEvents?.array as? [Events] else { return }
+				guard let loadedEvents = team.teamEvents?.array as? [EventsCore] else { return }
 				teamToAdd.matchHistory = self.mapper.eventsDataToEventsModelArray(events: loadedEvents)
 				
 				teamsRet.append(teamToAdd)

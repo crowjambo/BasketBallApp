@@ -25,17 +25,16 @@ class RealmDataManager: DataPersistable {
 	func loadTeams(completionHandler: @escaping (Result<[Team]?, Error>) -> Void) {
 
 		var outputTeams: [Team] = []
-		
-		DispatchQueue.global().async {
-			guard let realm = try? Realm() else { return }
-			let realmTeams = realm.objects(RealmTeam.self)
-			for team in realmTeams {
-				let mappedTeam = self.mapper.realmTeamToModel(from: team)
-				outputTeams.append(mappedTeam)
-			}
-			print(Realm.Configuration.defaultConfiguration.fileURL!)
-			completionHandler(.success(outputTeams))
+	
+		guard let realm = try? Realm() else { return }
+		let realmTeams = realm.objects(RealmTeam.self)
+		for team in realmTeams {
+			let mappedTeam = self.mapper.realmTeamToModel(from: team)
+			outputTeams.append(mappedTeam)
 		}
+		log.debug(Realm.Configuration.defaultConfiguration.fileURL!)
+		completionHandler(.success(outputTeams))
+		
 	}
 	
 }

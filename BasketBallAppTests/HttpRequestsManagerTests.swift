@@ -10,7 +10,7 @@ class HttpRequestsManagerTests: XCTestCase {
 	var sut: ExternalDataRetrievable!
 	
     override func setUp() {
-		sut = HttpRequestsManager()
+		sut = SportsApiService()
     }
 
     override func tearDown() {
