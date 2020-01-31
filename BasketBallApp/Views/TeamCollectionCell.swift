@@ -1,6 +1,8 @@
 import UIKit
 import Kingfisher
 
+
+
 class TeamCollectionCell: UICollectionViewCell {
     
 	@IBOutlet weak var teamIconOutlet: UIImageView!

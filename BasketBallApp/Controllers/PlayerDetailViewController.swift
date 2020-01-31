@@ -36,38 +36,11 @@ class PlayerDetailViewController: UIViewController {
 			else { return }
 		
 		playerNameOutlet.text = player.name
-		playerDetailsOutlet.text = "\(getAgeFromDate(date: age))  \(splitWeight(weight: weight)) lbs  \(splitHeight(height: height))"
+		playerDetailsOutlet.text = "\(Date.getAgeFromDateOfBirth(date: age))  \(String.splitWeight(weight: weight)) lbs  \(String.splitHeight(height: height))"
 		descriptionOutlet.text = playerDescription
 		descriptionOutlet.sizeToFit()
 		let url = URL(string: playerMainImage)
 		mainPlayerImage.kf.setImage(with: url)
-		
-	}
-	
-	private func splitHeight(height: String) -> String {
-		let array = height.components(separatedBy: "(")
-		return array[0]
-	}
-	
-	private func splitWeight(weight: String) -> String {
-		let array = weight.components(separatedBy: " ")
-		return array[0]
-	}
-	
-	private func getAgeFromDate(date: String) -> String {
-		
-		let formatter = DateFormatter()
-		formatter.dateFormat = "yyyy-mm-dd"
-		let formattedDate = formatter.date(from: date)
-
-		let calendar = Calendar.current
-		let components = calendar.dateComponents([.year], from: formattedDate ?? Date(), to: Date())
-		
-		let finalDate = calendar.date(from: components)
-		
-		formatter.dateFormat = "y"
-		
-		return formatter.string(from: finalDate!)
 		
 	}
     

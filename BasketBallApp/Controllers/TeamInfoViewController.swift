@@ -107,10 +107,7 @@ class TeamInfoViewController: UIViewController {
 				self.refreshControl?.endRefreshing()
 			})
 		})
-		
-
 	}
-	
 }
 
 // MARK: - TableView setup

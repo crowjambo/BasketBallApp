@@ -49,6 +49,8 @@
 		80CBBE0A23C5F1E60064CFFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80CBBE0923C5F1E60064CFFD /* Assets.xcassets */; };
 		80CBBE0D23C5F1E60064CFFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80CBBE0B23C5F1E60064CFFD /* LaunchScreen.storyboard */; };
 		80D9930923E42A92008D0758 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D9930823E42A92008D0758 /* ViewController.swift */; };
+		80D9930B23E43016008D0758 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D9930A23E43016008D0758 /* Date.swift */; };
+		80D9930D23E43037008D0758 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D9930C23E43037008D0758 /* String.swift */; };
 		BA9CCE1B3378A94779C5FE01 /* Pods_BasketBallApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD3AB4085CBD5AF985617190 /* Pods_BasketBallApp.framework */; };
 		EA7FB838940BA330F5C03B10 /* Pods_BasketBallAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 280F6C22ADD6C8EC8CA0BF8E /* Pods_BasketBallAppTests.framework */; };
 /* End PBXBuildFile section */
@@ -114,6 +116,8 @@
 		80CBBE0923C5F1E60064CFFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80CBBE0C23C5F1E60064CFFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		80D9930823E42A92008D0758 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		80D9930A23E43016008D0758 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		80D9930C23E43037008D0758 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		866F025572319EBFED340CDF /* Pods-BasketBallAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasketBallAppTests.release.xcconfig"; path = "Target Support Files/Pods-BasketBallAppTests/Pods-BasketBallAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		CA4EEF1F7B50CB15449873C0 /* Pods-BasketBallApp-BasketBallAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasketBallApp-BasketBallAppUITests.release.xcconfig"; path = "Target Support Files/Pods-BasketBallApp-BasketBallAppUITests/Pods-BasketBallApp-BasketBallAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		EDAFA63CF0DDEEBF61463A1B /* Pods-BasketBallApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasketBallApp.release.xcconfig"; path = "Target Support Files/Pods-BasketBallApp/Pods-BasketBallApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -213,6 +217,7 @@
 		80B3882923DAD466006A71AC /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				80D9930723E42A78008D0758 /* Extensions */,
 				80BE6D2123D98E710051BB08 /* ModelCoreMapper.swift */,
 				803120BB23E02B97005F287F /* ModelRealmMapper.swift */,
 			);
@@ -282,7 +287,6 @@
 		80CBBE1623C5F2810064CFFD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				80D9930723E42A78008D0758 /* Extensions */,
 				80CBBE1823C5F28E0064CFFD /* Storyboards */,
 				80CBBE0923C5F1E60064CFFD /* Assets.xcassets */,
 				80A3C12823C61F8900D5A6C2 /* TeamCollectionCell.swift */,
@@ -316,6 +320,8 @@
 			isa = PBXGroup;
 			children = (
 				80D9930823E42A92008D0758 /* ViewController.swift */,
+				80D9930A23E43016008D0758 /* Date.swift */,
+				80D9930C23E43037008D0758 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -563,6 +569,7 @@
 				80CBBE0523C5F1E40064CFFD /* MainViewController.swift in Sources */,
 				809E2DF523E2F5A60057AFC6 /* TeamCollectionSmallSquareCell.swift in Sources */,
 				80B10A6C23C6013D00CC987F /* Team.swift in Sources */,
+				80D9930D23E43037008D0758 /* String.swift in Sources */,
 				807C2AC123E1BFC40042F9EC /* SwinjectExtension.swift in Sources */,
 				80CBBE0123C5F1E40064CFFD /* AppDelegate.swift in Sources */,
 				80A97AC823C734D7008014CF /* EventCell.swift in Sources */,
@@ -570,6 +577,7 @@
 				80CBBE0323C5F1E40064CFFD /* SceneDelegate.swift in Sources */,
 				80A3C12923C61F8900D5A6C2 /* TeamCollectionCell.swift in Sources */,
 				80BE6D2223D98E710051BB08 /* ModelCoreMapper.swift in Sources */,
+				80D9930B23E43016008D0758 /* Date.swift in Sources */,
 				803120BC23E02B97005F287F /* ModelRealmMapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
