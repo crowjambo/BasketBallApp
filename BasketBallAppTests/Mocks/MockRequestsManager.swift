@@ -5,30 +5,34 @@ import OHHTTPStubs
 @testable import BasketBallApp
 
 class MockRequestsManager: ExternalDataRetrievable {
+	
+	var teamsReturn: [Team] = []
+	var playersReturn: [Player] = []
+	var eventsReturn: [Event] = []
 		
-	func getTeams(baseApiURL: String = "https://thesportsdb.com/api/v1/json/1/", url: String = "search_all_teams.php?l=NBA", completionHandler: @escaping TeamsResponse) {
+	func getTeams(baseApiURL: String, url: String, completionHandler: @escaping TeamsResponse) {
 		
-		completionHandler(.success([Team]()))
+		completionHandler(.success(teamsReturn))
 	}
 	
 	func getPlayers(baseApiURL: String, url: String, teamName: String, completionHandler: @escaping ExternalDataRetrievable.PlayersReseponse) {
 		
-		completionHandler(.success([Player]()))
+		completionHandler(.success(playersReturn))
 	}
 	
 	func getEvents(baseApiURL: String, url: String, teamID: String, completionHandler: @escaping ExternalDataRetrievable.EventsResponse) {
 		
-		completionHandler(.success([Event]()))
+		completionHandler(.success(eventsReturn))
 	}
 	
 	func getAllTeamsPlayersApi(teams: [Team]?, completionHandler: @escaping ExternalDataRetrievable.TeamsResponse) {
 		
-		completionHandler(.success([Team]()))
+		completionHandler(.success(teamsReturn))
 	}
 	
 	func getAllTeamsEventsApi(teams: [Team]?, completionHandler: @escaping ExternalDataRetrievable.TeamsResponse) {
 		
-		completionHandler(.success([Team]()))
+		completionHandler(.success(teamsReturn))
 	}
 	
 }
