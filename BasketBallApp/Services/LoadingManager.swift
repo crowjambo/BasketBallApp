@@ -2,6 +2,8 @@ import Foundation
 
 enum TeamsLoadingError: Error {
 	case noTeamsLoaded
+	case noPlayersLoaded
+	case noEventsLoaded
 }
 
 protocol TeamsDataLoadable {
@@ -33,10 +35,7 @@ class LoadingManager: TeamsDataLoadable {
 		
 		var outputTeams: [Team]?
 
-		let returnGroup = DispatchGroup()
-		returnGroup.enter()
-		
-		teamsUpdate(shouldTeamUpdate: defaultsManager.shouldUpdate(idOfEntity: UpdateTime.team), returnGroup: returnGroup) { (res) in
+		teamsUpdate(shouldTeamUpdate: defaultsManager.shouldUpdate(idOfEntity: UpdateTime.team)) { (res) in
 			switch res {
 			case .success(let teams):
 				outputTeams = teams
@@ -44,7 +43,7 @@ class LoadingManager: TeamsDataLoadable {
 				break
 			}
 			
-			self.playerUpdate(sentInTeams: outputTeams, shouldPlayerUpdate: self.defaultsManager.shouldUpdate(idOfEntity: UpdateTime.player), returnGroup: returnGroup) { (res) in
+			self.playerUpdate(sentInTeams: outputTeams, shouldPlayerUpdate: self.defaultsManager.shouldUpdate(idOfEntity: UpdateTime.player)) { (res) in
 				switch res {
 				case .success(let teams):
 					outputTeams = teams
@@ -52,32 +51,28 @@ class LoadingManager: TeamsDataLoadable {
 					break
 				}
 				
-				self.eventUpdate(sentInTeams: outputTeams, shouldEventUpdate: self.defaultsManager.shouldUpdate(idOfEntity: UpdateTime.event), returnGroup: returnGroup) { (res) in
+				self.eventUpdate(sentInTeams: outputTeams, shouldEventUpdate: self.defaultsManager.shouldUpdate(idOfEntity: UpdateTime.event)) { (res) in
 					switch res {
 					case .success(let teams):
 						outputTeams = teams
-					case .failure(let err):
-						debugPrint(err)
+					case .failure(_):
+						break
+					}
+					
+					if outputTeams!.isEmpty {
+						completionHandler(.failure(TeamsLoadingError.noTeamsLoaded))
+					} else {
+						completionHandler(.success(outputTeams))
+						self.dataManager.saveTeams(teamsToSave: outputTeams)
 					}
 				}
 			}
-			returnGroup.leave()
 		}
-		
-		returnGroup.notify(queue: .main) {
-			if outputTeams!.isEmpty {
-				completionHandler(.failure(TeamsLoadingError.noTeamsLoaded))
-			} else {
-				completionHandler(.success(outputTeams))
-				self.dataManager.saveTeams(teamsToSave: outputTeams)
-			}
-		}
-		
 	}
 	
-	private func teamsUpdate(shouldTeamUpdate: Bool, returnGroup: DispatchGroup, completion: @escaping (Result<[Team]?, Error>) -> Void ) {
-		var outputTeams: [Team]?
+	private func teamsUpdate(shouldTeamUpdate: Bool, completion: @escaping (Result<[Team]?, Error>) -> Void ) {
 		
+		var outputTeams: [Team]?
 		if shouldTeamUpdate {
 			requestsManager.getTeams { (res) in
 				switch res {
@@ -102,12 +97,11 @@ class LoadingManager: TeamsDataLoadable {
 		}
 	}
 	
-	private func playerUpdate(sentInTeams: [Team]?, shouldPlayerUpdate: Bool, returnGroup: DispatchGroup, completion: @escaping (Result<[Team]?, Error>) -> Void ) {
+	private func playerUpdate(sentInTeams: [Team]?, shouldPlayerUpdate: Bool, completion: @escaping (Result<[Team]?, Error>) -> Void ) {
 		
 		if shouldPlayerUpdate {
 			var outputTeams = sentInTeams
 			
-			returnGroup.enter()
 			self.requestsManager.getAllTeamsPlayersApi(teams: outputTeams) { (res) in
 				switch res {
 				case .success(let teams):
@@ -117,18 +111,16 @@ class LoadingManager: TeamsDataLoadable {
 					completion(.failure(err))
 				}
 				self.defaultsManager.updateTime(key: UpdateTime.player)
-				returnGroup.leave()
 			}
 		} else {
-			return
+			completion(.failure(TeamsLoadingError.noPlayersLoaded))
 		}
 	}
 	
-	private func eventUpdate(sentInTeams: [Team]?, shouldEventUpdate: Bool, returnGroup: DispatchGroup, completion: @escaping (Result<[Team]?, Error>) -> Void) {
+	private func eventUpdate(sentInTeams: [Team]?, shouldEventUpdate: Bool, completion: @escaping (Result<[Team]?, Error>) -> Void) {
 		if shouldEventUpdate {
 			var outputTeams = sentInTeams
 			
-			returnGroup.enter()
 			self.requestsManager.getAllTeamsEventsApi(teams: outputTeams) { (res) in
 				switch res {
 				case .success(let teams):
@@ -138,11 +130,9 @@ class LoadingManager: TeamsDataLoadable {
 					completion(.failure(err))
 				}
 				self.defaultsManager.updateTime(key: UpdateTime.event)
-				
-				returnGroup.leave()
 			}
 		} else {
-			return
+			completion(.failure(TeamsLoadingError.noEventsLoaded))
 		}
 	}
 

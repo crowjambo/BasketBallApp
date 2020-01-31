@@ -29,7 +29,7 @@ final class DefaultsManager: LastUpdateTrackable {
 	func shouldUpdate(idOfEntity: UpdateTime) -> Bool {
 
 		if var lastUpdated = defaults.object(forKey: idOfEntity.rawValue) as? Date {
-
+			
 			switch idOfEntity {
 			case .team:
 					lastUpdated += updateTimeForTeams

@@ -2,7 +2,7 @@
 //  BasketBallAppUITests.swift
 //  BasketBallAppUITests
 //
-//  Created by Evaldas on 1/13/20.
+//  Created by Evaldas on 1/31/20.
 //  Copyright © 2020 Evaldas. All rights reserved.
 //
 
@@ -23,29 +23,21 @@ class BasketBallAppUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-	func test_view_Player() {
-//		let app = XCUIApplication()
-//		app.launch()
-//
-//		let team1Card = app.collectionViews/*@START_MENU_TOKEN@*/.staticTexts["Atlanta Hawks"]/*[[".cells.staticTexts[\"Atlanta Hawks\"]",".staticTexts[\"Atlanta Hawks\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
-//		team1Card.tap()
-//		app/*@START_MENU_TOKEN@*/.buttons["Players"]/*[[".segmentedControls.buttons[\"Players\"]",".buttons[\"Players\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-//		app.tables/*@START_MENU_TOKEN@*/.staticTexts["Vince Carter , Small Forward"]/*[[".cells.staticTexts[\"Vince Carter , Small Forward\"]",".staticTexts[\"Vince Carter , Small Forward\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-//
-//		XCTAssertNotNil(team1Card)
-		
-	}
+    func testExample() {
+        // UI tests must launch the application that they test.
+        let app = XCUIApplication()
+        app.launch()
 
-	func test_go_forwards_and_backwards_in_app() {
-//		let app = XCUIApplication()
-//		app.launch()
-//
-//		app.collectionViews/*@START_MENU_TOKEN@*/.staticTexts["Atlanta Hawks"]/*[[".cells.staticTexts[\"Atlanta Hawks\"]",".staticTexts[\"Atlanta Hawks\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-//		app/*@START_MENU_TOKEN@*/.buttons["Players"]/*[[".segmentedControls.buttons[\"Players\"]",".buttons[\"Players\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-//		app.tables/*@START_MENU_TOKEN@*/.staticTexts["Chandler Parsons , Small Forward"]/*[[".cells.staticTexts[\"Chandler Parsons , Small Forward\"]",".staticTexts[\"Chandler Parsons , Small Forward\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-//		app.navigationBars["BasketBallApp.PlayerDetailView"].buttons["Back"].tap()
-//		app.navigationBars["BasketBallApp.TeamInfoView"].buttons["NBA"].tap()
-		
-	}
+        // Use recording to get started writing UI tests.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    }
 
+    func testLaunchPerformance() {
+        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
+            // This measures how long it takes to launch your application.
+            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
+                XCUIApplication().launch()
+            }
+        }
+    }
 }
