@@ -1,6 +1,7 @@
 import Foundation
 import RealmSwift
 
+// TODO: - create ways to use Realm in memory (some init setting for preference), that way can test RealmDB very easily later
 class RealmDataManager: DataPersistable {
 	
 	let mapper: ModelRealmMapper = ModelRealmMapper()

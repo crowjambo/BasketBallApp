@@ -31,6 +31,7 @@ class LoadingManager: TeamsDataLoadable {
 		self.defaultsManager = defaultsManager
 	}
 	
+	// TODO: - Use promisekit to clean up the async code calls OR async await style?
 	func loadData( completionHandler: @escaping ( Result<[Team]?, Error>) -> Void ) {
 		
 		var outputTeams: [Team]?
