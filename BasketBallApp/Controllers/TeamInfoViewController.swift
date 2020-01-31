@@ -81,7 +81,7 @@ class TeamInfoViewController: UIViewController {
 
 	@objc func refreshList() {
 		
-		dataLoadingManager?.requestsManager.getPlayers(baseApiURL: "https://www.thesportsdb.com/api/v1/json/1/", url: "searchplayers.php?t=", teamName: (self.team?.teamName!)!, completionHandler: { (res) in
+		dataLoadingManager?.requestsManager.getPlayers(teamName: (self.team?.teamName!)!, completionHandler: { (res) in
 			switch res {
 			case .success(let players):
 				self.team?.teamPlayers = players
@@ -89,7 +89,7 @@ class TeamInfoViewController: UIViewController {
 			break
 			}
 			
-			self.dataLoadingManager?.requestsManager.getEvents(baseApiURL: "https://www.thesportsdb.com/api/v1/json/1/", url: "eventslast.php?id=", teamID: (self.team?.teamID!)!, completionHandler: { (res) in
+			self.dataLoadingManager?.requestsManager.getEvents(teamID: (self.team?.teamID!)!, completionHandler: { (res) in
 				switch res {
 				case .success(let events):
 					self.team?.matchHistory = events

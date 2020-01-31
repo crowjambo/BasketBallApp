@@ -7,9 +7,9 @@ protocol ExternalDataRetrievable {
 	typealias PlayersReseponse = (Result<[Player]?, Error>) -> Void
 	typealias EventsResponse = (Result<[Event]?, Error>) -> Void
 	
-	func getTeams(baseApiURL: String, url: String, completionHandler: @escaping TeamsResponse)
-	func getPlayers(baseApiURL: String, url: String, teamName: String, completionHandler: @escaping PlayersReseponse)
-	func getEvents(baseApiURL: String, url: String, teamID: String, completionHandler: @escaping EventsResponse)
+	func getTeams(completionHandler: @escaping TeamsResponse)
+	func getPlayers(teamName: String, completionHandler: @escaping PlayersReseponse)
+	func getEvents(teamID: String, completionHandler: @escaping EventsResponse)
 	func getAllTeamsPlayersApi(teams: [Team]?, completionHandler: @escaping TeamsResponse)
 	func getAllTeamsEventsApi(teams: [Team]?, completionHandler: @escaping TeamsResponse)
 	
@@ -20,13 +20,15 @@ class HttpRequestsManager: ExternalDataRetrievable {
 	typealias TeamsResponse =  (Result<[Team]?, Error>) -> Void
 	typealias PlayersReseponse = (Result<[Player]?, Error>) -> Void
 	typealias EventsResponse = (Result<[Event]?, Error>) -> Void
+	
+	let baseApiURL: String = "https://www.thesportsdb.com/api/v1/json/1/"
+	let urlForTeams: String = "search_all_teams.php?l=NBA"
+	let urlForPlayers: String = "searchplayers.php?t="
+	let urlForEvents: String = "eventslast.php?id="
 		
-	func getTeams(
-		baseApiURL: String = "https://www.thesportsdb.com/api/v1/json/1/",
-		url: String = "search_all_teams.php?l=NBA",
-		completionHandler: @escaping TeamsResponse) {
+	func getTeams(completionHandler: @escaping TeamsResponse) {
 		
-		guard let url = URL(string: baseApiURL + url) else { return }
+		guard let url = URL(string: baseApiURL + urlForTeams) else { return }
 		AF.request(url, method: .get).responseJSON { (response) in
 			switch response.result {
 			case .success:
@@ -45,13 +47,10 @@ class HttpRequestsManager: ExternalDataRetrievable {
 		}
 	}
 
-	func getPlayers(
-		baseApiURL: String = "https://www.thesportsdb.com/api/v1/json/1/",
-		url: String = "searchplayers.php?t=",
-		teamName: String, completionHandler: @escaping (Result<[Player]?, Error>) -> Void ) {
+	func getPlayers(teamName: String, completionHandler: @escaping (Result<[Player]?, Error>) -> Void ) {
 		
 		let escapedString = teamName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
-		let input: String = baseApiURL + "\(url)\(escapedString ?? "" )"
+		let input: String = baseApiURL + "\(urlForPlayers)\(escapedString ?? "" )"
 		guard let url = URL(string: input) else { return }
 		
 		AF.request(url, method: .get).responseJSON { (response) in
@@ -72,12 +71,9 @@ class HttpRequestsManager: ExternalDataRetrievable {
 		}
 	}
 	
-	func getEvents(
-		baseApiURL: String = "https://www.thesportsdb.com/api/v1/json/1/",
-		url: String = "eventslast.php?id=",
-		teamID: String, completionHandler: @escaping EventsResponse) {
+	func getEvents(teamID: String, completionHandler: @escaping EventsResponse) {
 		
-		let input: String = baseApiURL + "\(url)\(teamID)"
+		let input: String = baseApiURL + "\(urlForEvents)\(teamID)"
 		guard let url = URL(string: input) else { return }
 		
 		AF.request(url, method: .get).responseJSON { (response) in

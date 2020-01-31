@@ -10,17 +10,17 @@ class MockRequestsManager: ExternalDataRetrievable {
 	var playersReturn: [Player] = []
 	var eventsReturn: [Event] = []
 		
-	func getTeams(baseApiURL: String, url: String, completionHandler: @escaping TeamsResponse) {
+	func getTeams(completionHandler: @escaping TeamsResponse) {
 		
 		completionHandler(.success(teamsReturn))
 	}
 	
-	func getPlayers(baseApiURL: String, url: String, teamName: String, completionHandler: @escaping ExternalDataRetrievable.PlayersReseponse) {
+	func getPlayers(teamName: String, completionHandler: @escaping ExternalDataRetrievable.PlayersReseponse) {
 		
 		completionHandler(.success(playersReturn))
 	}
 	
-	func getEvents(baseApiURL: String, url: String, teamID: String, completionHandler: @escaping ExternalDataRetrievable.EventsResponse) {
+	func getEvents(teamID: String, completionHandler: @escaping ExternalDataRetrievable.EventsResponse) {
 		
 		completionHandler(.success(eventsReturn))
 	}

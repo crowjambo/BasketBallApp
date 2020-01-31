@@ -76,7 +76,7 @@ class LoadingManager: TeamsDataLoadable {
 		var outputTeams: [Team]?
 		
 		if shouldTeamUpdate {
-			requestsManager.getTeams(baseApiURL: "https://www.thesportsdb.com/api/v1/json/1/", url: "search_all_teams.php?l=NBA") { (res) in
+			requestsManager.getTeams { (res) in
 				switch res {
 				case .success(let teams):
 					outputTeams = teams

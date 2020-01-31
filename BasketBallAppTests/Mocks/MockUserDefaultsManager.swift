@@ -3,24 +3,24 @@ import Foundation
 
 class MockUserDefaults: LastUpdateTrackable {
 	
-	var teamReturn: Bool
-	var playerReturn: Bool
-	var eventReturn: Bool
+	var shouldTeamReturnFromApi: Bool
+	var shouldPlayerReturnFromApi: Bool
+	var shouldEventReturnFromApi: Bool
 	
 	init(teamReturn: Bool = true, playerReturn: Bool = true, eventReturn: Bool = true) {
-		self.teamReturn = teamReturn
-		self.playerReturn = playerReturn
-		self.eventReturn = eventReturn
+		self.shouldTeamReturnFromApi = teamReturn
+		self.shouldPlayerReturnFromApi = playerReturn
+		self.shouldEventReturnFromApi = eventReturn
 	}
 	
 	func shouldUpdate(idOfEntity: UpdateTime) -> Bool {
 		switch idOfEntity {
 		case .team:
-			return teamReturn
+			return shouldTeamReturnFromApi
 		case .event:
-			return playerReturn
+			return shouldPlayerReturnFromApi
 		case .player:
-			return eventReturn
+			return shouldEventReturnFromApi
 		}
 	}
 	

@@ -74,7 +74,7 @@ class MainViewController: UIViewController {
 	}
 
 	@objc func refreshList() {
-		dataLoadingManager?.requestsManager.getTeams(baseApiURL: "https://www.thesportsdb.com/api/v1/json/1/", url: "search_all_teams.php?l=NBA", completionHandler: { (res) in
+		dataLoadingManager?.requestsManager.getTeams(completionHandler: { (res) in
 			switch res {
 			case .success(let teams):
 				self.teams = teams
