@@ -20,7 +20,7 @@ class TeamInfoViewController: UIViewController {
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-		setViewData()
+		loadData()
 		setupNavigationTitleImage()
     }
 
@@ -40,7 +40,7 @@ class TeamInfoViewController: UIViewController {
 	
 	// MARK: - Functions
 	
-	func setViewData() {
+	func loadData() {
 		if let name = team?.teamName {
 			teamNameLabelOutlet.text = name
 		}
@@ -85,7 +85,7 @@ class TeamInfoViewController: UIViewController {
 			switch res {
 			case .success(let players):
 				self.team?.teamPlayers = players
-			case .failure(let err):
+			case .failure(_):
 			break
 			}
 			
@@ -93,7 +93,7 @@ class TeamInfoViewController: UIViewController {
 				switch res {
 				case .success(let events):
 					self.team?.matchHistory = events
-				case .failure(let err):
+				case .failure(_):
 				break
 				}
 			})

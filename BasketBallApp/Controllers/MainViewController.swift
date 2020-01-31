@@ -45,7 +45,11 @@ class MainViewController: UIViewController {
 	
 	func loadData() {
 		
-		dataLoadingManager?.loadData(completionHandler: { [weak self] (res) in
+		guard let dataLoadingManager = dataLoadingManager else {
+			self.view.makeToast("Data loading failed", duration: 3.0, position: .center)
+			return
+		}
+		dataLoadingManager.loadData(completionHandler: { [weak self] (res) in
 			switch res {
 			case .success(let teams):
 				self?.teams = teams
@@ -78,16 +82,15 @@ class MainViewController: UIViewController {
 			switch res {
 			case .success(let teams):
 				self.teams = teams
-			case .failure(let err):
+			case .failure( _):
 			break
 			}
-			
 			
 			self.dataLoadingManager?.requestsManager.getAllTeamsPlayersApi(teams: self.teams, completionHandler: { (res) in
 				switch res {
 				case .success(let teams):
 					self.teams = teams
-				case .failure(let err):
+				case .failure( _):
 				break
 			}
 				
@@ -95,7 +98,7 @@ class MainViewController: UIViewController {
 					switch res {
 					case .success(let teams):
 						self.teams = teams
-					case .failure(let err):
+					case .failure( _):
 					break
 					}
 					self.refreshControl?.endRefreshing()
