@@ -27,7 +27,7 @@ class HttpRequestsManagerTests: XCTestCase {
 			return HTTPStubsResponse(fileAtPath: OHPathForFile("teams2.json", type(of: self))!, statusCode: 200, headers: ["Content-Type": "application/json"])
 		}
 		
-		sut.getTeams(baseApiURL: "https://thesportsdb.com/api/v1/json/1/", url: "search_all_teams.php?l=NBA") { (res) in
+		sut.getTeams { (res) in
 			switch res {
 			case .success(let teams):
 				outputTeams = teams
@@ -49,7 +49,7 @@ class HttpRequestsManagerTests: XCTestCase {
 			return HTTPStubsResponse(fileAtPath: OHPathForFile("players.json", type(of: self))!, statusCode: 200, headers: ["Content-Type": "application/json"])
 		}
 		
-		sut.getPlayers(baseApiURL: "https://thesportsdb.com/api/v1/json/1/", url: "searchplayers.php?t=", teamName: "Atlanta Hawks") { (res) in
+		sut.getPlayers(teamName: "Atlanta Hawks") { (res) in
 			switch res {
 			case .success(let players):
 				outputPlayers = players
@@ -71,7 +71,7 @@ class HttpRequestsManagerTests: XCTestCase {
 			return HTTPStubsResponse(fileAtPath: OHPathForFile("events.json", type(of: self))!, statusCode: 200, headers: ["Content-Type": "application/json"])
 		}
 		
-		sut.getEvents(baseApiURL: "https://thesportsdb.com/api/v1/json/1/", url: "eventslast.php?id=", teamID: "134880") { (res) in
+		sut.getEvents(teamID: "134880") { (res) in
 			switch res {
 			case .success(let events):
 				outputEvents = events

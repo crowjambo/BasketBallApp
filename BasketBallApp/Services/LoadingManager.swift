@@ -65,9 +65,12 @@ class LoadingManager: TeamsDataLoadable {
 		}
 		
 		returnGroup.notify(queue: .main) {
-			
-			completionHandler(.success(outputTeams))
-			self.dataManager.saveTeams(teamsToSave: outputTeams)
+			if outputTeams!.isEmpty {
+				completionHandler(.failure(TeamsLoadingError.noTeamsLoaded))
+			} else {
+				completionHandler(.success(outputTeams))
+				self.dataManager.saveTeams(teamsToSave: outputTeams)
+			}
 		}
 		
 	}
