@@ -37,7 +37,6 @@ class HttpRequestsManager: ExternalDataRetrievable {
 					let teams = try JSONDecoder().decode(TeamsJsonResponse.self, from: data)
 					completionHandler(.success(teams.teams))
 					} catch {
-						debugPrint(error)
 					}
 			case .failure:
 				if let error = response.error {
@@ -61,7 +60,6 @@ class HttpRequestsManager: ExternalDataRetrievable {
 					let players = try JSONDecoder().decode(PlayerJsonResponse.self, from: data)
 					completionHandler(.success(players.player))
 					} catch {
-						debugPrint(error)
 					}
 			case .failure:
 				if let error = response.error {
@@ -84,7 +82,6 @@ class HttpRequestsManager: ExternalDataRetrievable {
 					let matches = try JSONDecoder().decode(MatchHistoryJsonResponse.self, from: data)
 					completionHandler(.success(matches.results))
 					} catch {
-						debugPrint(error)
 					}
 			case .failure:
 				if let error = response.error {
@@ -105,9 +102,8 @@ class HttpRequestsManager: ExternalDataRetrievable {
 				switch res {
 				case .success(let players):
 					outputTeams[index].teamPlayers = players
-				case .failure(let err):
+				case .failure(_):
 					outputTeams[index].teamPlayers = []
-					debugPrint(err)
 				}
 				apiGroup.leave()
 			}
@@ -131,9 +127,8 @@ class HttpRequestsManager: ExternalDataRetrievable {
 				switch res {
 				case .success(let events):
 					outputTeams[index].matchHistory = events
-				case .failure(let err):
+				case .failure(_):
 					outputTeams[index].matchHistory = []
-					debugPrint(err)
 				}
 				apiGroup.leave()
 			}

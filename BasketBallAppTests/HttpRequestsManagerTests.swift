@@ -32,8 +32,8 @@ class HttpRequestsManagerTests: XCTestCase {
 			case .success(let teams):
 				outputTeams = teams
 				expectation.fulfill()
-			case .failure(let err):
-				debugPrint(err)
+			case .failure(_):
+				break
 			}
 		}
 		waitForExpectations(timeout: 1, handler: nil)
@@ -54,8 +54,8 @@ class HttpRequestsManagerTests: XCTestCase {
 			case .success(let players):
 				outputPlayers = players
 				expectation.fulfill()
-			case .failure(let err):
-				debugPrint(err)
+			case .failure(_):
+				break
 			}
 		}
 		waitForExpectations(timeout: 1, handler: nil)
@@ -76,8 +76,8 @@ class HttpRequestsManagerTests: XCTestCase {
 			case .success(let events):
 				outputEvents = events
 				expectation.fulfill()
-			case .failure(let err):
-				debugPrint(err)
+			case .failure(_):
+				break
 				}
 			}
 		waitForExpectations(timeout: 1, handler: nil)

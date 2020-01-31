@@ -35,8 +35,8 @@ class LoadingManagerTests: XCTestCase {
 			switch res {
 			case .success(let teams):
 				outputTeams = teams
-			case .failure(let err):
-				debugPrint(err)
+			case .failure(_):
+				break
 			}
 			expectation.fulfill()
 		}

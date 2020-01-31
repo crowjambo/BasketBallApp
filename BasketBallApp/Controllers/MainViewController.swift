@@ -49,10 +49,9 @@ class MainViewController: UIViewController {
 			switch res {
 			case .success(let teams):
 				viewController.teams = teams
-			case .failure(let err):
+			case .failure(_):
 				viewController.teams = []
 				viewController.view.makeToast("Failed to load teams", duration: 3.0, position: .bottom)
-				debugPrint(err)
 			}
 			
 			DispatchQueue.main.async {

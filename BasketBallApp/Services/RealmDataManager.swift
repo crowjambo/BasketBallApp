@@ -6,7 +6,7 @@ class RealmDataManager: DataPersistable {
 	let mapper: ModelRealmMapper = ModelRealmMapper()
 	
 	func saveTeams(teamsToSave: [Team]?) {
-		debugPrint("entered saving mode")
+		
 		guard let teams = teamsToSave else { return }
 		guard let realm = try? Realm() else { return }
 	
@@ -17,10 +17,8 @@ class RealmDataManager: DataPersistable {
 					realm.add(teamToSave, update: .modified)
 				}
 			} catch {
-				debugPrint("failed to write to realm")
 			}
 		}
-		debugPrint("saved teams into Realm")
 		
 	}
 	
@@ -36,7 +34,6 @@ class RealmDataManager: DataPersistable {
 				outputTeams.append(mappedTeam)
 			}
 			print(Realm.Configuration.defaultConfiguration.fileURL!)
-			debugPrint("Loaded from Realm DB")
 			completionHandler(.success(outputTeams))
 		}
 	}

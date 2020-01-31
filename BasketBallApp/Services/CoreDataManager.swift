@@ -99,8 +99,7 @@ final class CoreDataManager: DataPersistable {
 					
 				}
 			completionHandler(.success(teamsRet))
-			
-			debugPrint("loaded from coreData")
+
 		}
 
 	}

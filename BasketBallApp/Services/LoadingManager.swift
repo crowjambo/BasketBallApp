@@ -40,16 +40,16 @@ class LoadingManager: TeamsDataLoadable {
 			switch res {
 			case .success(let teams):
 				outputTeams = teams
-			case .failure(let err):
-				debugPrint(err)
+			case .failure(_):
+				break
 			}
 			
 			self.playerUpdate(sentInTeams: outputTeams, shouldPlayerUpdate: self.defaultsManager.shouldUpdate(idOfEntity: UpdateTime.player), returnGroup: returnGroup) { (res) in
 				switch res {
 				case .success(let teams):
 					outputTeams = teams
-				case .failure(let err):
-					debugPrint(err)
+				case .failure(_):
+					break
 				}
 				
 				self.eventUpdate(sentInTeams: outputTeams, shouldEventUpdate: self.defaultsManager.shouldUpdate(idOfEntity: UpdateTime.event), returnGroup: returnGroup) { (res) in
@@ -88,14 +88,12 @@ class LoadingManager: TeamsDataLoadable {
 					completion(.failure(err))
 				}
 				self.defaultsManager.updateTime(key: UpdateTime.team)
-				debugPrint("teams updated through API")
 			}
 		} else {
 			dataManager.loadTeams { (res) in
 				switch res {
 				case .success(let teams):
 					outputTeams = teams
-					debugPrint("teams loaded from DB")
 					completion(.success(outputTeams))
 				case .failure(let err):
 					completion(.failure(err))
@@ -119,7 +117,6 @@ class LoadingManager: TeamsDataLoadable {
 					completion(.failure(err))
 				}
 				self.defaultsManager.updateTime(key: UpdateTime.player)
-				debugPrint("players updated through API")
 				returnGroup.leave()
 			}
 		} else {
@@ -140,7 +137,6 @@ class LoadingManager: TeamsDataLoadable {
 				case .failure(let err):
 					completion(.failure(err))
 				}
-				debugPrint("events updated through API")
 				self.defaultsManager.updateTime(key: UpdateTime.event)
 				
 				returnGroup.leave()
