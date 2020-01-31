@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:BasketBallApp/Models/EventsCore+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BasketBallApp/Models/EventsCore+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BasketBallApp/Models/TeamsCore+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BasketBallApp/Models/TeamsCore+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BasketBallApp/Models/PlayersCore+CoreDataClass.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BasketBallApp/Models/PlayersCore+CoreDataProperties.swift">
+   </FileRef>
+   <FileRef
+      location = "group:BasketBallApp.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+</Workspace>
