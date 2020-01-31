@@ -21,7 +21,7 @@ class HttpRequestsManager: ExternalDataRetrievable {
 	typealias PlayersReseponse = (Result<[Player]?, Error>) -> Void
 	typealias EventsResponse = (Result<[Event]?, Error>) -> Void
 	
-	let baseApiURL: String = "https://www.thesportsdb.com/api/v1/json/1/"
+	let baseApiURL: String = "https://thesportsdb.com/api/v1/json/1/"
 	let urlForTeams: String = "search_all_teams.php?l=NBA"
 	let urlForPlayers: String = "searchplayers.php?t="
 	let urlForEvents: String = "eventslast.php?id="
