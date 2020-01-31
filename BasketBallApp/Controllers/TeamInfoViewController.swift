@@ -81,7 +81,14 @@ class TeamInfoViewController: UIViewController {
 
 	@objc func refreshList() {
 		
-		dataLoadingManager?.requestsManager.getPlayers(teamName: (self.team?.teamName!)!, completionHandler: { (res) in
+		guard
+			let dataLoadingManager = dataLoadingManager,
+			let team = team
+			else {
+			view.makeToast("Failed to refresh", duration: 3.0)
+			return
+		}
+		dataLoadingManager.requestsManager.getPlayers(teamName: team.teamName!, completionHandler: { (res) in
 			switch res {
 			case .success(let players):
 				self.team?.teamPlayers = players
@@ -89,31 +96,21 @@ class TeamInfoViewController: UIViewController {
 			break
 			}
 			
-			self.dataLoadingManager?.requestsManager.getEvents(teamID: (self.team?.teamID!)!, completionHandler: { (res) in
+			dataLoadingManager.requestsManager.getEvents(teamID: team.teamID!, completionHandler: { (res) in
 				switch res {
 				case .success(let events):
 					self.team?.matchHistory = events
 				case .failure(_):
 				break
 				}
+				self.tableOutlet.reloadData()
+				self.refreshControl?.endRefreshing()
 			})
 		})
 		
-		self.tableOutlet.reloadData()
-		refreshControl?.endRefreshing()
+
 	}
 	
-	// MARK: - Navigation bar image
-	
-	func setupNavigationTitleImage() {
-		
-		let titleImageView = UIImageView(image: #imageLiteral(resourceName: "nbalogo") )
-		titleImageView.widthAnchor.constraint(equalToConstant: 64).isActive = true
-		titleImageView.heightAnchor.constraint(equalToConstant: 44).isActive = true
-		titleImageView.contentMode = .scaleAspectFit
-		navigationItem.titleView = titleImageView
-		 
-	  }
 }
 
 // MARK: - TableView setup

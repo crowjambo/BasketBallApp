@@ -5,15 +5,9 @@ class MainViewController: UIViewController {
 	
 	// MARK: - Variables
 	
-	var teams: [Team]? {
-		didSet {
-//			cardCollectionView.reloadData()
-		}
-	}
+	var teams: [Team]?
 	var displayLinear: Bool = true
-	
 	var refreshControl: UIRefreshControl?
-	
 	var dataLoadingManager: TeamsDataLoadable?
 	
 	// MARK: - Outlets
@@ -24,9 +18,9 @@ class MainViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
 		setupNavigationTitleImage()
 		addRefreshControl()
+		
 		loadData()
 
 	}
@@ -46,21 +40,23 @@ class MainViewController: UIViewController {
 	func loadData() {
 		
 		guard let dataLoadingManager = dataLoadingManager else {
-			self.view.makeToast("Data loading failed", duration: 3.0, position: .center)
+			view.makeToast("Data loading failed", duration: 3.0, position: .center)
 			return
 		}
 		dataLoadingManager.loadData(completionHandler: { [weak self] (res) in
+			
+			guard let viewController = self else { return }
 			switch res {
 			case .success(let teams):
-				self?.teams = teams
+				viewController.teams = teams
 			case .failure(let err):
-				self?.teams = []
-				self?.view.makeToast("Failed to load teams", duration: 3.0, position: .bottom)
+				viewController.teams = []
+				viewController.view.makeToast("Failed to load teams", duration: 3.0, position: .bottom)
 				debugPrint(err)
 			}
 			
 			DispatchQueue.main.async {
-				self?.cardCollectionView.reloadData()
+				viewController.cardCollectionView.reloadData()
 			}
 
 		})
@@ -78,7 +74,12 @@ class MainViewController: UIViewController {
 	}
 
 	@objc func refreshList() {
-		dataLoadingManager?.requestsManager.getTeams(completionHandler: { (res) in
+		
+		guard let dataLoadingManager = dataLoadingManager else {
+			view.makeToast("Data loading failed", duration: 3.0, position: .center)
+			return }
+		
+		dataLoadingManager.requestsManager.getTeams(completionHandler: { (res) in
 			switch res {
 			case .success(let teams):
 				self.teams = teams
@@ -86,7 +87,7 @@ class MainViewController: UIViewController {
 			break
 			}
 			
-			self.dataLoadingManager?.requestsManager.getAllTeamsPlayersApi(teams: self.teams, completionHandler: { (res) in
+			dataLoadingManager.requestsManager.getAllTeamsPlayersApi(teams: self.teams, completionHandler: { (res) in
 				switch res {
 				case .success(let teams):
 					self.teams = teams
@@ -94,7 +95,7 @@ class MainViewController: UIViewController {
 				break
 			}
 				
-				self.dataLoadingManager?.requestsManager.getAllTeamsEventsApi(teams: self.teams, completionHandler: { (res) in
+				dataLoadingManager.requestsManager.getAllTeamsEventsApi(teams: self.teams, completionHandler: { (res) in
 					switch res {
 					case .success(let teams):
 						self.teams = teams
@@ -108,18 +109,6 @@ class MainViewController: UIViewController {
 			
 		})
 	}
-	
-	// MARK: - Navigation bar image
-	
-	func setupNavigationTitleImage() {
-		
-		let titleImageView = UIImageView(image: #imageLiteral(resourceName: "nbalogo") )
-		titleImageView.widthAnchor.constraint(equalToConstant: 64).isActive = true
-		titleImageView.heightAnchor.constraint(equalToConstant: 44).isActive = true
-		titleImageView.contentMode = .scaleAspectFit
-		navigationItem.titleView = titleImageView
-		 
-	  }
 	
 	// MARK: - Layout buttons actions
 	
