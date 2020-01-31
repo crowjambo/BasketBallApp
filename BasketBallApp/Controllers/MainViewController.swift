@@ -22,7 +22,6 @@ class MainViewController: UIViewController {
 		addRefreshControl()
 		
 		loadData()
-
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
